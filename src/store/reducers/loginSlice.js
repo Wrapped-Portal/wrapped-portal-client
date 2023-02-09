@@ -11,7 +11,6 @@ const loginSlice = createSlice({
   initialState,
   reducers: {
     login: (state) => {
-      console.log('in reducer line 14', state);
       state.isLoggedIn = true;
     },
     logout: (state) => {

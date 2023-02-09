@@ -1,17 +1,29 @@
 /** @format */
 
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from './store/reducers/loginSlice';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import About from './components/About';
+import Dashboard from './components/Dashboard';
+import Splash from './components/Splash';
 
 function App() {
-  const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.login);
 
-  const handleClick = () => {
-    dispatch(login());
-  };
   console.log('Current State: ', isLoggedIn);
-  return <h1 onClick={handleClick}>Proof of Life</h1>;
+  return (
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={isLoggedIn ? <Dashboard /> : <Splash />}
+        />
+        <Route
+          path="/about"
+          element={<About />}
+        />
+      </Routes>
+    </>
+  );
 }
 
 export default App;

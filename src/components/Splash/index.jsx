@@ -1,7 +1,12 @@
 /** @format */
 
 import React from 'react';
+import Button from './Button';
 
 export default function Splash() {
-  return <main>Splash</main>;
+  return (
+    <main>
+      <Button />
+    </main>
+  );
 }

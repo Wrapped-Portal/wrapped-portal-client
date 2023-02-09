@@ -1,0 +1,48 @@
+/** @format */
+
+body {
+  width: 100%;
+  text-align: left;
+  font-family: 'work sans', sans-serif;
+  font-size: 2.5rem;
+}
+
+.large-text {
+  font-size: 5rem;
+}
+
+h1 {
+  color: white;
+  font-size: 15rem;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+h2 {
+  font-size: 2.3rem;
+  font-family: sans-serif;
+  font-weight: 700;
+}
+h3 {
+  color: white;
+  font-size: 4rem;
+  font-family: serif;
+  font-weight: 200;
+}
+h4 {
+  font-size: 2.5rem;
+  font-family: sans-serif;
+  font-weight: 100;
+  color: gray;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header__group__title {
+  color: $color-lighter-beige;
+  font-size: 4rem;
+  font-family: sans-serif;
+  text-shadow: 2.25px 2.25px 2.25px $color-lighter-blue;
+}

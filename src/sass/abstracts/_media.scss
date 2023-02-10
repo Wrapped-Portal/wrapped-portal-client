@@ -1,0 +1,22 @@
+@media (max-width: 1000px) {
+  .header__group__nav__segment {
+    display: none;
+    width: auto;
+  }
+
+  .header__group__nav__signup {
+    display: none;
+  }
+}
+
+@media (min-width: 1000px) {
+  .header__group__burger {
+    display: none;
+
+  }
+
+  .header__group__mobileMenu {
+    display: none;
+
+  }
+}

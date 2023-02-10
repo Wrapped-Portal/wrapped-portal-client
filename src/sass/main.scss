@@ -1,0 +1,15 @@
+/** @format */
+// Script required to compile to css. Change Directory as needed
+//"compile:sass": "sass sass/main.scss public/stylesheets/style.css -w"
+
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+@import 'abstracts/variables';
+
+@import 'base/animations';
+@import 'base/base';
+@import 'base/typography';
+
+@import 'pages/pages';
+
+@import 'abstracts/media.scss';

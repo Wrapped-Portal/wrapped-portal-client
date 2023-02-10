@@ -18,8 +18,9 @@ const loginSlice = createSlice({
       state.isLoggedIn = false;
     },
     storeToken: (state, action) => {
-      if (action.token) {
-        state.token = action.token;
+      if (action.payload.token) {
+        state.isLoggedIn = true;
+        state.token = action.payload.token;
       }
     },
   },

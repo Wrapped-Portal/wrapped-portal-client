@@ -1,7 +1,7 @@
 /** @format */
 
 import { configureStore } from '@reduxjs/toolkit';
-
+import getToken from './middleware/getToken';
 import loggerMiddleware from './middleware/logger';
 import login from './reducers/loginSlice';
 
@@ -10,7 +10,7 @@ const store = configureStore({
     login: login,
   },
 
-  middleware: [loggerMiddleware],
+  middleware: [loggerMiddleware, getToken],
 });
 
 export default store;

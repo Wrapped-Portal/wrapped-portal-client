@@ -4,15 +4,25 @@ import axios from 'axios';
 
 const getToken = (store) => (next) => async (action) => {
   if (action.type === 'login/storeToken') {
-    try {
-      console.log('TEST', import.meta.env.VITE_SERVER_URI);
-      const results = await axios.get(import.meta.env.VITE_SERVER_URI, {
-        code: action.payload.code,
-      });
-      console.log(results.data);
-    } catch (e) {
-      console.error('Error: GetToken Middleware:', e.message);
-      next(action);
+    if (action.payload.code) {
+      if (!store.getState().login.isLoggedIn) {
+        try {
+          const results = await axios.post(
+            `${import.meta.env.VITE_SERVER_URI}login`,
+            { code: action.payload.code },
+          );
+          action.payload = { token: results.data };
+
+          next(action);
+        } catch (e) {
+          console.error(
+            'Error: GetToken Middleware:',
+            e.message,
+            action.payload,
+          );
+          next(action);
+        }s
+      }
     }
   }
 

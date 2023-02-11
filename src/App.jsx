@@ -14,8 +14,7 @@ function App() {
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get('code');
     if (code) {
-      console.log(code);
-      dispatch(storeToken(code));
+      dispatch(storeToken({ code: code }));
     }
     //
   }, []);

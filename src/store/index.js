@@ -10,7 +10,7 @@ const store = configureStore({
     login: login,
   },
 
-  middleware: [loggerMiddleware, getToken],
+  middleware: [getToken, loggerMiddleware],
 });
 
 export default store;

@@ -1,1 +1,40 @@
 /** @format */
+.splash {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+  align-content: center;
+  height: 100vh;
+
+  &__login {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    overflow: hidden;
+    height: 5.9rem;
+    width: 140%;
+    background: linear-gradient(rgb(1, 126, 1), rgb(3, 64, 3));
+    position: relative;
+    border: black solid 1px;
+    box-shadow: 5px 5px 5px #1b1a1a;
+    border-radius: 20px;
+    transition: all 0.3s ease-in;
+    &:focus {
+      outline: orange 5px auto;
+    }
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 5px 5px 5px #333;
+      background: linear-gradient(rgb(2, 144, 2), rgb(3, 86, 3));
+    }
+    &:active {
+      transform: translateY(-2px);
+      box-shadow: 5px 5px 5px #1b1a1a;
+    }
+    &--logo {
+      position: absolute;
+      left: 9rem;
+      bottom: -16.8rem;
+    }
+  }
+}

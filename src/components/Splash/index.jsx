@@ -5,7 +5,7 @@ import Button from './Button';
 
 export default function Splash() {
   return (
-    <main>
+    <main className="splash">
       <Button />
     </main>
   );

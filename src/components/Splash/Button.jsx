@@ -24,13 +24,14 @@ export default function Button() {
     <a
       href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`}
     >
-      <button>
-        Sign in with Spotify
+      <div className="splash__login">
         <img
+          className="splash__login--logo"
           alt="spotify logo"
           src={spotify}
         />
-      </button>
+        <button>Sign in with Spotify</button>
+      </div>
     </a>
   );
 }

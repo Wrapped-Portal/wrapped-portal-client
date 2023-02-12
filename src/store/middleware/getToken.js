@@ -21,7 +21,7 @@ const getToken = (store) => (next) => async (action) => {
             action.payload,
           );
           next(action);
-        }s
+        }
       }
     }
   }

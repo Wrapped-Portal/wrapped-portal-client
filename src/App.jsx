@@ -2,11 +2,14 @@
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Cookies from 'universal-cookie';
 import { Route, Routes } from 'react-router-dom';
 import About from './components/About';
 import Dashboard from './components/Dashboard';
 import Splash from './components/Splash';
 import { storeToken } from './store/reducers/loginSlice';
+
+const cookies = new Cookies();
 
 function App() {
   const { isLoggedIn, token } = useSelector((state) => state.login);
@@ -16,8 +19,17 @@ function App() {
     if (code) {
       dispatch(storeToken({ code: code })); // send the code to the middleware to retrieve a bearer token
       window.history.pushState({}, null, '/'); // Clear the address bar of parameters
+    } else if (!token) {
+      const storedToken = cookies.get('token');
+      if (storedToken) {
+        dispatch({
+          type: 'login/restoreSession',
+          payload: {
+            token: storedToken,
+          },
+        });
+      }
     }
-    //
   }, []);
 
   console.log('Current State: ', token);

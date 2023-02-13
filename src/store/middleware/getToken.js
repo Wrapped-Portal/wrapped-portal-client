@@ -1,6 +1,9 @@
 /** @format */
 
 import axios from 'axios';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const getToken = (store) => (next) => async (action) => {
   if (action.type === 'login/storeToken') {
@@ -12,6 +15,11 @@ const getToken = (store) => (next) => async (action) => {
             { code: action.payload.code },
           );
           action.payload = { token: results.data };
+
+          const { accessToken, refreshToken, expiresIn } = results.data;
+          cookies.set('accessToken', accessToken, { path: '/' });
+          cookies.set('refreshToken', refreshToken, { path: '/' });
+          cookies.set('expiresIn', expiresIn, { path: '/' });
 
           next(action);
         } catch (e) {

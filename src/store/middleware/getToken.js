@@ -17,9 +17,15 @@ const getToken = (store) => (next) => async (action) => {
           action.payload = { token: results.data };
 
           const { accessToken, refreshToken, expiresIn } = results.data;
-          cookies.set('accessToken', accessToken, { path: '/' });
-          cookies.set('refreshToken', refreshToken, { path: '/' });
-          cookies.set('expiresIn', expiresIn, { path: '/' });
+          cookies.set('accessToken', accessToken, {
+            path: '/',
+            maxAge: expiresIn,
+          });
+          cookies.set('refreshToken', refreshToken, {
+            path: '/',
+            maxAge: expiresIn,
+          });
+          cookies.set('expiresIn', expiresIn, { path: '/', maxAge: expiresIn });
 
           next(action);
         } catch (e) {

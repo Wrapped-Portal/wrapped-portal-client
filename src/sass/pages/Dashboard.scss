@@ -1,0 +1,19 @@
+.dashboard {
+  display: flex;
+}
+
+.column {
+  padding: 1rem;
+}
+
+.column:first-child {
+  flex: 1;
+}
+
+.column:last-child {
+  flex: 1;
+}
+
+.column:nth-child(2) {
+  flex: 2;
+}

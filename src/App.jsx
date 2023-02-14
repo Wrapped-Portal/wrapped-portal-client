@@ -24,7 +24,6 @@ function App() {
       if (accessToken) {
         const refreshToken = cookies.get('refreshToken');
         const expiresIn = cookies.get('expiresIn');
-        console.log(accessToken, 'store Token');
         dispatch(
           storeToken({ token: { accessToken, refreshToken, expiresIn } }),
         );

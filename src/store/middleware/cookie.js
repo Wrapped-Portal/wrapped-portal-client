@@ -4,7 +4,7 @@ const cookies = new Cookies();
 const restoreSession = (store) => (next) => (action) => {
   if (action.type === 'login/storeToken') {
     const { accessToken, refreshToken, expiresIn } = action.payload.token;
-    console.log(accessToken);
+
     cookies.set('accessToken', accessToken, { path: '/', maxAge: expiresIn });
     cookies.set('refreshToken', refreshToken, { path: '/', maxAge: expiresIn });
   } else if (action.type === 'login/restoreSession') {
@@ -13,8 +13,9 @@ const restoreSession = (store) => (next) => (action) => {
     const expiresIn = cookies.get('expiresIn');
 
     if (accessToken && refreshToken) {
-      console.log('doing it');
-      store.dispatch(storeToken({ token: { accessToken, refreshToken } }));
+      store.dispatch(
+        storeToken({ token: { accessToken, refreshToken, expiresIn } }),
+      );
     }
   }
 

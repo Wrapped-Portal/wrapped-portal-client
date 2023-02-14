@@ -8,6 +8,7 @@ import About from './components/About';
 import Dashboard from './components/Dashboard';
 import Splash from './components/Splash';
 import { storeToken } from './store/reducers/loginSlice';
+import Footer from './components/Footer/Footer';
 
 const cookies = new Cookies();
 
@@ -44,6 +45,7 @@ function App() {
           element={<About />}
         />
       </Routes>
+      {isLoggedIn ? <Footer /> : null}
     </>
   );
 }

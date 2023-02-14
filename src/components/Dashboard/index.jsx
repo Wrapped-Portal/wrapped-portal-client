@@ -2,7 +2,7 @@
 
 import React from 'react';
 import CustomRec from './CustomRec';
-// import UserTopResults from './UserTopResults';
+import UserTopResults from './UserTopResults';
 
 
 export default function Dashboard() {
@@ -10,10 +10,18 @@ export default function Dashboard() {
 
   return (
     <>
-      <main>Dashboard</main>
+      <main>
+    <div className='dashboard'>
+      <div className='column'>
+      <UserTopResults></UserTopResults>
+      </div>
+      <div className='column'>
       <CustomRec></CustomRec>
-      {/* <UserTopResults></UserTopResults> */}
-
+      </div>
+      <div className='column'>
+        </div>
+      </div>
+      </main>
     </>
   );
 }

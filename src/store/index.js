@@ -11,7 +11,7 @@ const store = configureStore({
     login: login,
   },
 
-  middleware: [cookie, getToken, loggerMiddleware],
+  middleware: [getToken, cookie, loggerMiddleware],
 });
 
 export default store;

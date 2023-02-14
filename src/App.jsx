@@ -20,14 +20,14 @@ function App() {
       dispatch(storeToken({ code: code })); // send the code to the middleware to retrieve a bearer token
       window.history.pushState({}, null, '/'); // Clear the address bar of parameters
     } else if (!token) {
-      const storedToken = cookies.get('token');
-      if (storedToken) {
-        dispatch({
-          type: 'login/restoreSession',
-          payload: {
-            token: storedToken,
-          },
-        });
+      const accessToken = cookies.get('accessToken');
+      if (accessToken) {
+        const refreshToken = cookies.get('refreshToken');
+        const expiresIn = cookies.get('expiresIn');
+        console.log(accessToken, 'store Token');
+        dispatch(
+          storeToken({ token: { accessToken, refreshToken, expiresIn } }),
+        );
       }
     }
   }, []);

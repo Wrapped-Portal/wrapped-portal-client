@@ -160,9 +160,9 @@ export default function CustomRec() {
               color="lime"
               radius="xs"
               marks={[
-                { value: 0, label: 'Low Enegry' },
+                { value: 0, label: 'Low Energy' },
                 { value: 50, label: 'Average Energy' },
-                { value: 100, label: 'Very Enegetic' },
+                { value: 100, label: 'Very Energetic' },
               ]}
               onChange={(value) => setEnergy(value / 100)}
               className="smaller-slider"
@@ -189,7 +189,7 @@ export default function CustomRec() {
               radius="xs"
               marks={[
                 { value: 0, label: 'Sad/Angry' },
-                { value: 50, label: 'Indiffrent' },
+                { value: 50, label: 'Indifferent' },
                 { value: 100, label: 'Happy/Euphoric' },
               ]}
               onChange={(value) => setVibe(value / 100)}

@@ -89,6 +89,7 @@ export default function CustomRec() {
         const response = await fetch('genres.json');
         const genres = await response.json();
 
+
         setGenreChoices(genres); // set the state variable
       } catch (error) {
         console.error('Error fetching genres:', error);
@@ -98,6 +99,7 @@ export default function CustomRec() {
 
     fetchGenres(); // call the async function inside useEffect
   }, []);
+
 
   return (
     <div className="rec">
@@ -237,7 +239,7 @@ export default function CustomRec() {
             />
           )}
           <Button
-            color="gray"
+            color="lime"
             className="smaller-slider"
             radius="xl"
             type="submit"

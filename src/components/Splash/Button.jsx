@@ -8,6 +8,8 @@ const REDIRECT_URI = import.meta.env.VITE_CLIENT_URI;
 const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'code';
 const SCOPE = [
+  'playlist-modify-public',
+  'playlist-modify-private',
   'streaming',
   'user-read-email',
   'user-read-private',

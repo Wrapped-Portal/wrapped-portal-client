@@ -1,0 +1,52 @@
+.playlist {
+  margin-right: 20px;
+
+  &_image {
+    margin-left: 10px;
+  }
+
+  &_text_name {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
+  &_text_tracks {
+    font-weight: 200;
+    font-size: 15px;
+  }
+
+  &_input {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+}
+
+.playlist_button {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.playlist_button_see {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.current {
+
+  &_image {
+    margin-left: 3px;
+  }
+
+  &_text_name {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  &_text_tracks {
+    font-weight: 300;
+    font-size: 15px;
+  }
+
+}

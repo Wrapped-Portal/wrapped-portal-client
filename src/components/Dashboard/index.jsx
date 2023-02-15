@@ -4,7 +4,9 @@ import React from 'react';
 
 import CustomRec from './CustomRec';
 import SoundBoard from './SoundBoard';
+import UserPlaylists from './UserPlaylists';
 import UserTopResults from './UserTopResults';
+
 
 export default function Dashboard() {
   return (
@@ -19,6 +21,7 @@ export default function Dashboard() {
             <CustomRec></CustomRec>
           </div>
           <div className="column"></div>
+        <UserPlaylists></UserPlaylists>
         </div>
       </main>
     </>

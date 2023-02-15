@@ -2,7 +2,9 @@
 
 import React from 'react';
 import CustomRec from './CustomRec';
+import UserPlaylists from './UserPlaylists';
 import UserTopResults from './UserTopResults';
+
 
 
 export default function Dashboard() {
@@ -19,6 +21,7 @@ export default function Dashboard() {
       <CustomRec></CustomRec>
       </div>
       <div className='column'>
+        <UserPlaylists></UserPlaylists>
         </div>
       </div>
       </main>

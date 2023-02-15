@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { getDeg, convertRange, renderTicks } from './helpers';
 
 export default function Knob() {
@@ -13,6 +13,7 @@ export default function Knob() {
   const currentDeg = deg;
   const numTicks = 25;
   const color = true;
+  const knobRef = useRef(null);
 
   const handleKnobChange = (value) => {
     console.log(value);
@@ -20,7 +21,7 @@ export default function Knob() {
 
   const startDrag = (e) => {
     e.preventDefault();
-    const knob = e.target.getBoundingClientRect();
+    const knob = knobRef.current.getBoundingClientRect();
     const pts = {
       x: knob.left + knob.width / 2,
       y: knob.top + knob.height / 2,
@@ -40,10 +41,46 @@ export default function Knob() {
     });
   };
 
+  const handleKeyDown = (e) => {
+    e.preventDefault();
+    let newDeg;
+    let newValue;
+    switch (e.key) {
+      case 'ArrowUp':
+        newDeg = currentDeg + 5;
+        if (newDeg > endAngle) newDeg = endAngle;
+        newValue = Math.floor(
+          convertRange(startAngle, endAngle, 1, 100, newDeg),
+        );
+        setDeg(newDeg);
+        handleKnobChange(newValue);
+        break;
+      case 'ArrowDown':
+        newDeg = currentDeg - 5;
+        if (newDeg < startAngle) newDeg = startAngle;
+        newValue = Math.floor(
+          convertRange(startAngle, endAngle, 1, 100, newDeg),
+        );
+        setDeg(newDeg);
+        handleKnobChange(newValue);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div
       className="knob"
       style={{ width: size, height: size }}
+      role="slider"
+      tabIndex="0"
+      aria-valuemin="1"
+      aria-valuemax="100"
+      aria-valuenow={Math.floor(
+        convertRange(startAngle, endAngle, 1, 100, currentDeg),
+      )}
+      onKeyDown={handleKeyDown}
     >
       <div className="ticks">
         {numTicks
@@ -75,6 +112,7 @@ export default function Knob() {
               }%),hsl(${Math.random() * 100},20%,${currentDeg / 36}%))`
             : null,
         }}
+        ref={knobRef}
         onMouseDown={startDrag}
       >
         <div

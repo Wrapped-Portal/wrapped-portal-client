@@ -73,7 +73,6 @@ export default function CustomRec() {
     setSelectedOption(selectedOption);
   };
 
-  console.log(tempo);
 
   return (
     <div className='rec'>
@@ -178,7 +177,7 @@ export default function CustomRec() {
             className="smaller-slider"
           />
         )}
-        <Button color="gray" className="smaller-slider"  radius="xl" type="submit">Submit</Button>
+        <Button color="lime" className="smaller-slider"  radius="xl" type="submit">Submit</Button>
         </div>
       </form>
       <div class="grid-container">

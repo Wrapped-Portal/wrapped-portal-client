@@ -2,24 +2,10 @@
 
 import React from 'react';
 import spotify from '../../assets/Spotify-logo.png';
+import { AUTH_ENDPOINT, RESPONSE_TYPE, SCOPE } from '../../../config';
 
 const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
 const REDIRECT_URI = import.meta.env.VITE_CLIENT_URI;
-const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
-const RESPONSE_TYPE = 'code';
-const SCOPE = [
-  'playlist-modify-public',
-  'playlist-modify-private',
-  'streaming',
-  'user-read-email',
-  'user-read-private',
-  'user-library-read',
-  'user-library-modify',
-  'user-read-playback-state',
-  'user-modify-playback-state',
-  'user-top-read',
-  'user-read-currently-playing',
-].join('%20');
 
 export default function Button() {
   return (

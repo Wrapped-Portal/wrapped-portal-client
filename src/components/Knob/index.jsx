@@ -1,9 +1,11 @@
 /** @format */
 
 import React, { useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { setFieldValue } from '../../store/reducers/soundBoardSlice';
 import { getDeg, convertRange, renderTicks } from './helpers';
 
-export default function Knob() {
+export default function Knob({ fieldName, bgColor }) {
   const [deg, setDeg] = useState(0);
   const fullAngle = 260;
   const startAngle = (360 - fullAngle) / 2;
@@ -14,9 +16,9 @@ export default function Knob() {
   const numTicks = 25;
   const color = true;
   const knobRef = useRef(null);
-
+  const dispatch = useDispatch();
   const handleKnobChange = (value) => {
-    console.log(value);
+    dispatch(setFieldValue({ field: fieldName, value: value }));
   };
 
   const startDrag = (e) => {
@@ -107,7 +109,7 @@ export default function Knob() {
           height: size,
           margin: margin,
           backgroundImage: color
-            ? `radial-gradient(100% 70%,hsl(210, ${currentDeg}%, ${
+            ? `radial-gradient(100% 70%,hsl(${bgColor}, ${currentDeg}%, ${
                 currentDeg / 5
               }%),hsl(${Math.random() * 100},20%,${currentDeg / 36}%))`
             : null,

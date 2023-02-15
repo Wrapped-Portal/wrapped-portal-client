@@ -44,7 +44,6 @@ export default function UserTopResults() {
     })();
   }, [type, range]);
 
-  console.log(data);
 
   return (
     <>
@@ -67,7 +66,6 @@ export default function UserTopResults() {
         withBorder
         className='paper'
       >
-        <Text></Text>
       <List type="ordered" className='list' >
         {
           data?.items.map(item => (

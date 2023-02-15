@@ -7,12 +7,10 @@ import SoundBoard from './SoundBoard';
 import UserPlaylists from './UserPlaylists';
 import UserTopResults from './UserTopResults';
 
-
 export default function Dashboard() {
   return (
     <>
       <main>
-        <SoundBoard />
         <div className="dashboard">
           <div className="column">
             <UserTopResults></UserTopResults>
@@ -21,7 +19,7 @@ export default function Dashboard() {
             <CustomRec></CustomRec>
           </div>
           <div className="column"></div>
-        <UserPlaylists></UserPlaylists>
+          <UserPlaylists></UserPlaylists>
         </div>
       </main>
     </>

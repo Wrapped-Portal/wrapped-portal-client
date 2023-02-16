@@ -5,12 +5,12 @@ import { useDispatch } from 'react-redux';
 import { setFieldValue } from '../../store/reducers/soundBoardSlice';
 import { getDeg, convertRange, renderTicks } from './helpers';
 
-export default function Knob({ fieldName, bgColor }) {
+export default function Knob({ fieldName, bgColor, label }) {
   const [deg, setDeg] = useState(0);
   const fullAngle = 260;
   const startAngle = (360 - fullAngle) / 2;
   const endAngle = startAngle + fullAngle;
-  const size = 100;
+  const size = 50;
   const margin = size * 0.15;
   const currentDeg = deg;
   const numTicks = 25;
@@ -72,60 +72,70 @@ export default function Knob({ fieldName, bgColor }) {
   };
 
   return (
-    <div
-      className="knob"
-      style={{ width: size, height: size }}
-      role="slider"
-      tabIndex="0"
-      aria-valuemin="1"
-      aria-valuemax="100"
-      aria-valuenow={Math.floor(
-        convertRange(startAngle, endAngle, 1, 100, currentDeg),
-      )}
-      onKeyDown={handleKeyDown}
-    >
-      <div className="ticks">
-        {numTicks
-          ? renderTicks(
-              fullAngle,
-              numTicks,
-              size,
-              margin,
-              startAngle,
-              endAngle,
-            ).map((tick, i) => (
-              <div
-                key={i}
-                className={'tick' + (tick.deg <= currentDeg ? ' active' : '')}
-                style={tick.tickStyle}
-              />
-            ))
-          : null}
-      </div>
-      <div
-        className="knob outer"
-        style={{
-          width: size,
-          height: size,
-          margin: margin,
-          backgroundImage: color
-            ? `radial-gradient(100% 70%,hsl(${bgColor}, ${currentDeg}%, ${
-                currentDeg / 5
-              }%),hsl(${Math.random() * 100},20%,${currentDeg / 36}%))`
-            : null,
-        }}
-        ref={knobRef}
-        onMouseDown={startDrag}
+    <div className="knob__wrapper">
+      <label
+        className="knob__label"
+        for={label}
       >
+        {label}
+      </label>
+
+      <div
+        id={label}
+        className="knob"
+        style={{ width: size, height: size }}
+        role="slider"
+        tabIndex="0"
+        aria-valuemin="1"
+        aria-valuemax="100"
+        aria-valuenow={Math.floor(
+          convertRange(startAngle, endAngle, 1, 100, currentDeg),
+        )}
+        onKeyDown={handleKeyDown}
+      >
+        <div className="ticks">
+          {numTicks
+            ? renderTicks(
+                fullAngle,
+                numTicks,
+                size,
+                margin,
+                startAngle,
+                endAngle,
+              ).map((tick, i) => (
+                <div
+                  key={i}
+                  className={'tick' + (tick.deg <= currentDeg ? ' active' : '')}
+                  style={tick.tickStyle}
+                />
+              ))
+            : null}
+        </div>
         <div
-          className="knob inner"
+          className="knob outer"
           style={{
             width: size,
             height: size,
-            transform: `rotate(${currentDeg}deg)`,
+            margin: margin,
+            backgroundImage: color
+              ? `radial-gradient(100% 70%,hsl(${bgColor}, ${currentDeg}%, ${
+                  currentDeg / 5
+                }%),hsl(${Math.random() * 100},20%,${currentDeg / 36}%))`
+              : null,
           }}
+          ref={knobRef}
+          onMouseDown={startDrag}
         >
-          <div className="grip" />
+          <div
+            className="knob inner"
+            style={{
+              width: size,
+              height: size,
+              transform: `rotate(${currentDeg}deg)`,
+            }}
+          >
+            <div className="grip" />
+          </div>
         </div>
       </div>
     </div>

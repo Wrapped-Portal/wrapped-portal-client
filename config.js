@@ -14,4 +14,5 @@ export const SCOPE = [
   'user-modify-playback-state',
   'user-top-read',
   'user-read-currently-playing',
+  'user-read-recently-played',
 ].join('%20');

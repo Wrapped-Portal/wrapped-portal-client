@@ -1,6 +1,15 @@
 /** @format */
 
 .knob {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__label {
+    margin: 1rem;
+  }
   display: flex;
   position: relative;
 }
@@ -40,4 +49,8 @@
 }
 .test {
   background: hsl(188, 100%, 50%);
+}
+
+label {
+  padding: 0;
 }

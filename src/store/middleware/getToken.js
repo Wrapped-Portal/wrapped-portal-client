@@ -25,7 +25,7 @@ const getToken = (store) => (next) => async (action) => {
             path: '/',
             maxAge: expiresIn,
           });
-          cookies.set('expiresIn', 60, { path: '/', maxAge: expiresIn });
+          cookies.set('expiresIn', expiresIn, { path: '/', maxAge: expiresIn });
 
           next(action);
         } catch (e) {

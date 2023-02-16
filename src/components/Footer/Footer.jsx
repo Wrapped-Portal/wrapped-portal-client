@@ -3,12 +3,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import SpotifyWebPlayer from 'react-spotify-web-playback';
-import { setPlayingStatus } from '../../store/reducers/webPlayerSlice';
+import {
+  setPlayingStatus,
+  setTrackUri,
+} from '../../store/reducers/webPlayerSlice';
 
 const Footer = () => {
   const dispatch = useDispatch();
   const { playing, trackUri } = useSelector((state) => state.webPlayerSlice);
   const { accessToken } = useSelector((state) => state.login.token);
+  useEffect(() => {
+    dispatch(setTrackUri());
+  }, []);
+  console.log(trackUri);
   useEffect(() => {
     dispatch(setPlayingStatus(playing));
   }, [dispatch, playing, setPlayingStatus]);

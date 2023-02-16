@@ -15,7 +15,9 @@ const webPlayerSlice = createSlice({
       state.playing = action.payload;
     },
     setTrackUri: (state, action) => {
-      state.trackUri = action.payload;
+      if (action.payload) {
+        state.trackUri = action.payload?.uri;
+      }
     },
   },
 });

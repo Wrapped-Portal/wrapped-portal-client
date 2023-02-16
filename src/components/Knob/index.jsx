@@ -75,7 +75,7 @@ export default function Knob({ fieldName, bgColor, label }) {
     <div className="knob__wrapper">
       <label
         className="knob__label"
-        for={label}
+        htmlFor={label}
       >
         {label}
       </label>

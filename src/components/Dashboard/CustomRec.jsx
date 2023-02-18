@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Image, Input, MultiSelect, Text } from '@mantine/core';
+import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
 
 export default function CustomRec() {
@@ -19,7 +20,8 @@ export default function CustomRec() {
   const { dance, energy, loud, vibe, tempo, popular, instrumental } =
     useSelector((state) => state.soundBoardSlice);
   const fetchData = async () => {
-    const stringifiedGenre = genre.join('');
+    const stringifiedGenre = genre.join();
+
     console.log(stringifiedGenre);
     try {
       const response = await axios.get(`http://localhost:3001/recommendation`, {
@@ -45,6 +47,7 @@ export default function CustomRec() {
   const dispatch = useDispatch();
 
   const handleAddTrackToPlaylist = (selectedTrack) => {
+    dispatch(selectTrack(selectedTrack));
     const payload = {
       selectedTrack: selectedTrack,
       accessToken: token.accessToken,
@@ -58,10 +61,18 @@ export default function CustomRec() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-
+  
     try {
       const result = await fetchData();
+      setData((prevData) => {
+        if (prevData && prevData.tracks) {
+          return { ...prevData, tracks: [] };
+        } else {
+          return prevData;
+        }
+      });
       setData(result);
+      setError(null);
       setLoading(false);
     } catch (error) {
       if (artist === '') {
@@ -72,6 +83,7 @@ export default function CustomRec() {
       setLoading(false);
     }
   };
+  
 
   useEffect(() => {
     async function fetchGenres() {

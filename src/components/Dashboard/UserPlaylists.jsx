@@ -28,7 +28,7 @@ export default function UserPlaylists() {
   const [description, setDescription] = useState(null);
   const [isPublic, setIsPublic] = useState(false);
   const { token } = useSelector((state) => state.login);
-  const { selectedPlaylist } = useSelector(state => state.playlistSlice,
+  const { selectedPlaylist, selectedTrack } = useSelector(state => state.playlistSlice,
   );
 
   const dispatch = useDispatch();
@@ -82,7 +82,7 @@ export default function UserPlaylists() {
         console.error(error);
       }
     })();
-  }, []);
+  }, [selectedTrack]);
 
   const createPlaylist = async () => {
     try {

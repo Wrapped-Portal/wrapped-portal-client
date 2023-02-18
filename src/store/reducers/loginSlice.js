@@ -24,7 +24,7 @@ const loginSlice = createSlice({
       }
     },
     restoreSession: (state, action) => {
-      if (action.payload.accessToken) {
+      if (action.payload?.accessToken) {
         state.isLoggedIn = true;
         state.token = action.payload.accessToken;
       }

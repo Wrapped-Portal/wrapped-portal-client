@@ -1,7 +1,7 @@
 /** @format */
 
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Image, Input, MultiSelect, Text } from '@mantine/core';
 import SoundBoard from './SoundBoard';
@@ -40,6 +40,19 @@ export default function CustomRec() {
     } catch (error) {
       throw error;
     }
+  };
+
+  const dispatch = useDispatch();
+
+  const handleAddTrackToPlaylist = (selectedTrack) => {
+    const payload = {
+      selectedTrack: selectedTrack,
+      accessToken: token.accessToken,
+    };
+    dispatch({
+      type: 'addTrackToPlaylist',
+      payload,
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -121,34 +134,44 @@ export default function CustomRec() {
       <div className="grid-container">
         {data && Array.isArray(data.tracks) && data.tracks.length > 0
           ? data.tracks.map((item) => (
-              <Card
-                shadow="sm"
-                p="lg"
-                radius="md"
-                withBorder
-                key={item.id}
-              >
-                <Card.Section>
-                  <Image src={item.album.images[0].url} />
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    weight={600}
-                    className="card-text-large"
-                  >
-                    {item.album.artists[0].name}
-                  </Text>
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    weight={300}
-                    className="card-text-small"
-                  >
-                    {item.name}
-                  </Text>
-                </Card.Section>
-              </Card>
-            ))
+            <Card
+              shadow="sm"
+              p="lg"
+              radius="md"
+              withBorder
+              key={item.id}
+            >
+              <Card.Section>
+                <Image src={item.album.images[0].url} />
+              </Card.Section>
+              <Card.Section>
+                <Text
+                  weight={600}
+                  className="card-text-large"
+                >
+                  {item.album.artists[0].name}
+                </Text>
+              </Card.Section>
+              <Card.Section>
+                <Text
+                  weight={300}
+                  className="card-text-small"
+                >
+                  {item.name}
+                </Text>
+                <Button
+                  key={item.id}
+                  color="lime"
+                  radius="xs"
+                  size="xs"
+                  compact
+                  onClick={() => handleAddTrackToPlaylist(item?.uri)}
+                >
+                  +
+                </Button>
+              </Card.Section>
+            </Card>
+          ))
           : null}
       </div>
       {loading && <p>Loading...</p>}

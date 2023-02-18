@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { Button, Input, List, Paper, Text } from '@mantine/core';
+import { selectTrack } from '../../store/reducers/playlistSlice';
 
 
 export default function UserTopResults() {
@@ -17,6 +18,7 @@ export default function UserTopResults() {
   const dispatch = useDispatch();
 
   const handleAddTrackToPlaylist = (selectedTrack) => {
+    dispatch(selectTrack(selectedTrack));
     const payload = {
       selectedTrack: selectedTrack,
       accessToken: token.accessToken,

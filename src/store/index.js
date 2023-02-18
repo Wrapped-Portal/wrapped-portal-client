@@ -8,15 +8,18 @@ import refresh from './middleware/refreshToken';
 import webPlayerSlice from './reducers/webPlayerSlice';
 import soundBoardSlice from './reducers/soundBoardSlice';
 import recentlyPlayed from './middleware/recentlyPlayed';
+import playlistSlice from './reducers/playlistSlice';
+import addTrackToPlaylist from './middleware/addTrackToPlaylist';
 
 const store = configureStore({
   reducer: {
     login: login,
     webPlayerSlice,
     soundBoardSlice,
+    playlistSlice,
   },
 
-  middleware: [getToken, refresh, recentlyPlayed],
+  middleware: [getToken, refresh, recentlyPlayed, addTrackToPlaylist],
 });
 
 export default store;

@@ -17,15 +17,21 @@ const getToken = (store) => (next) => async (action) => {
           action.payload = { token: results.data };
 
           const { accessToken, refreshToken, expiresIn } = results.data;
+
+          const expires = new Date(Date.now() + 3600 * 1000);
+          console.log(expires);
           cookies.set('accessToken', accessToken, {
             path: '/',
-            maxAge: expiresIn,
+            expires,
           });
           cookies.set('refreshToken', refreshToken, {
             path: '/',
-            maxAge: expiresIn,
+            expires,
           });
-          cookies.set('expiresIn', expiresIn, { path: '/', maxAge: expiresIn });
+          cookies.set('expiresIn', expiresIn, {
+            path: '/',
+            expires,
+          });
 
           next(action);
         } catch (e) {

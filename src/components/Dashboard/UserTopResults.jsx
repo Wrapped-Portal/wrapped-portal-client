@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { Input, List, Paper, Text } from '@mantine/core';
+import { Button, Input, List, Paper, Text } from '@mantine/core';
 
 
 export default function UserTopResults() {
@@ -11,7 +11,21 @@ export default function UserTopResults() {
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState('tracks');
   const [range, setRange] = useState('short_term');
+
   const { token } = useSelector((state) => state.login);
+
+  const dispatch = useDispatch();
+
+  const handleAddTrackToPlaylist = (selectedTrack) => {
+    const payload = {
+      selectedTrack: selectedTrack,
+      accessToken: token.accessToken,
+    };
+    dispatch({
+      type: 'addTrackToPlaylist',
+      payload,
+    });
+  };
 
   const fetchData = async () => {
     try {
@@ -27,7 +41,6 @@ export default function UserTopResults() {
       throw error;
     }
   };
-
 
   useEffect(() => {
     setLoading(true);
@@ -47,39 +60,58 @@ export default function UserTopResults() {
 
   return (
     <>
-    <div className='topResults'>
-      <h3>Your Top Listens</h3>
-      <h4 className='input' >Tracks or Artists</h4>
-      <Input className='input' radius="xl" component="select" onChange={(event) => setType(event.target.value)}>
-        <option value="tracks">Tracks</option>
-        <option value="artists">Artists</option>
-      </Input>
-      <h4 className='input' >Time Range</h4>
-      <Input className='input' radius="xl" component="select" onChange={(event) => setRange(event.target.value)}>
-        <option value="short_term">Past Month</option>
-        <option value="medium_term">Past 6 Months</option>
-        <option value="long_term">All Time</option>
-      </Input>
-      <Paper
-      shadow="lg"
-       radius="md"
-        withBorder
-        className='paper'
-      >
-      <List type="ordered" className='list' >
-        {
-          data?.items.map(item => (
-            item.album ?
-              <List.Item key={item.id}>
-                {item.name} - {item.album.artists[0].name}
-              </List.Item>
-              :
-              <List.Item key={item.id}>
-                {item.name}
-              </List.Item>
-          ))}
-      </List>
-      </Paper>
+      <div className='topResults'>
+        <h3>Your Top Listens</h3>
+        <h4 className='input' >Tracks or Artists</h4>
+        <Input className='input' radius="xl" component="select" onChange={(event) => setType(event.target.value)}>
+          <option value="tracks">Tracks</option>
+          <option value="artists">Artists</option>
+        </Input>
+        <h4 className='input' >Time Range</h4>
+        <Input className='input' radius="xl" component="select" onChange={(event) => setRange(event.target.value)}>
+          <option value="short_term">Past Month</option>
+          <option value="medium_term">Past 6 Months</option>
+          <option value="long_term">All Time</option>
+        </Input>
+        <Paper
+          shadow="lg"
+          radius="md"
+          withBorder
+          className='paper'
+        >
+          <List type="ordered" className='list' >
+            {data?.items.map((item, index) => (
+              item.album ?
+                <List.Item key={`item-${index}`}>
+                  {item.name} - {item.album.artists[0].name}
+                  <Button
+                    key={`button-${index}`}
+                    color="lime"
+                    radius="xs"
+                    size="xs"
+                    compact
+                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
+                  >
+                    +
+                  </Button>
+                </List.Item>
+                :
+                <List.Item key={`item-${index}`}>
+                  {item.name}
+                  <Button
+                    key={`button-${index}`}
+                    color="lime"
+                    radius="xs"
+                    size="xs"
+                    compact
+                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
+                  >
+                    +
+                  </Button>
+                </List.Item>
+            ))}
+          </List>
+        </Paper>
       </div>
     </>
   );

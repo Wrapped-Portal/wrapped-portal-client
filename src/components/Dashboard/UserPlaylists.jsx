@@ -1,7 +1,7 @@
 /** @format */
 
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
   Button,
@@ -15,6 +15,7 @@ import {
   Text,
   useMantineTheme,
 } from '@mantine/core';
+import { selectPlaylist } from '../../store/reducers/playlistSlice';
 
 export default function UserPlaylists() {
   const [data, setData] = useState(null);
@@ -27,6 +28,16 @@ export default function UserPlaylists() {
   const [description, setDescription] = useState(null);
   const [isPublic, setIsPublic] = useState(false);
   const { token } = useSelector((state) => state.login);
+  const { selectedPlaylist } = useSelector(state => state.playlistSlice,
+  );
+
+  const dispatch = useDispatch();
+
+  const handlePlaylistClick = (playlistId) => {
+    dispatch(selectPlaylist(playlistId));
+  };
+
+
 
   const fetchData = async () => {
     try {
@@ -87,11 +98,8 @@ export default function UserPlaylists() {
           Authorization: `Bearer ${token.accessToken}`,
         },
       });
-
-      // Fetch updated playlist data
       const updatedData = await fetchData();
 
-      // Update data state variable with updated playlist data
       setData(updatedData);
     } catch (error) {
       console.error(error);
@@ -122,7 +130,7 @@ export default function UserPlaylists() {
     }
   };
 
-  // console.log(list?.items);
+  console.log(data);
 
   return (
     <>
@@ -177,7 +185,7 @@ export default function UserPlaylists() {
         <div className="current">
           <Stack spacing="xs">
             {list?.items?.map((item) => (
-              <Paper key={item?.track.id}>
+              <Paper key={item?.track.id} >
                 <Group
                   mt="md"
                   mb="xs"
@@ -218,6 +226,7 @@ export default function UserPlaylists() {
             <Paper
               key={item?.id}
               className="playlist_item"
+              onClick={() => handlePlaylistClick(item?.id)}
             >
               <Group
                 position="apart"
@@ -238,7 +247,7 @@ export default function UserPlaylists() {
                 </Stack>
                 <Button
                   className="playlist_button_see"
-                  color="lime"
+                  color={item?.id === selectedPlaylist ? 'indigo' : 'lime'}
                   onClick={() => {
                     getPlaylistItems(item?.id, token);
                     setOpenList(true);

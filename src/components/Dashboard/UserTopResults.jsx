@@ -84,7 +84,7 @@ export default function UserTopResults() {
           <List type="ordered" className='list' >
             {data?.items.map((item, index) => (
               item.album ?
-                <List.Item key={`item-${index}`}>
+                <List.Item key={`item-${index}`} className='list_item'>
                   <Text fw={700}>
                   {item.name}
                   </Text>

@@ -8,15 +8,10 @@ const cookies = new Cookies();
 const refreshTokenMiddleware = (store) => (next) => (action) => {
   // check if the storeToken action is being dispatched
   if (action.type === 'login/storeToken') {
-    const { accessToken, refreshToken, expiresIn } = action.payload.token;
-
-    // store the token in cookies
-    cookies.set('accessToken', accessToken, { path: '/', maxAge: expiresIn });
-    cookies.set('refreshToken', refreshToken, { path: '/', maxAge: expiresIn });
-    cookies.set('expiresIn', expiresIn, { path: '/', maxAge: expiresIn });
     // start the interval to refresh the token
     setInterval(async () => {
       try {
+        const { refreshToken } = action.payload.token;
         // make a request to the server to refresh the token
         const results = await axios.post(
           `${import.meta.env.VITE_SERVER_URI}refresh`,
@@ -26,11 +21,22 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
 
         // store the new token in the store and cookies
         store.dispatch(
-          storeToken({ token: { accessToken, refreshToken, expiresIn } }),
+          storeToken({
+            token: {
+              accessToken,
+              refreshToken: results.data.refreshToken,
+              expiresIn,
+            },
+          }),
         );
         cookies.set('accessToken', accessToken, {
           path: '/',
-          maxAge: 3600,
+          maxAge: expiresIn,
+        });
+
+        cookies.set('refreshToken', refreshToken, {
+          path: '/',
+          maxAge: expiresIn,
         });
       } catch (e) {
         console.error('Error: Refresh Token Middleware:', e.message);

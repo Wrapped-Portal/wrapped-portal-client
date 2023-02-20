@@ -12,25 +12,20 @@
 }
 
 .list {
-
+  position: relative;
   padding-top: 5px;
   padding-left: 5px;
-  padding-right: 80px;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding-right: 60px;
 }
 
 .list li:not(:first-child) {
   border-top: 1px solid #ccc;
 }
 
-
 .list_button {
   position: absolute;
-  right: 1365px;
-  transform: translateY(-180%);
+  left: 370px;
+  transform: translateY(-150%);
 }
 
 

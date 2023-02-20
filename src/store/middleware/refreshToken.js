@@ -30,12 +30,12 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
         );
         cookies.set('accessToken', accessToken, {
           path: '/',
-          maxAge: expiresIn,
+          maxAge: 3600,
         });
       } catch (e) {
         console.error('Error: Refresh Token Middleware:', e.message);
       }
-    }, (expiresIn - 30) * 1000);
+    }, (3600 - 30) * 1000);
   }
 
   next(action);

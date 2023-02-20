@@ -22,15 +22,15 @@ const getToken = (store) => (next) => async (action) => {
           console.log(expires);
           cookies.set('accessToken', accessToken, {
             path: '/',
-            expires,
+            mageAge: 3600,
           });
           cookies.set('refreshToken', refreshToken, {
             path: '/',
-            expires,
+            mageAge: 3600,
           });
           cookies.set('expiresIn', expiresIn, {
             path: '/',
-            expires,
+            mageAge: 3600,
           });
 
           next(action);

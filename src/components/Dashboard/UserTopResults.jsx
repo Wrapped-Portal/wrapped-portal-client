@@ -84,32 +84,31 @@ export default function UserTopResults() {
           <List type="ordered" className='list' >
             {data?.items.map((item, index) => (
               item.album ?
-                <List.Item key={`item-${index}`}>
-                  {item.name} - {item.album.artists[0].name}
+                <List.Item key={`item-${index}`} className='list_item'>
+                  <Text fw={700}>
+                  {item.name}
+                  </Text>
+                  <Text fz="sm" c="dimmed">
+                  {item.album.artists[0].name}
+                  </Text>
                   <Button
+                                    className='list_button'
                     key={`button-${index}`}
                     color="lime"
-                    radius="xs"
+                    radius="sm"
                     size="xs"
                     compact
                     onClick={() => handleAddTrackToPlaylist(item?.uri)}
                   >
                     +
                   </Button>
+
                 </List.Item>
                 :
                 <List.Item key={`item-${index}`}>
+                                 <Text fw={700}>
                   {item.name}
-                  <Button
-                    key={`button-${index}`}
-                    color="lime"
-                    radius="xs"
-                    size="xs"
-                    compact
-                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
-                  >
-                    +
-                  </Button>
+                  </Text>
                 </List.Item>
             ))}
           </List>

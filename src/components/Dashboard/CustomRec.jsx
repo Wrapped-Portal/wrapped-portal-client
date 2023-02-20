@@ -135,7 +135,7 @@ export default function CustomRec() {
 
           <Button
             color="lime"
-            className="smaller-slider"
+            className="smaller-slider "
             radius="xl"
             type="submit"
           >
@@ -161,15 +161,15 @@ export default function CustomRec() {
                   weight={600}
                   className="card-text-large"
                 >
-                  {item.album.artists[0].name}
+                {item.name}
                 </Text>
               </Card.Section>
               <Card.Section>
                 <Text
                   weight={300}
                   className="card-text-small"
-                >
-                  {item.name}
+                  >
+                  {item.album.artists[0].name}
                 </Text>
                 <Button
                   key={item.id}
@@ -178,6 +178,7 @@ export default function CustomRec() {
                   size="xs"
                   compact
                   onClick={() => handleAddTrackToPlaylist(item?.uri)}
+                  className="custom_add"
                 >
                   +
                 </Button>

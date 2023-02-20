@@ -17,3 +17,15 @@
 .column:nth-child(2) {
   flex: 2;
 }
+
+
+@media (max-width: 800px) {
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .column {
+    padding: 1rem;
+    flex: 1;
+  }
+}

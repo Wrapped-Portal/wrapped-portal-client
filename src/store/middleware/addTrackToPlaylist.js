@@ -1,19 +1,21 @@
+/** @format */
+
 import axios from 'axios';
 
 const addTrackToPlaylist = (store) => (next) => (action) => {
   console.log('addTrackToPlaylist');
-  
+
   if (action.type === 'addTrackToPlaylist') {
     const { selectedTrack, accessToken } = action.payload;
     const playlistState = store.getState().playlistSlice.selectedPlaylist;
 
     if (selectedTrack && playlistState) {
-      const url = `http://localhost:3001/add?token=${accessToken}`;
+      const url = `${import.meta.env.VITE_SERVER_URI}add?token=${accessToken}`;
       const config = {};
 
       const data = {
         trackUri: selectedTrack,
-        playlistId: playlistState
+        playlistId: playlistState,
       };
 
       axios

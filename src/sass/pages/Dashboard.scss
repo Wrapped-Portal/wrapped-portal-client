@@ -1,5 +1,8 @@
+/** @format */
+
 .dashboard {
   display: flex;
+  justify-content: center;
 }
 
 .column {
@@ -7,17 +10,8 @@
 }
 
 .column:first-child {
-  flex: 1;
+  flex: 0.5;
 }
-
-.column:last-child {
-  flex: 1;
-}
-
-.column:nth-child(2) {
-  flex: 2;
-}
-
 
 @media (max-width: 800px) {
   .dashboard {

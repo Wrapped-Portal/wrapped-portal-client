@@ -5,6 +5,7 @@ import React from 'react';
 import CustomRec from './CustomRec';
 import UserPlaylists from './UserPlaylists';
 import UserTopResults from './UserTopResults';
+import Sidebar from './Sidebar';
 
 export default function Dashboard() {
   return (
@@ -18,7 +19,10 @@ export default function Dashboard() {
         </div>
         <div className="column"></div>
         <UserPlaylists />
+        <div className="column"></div>
+        <Sidebar />
       </div>
+      
     </main>
   );
 }

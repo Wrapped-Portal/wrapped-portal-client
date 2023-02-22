@@ -22,12 +22,12 @@ function App() {
       window.history.pushState({}, null, '/'); // Clear the address bar of parameters
     } else if (!token) {
       const accessToken = cookies.get('accessToken');
+      const cookie = cookies.get('accessToken', { doNotParse: false });
+      console.log(cookie, 'COOKIE');
       if (accessToken) {
         const refreshToken = cookies.get('refreshToken');
-        const expiresIn = cookies.get('expiresIn');
-        dispatch(
-          storeToken({ token: { accessToken, refreshToken, expiresIn } }),
-        );
+
+        dispatch(storeToken({ token: { accessToken, refreshToken } }));
       }
     }
   }, []);

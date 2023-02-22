@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
   selectedTrack: null,
   selectedPlaylist: null,
+  playlistItems: null,
 };
 
 const playlistSlice = createSlice({
@@ -16,12 +16,12 @@ const playlistSlice = createSlice({
     selectPlaylist: (state, action) => {
       state.selectedPlaylist = action.payload;
     },
+    setPlaylistItems: (state, action) => {
+      state.playlistItems = action.payload;
+    },
   },
 });
 
-
-export const { selectTrack, selectPlaylist } = playlistSlice.actions;
-
-
+export const { selectTrack, selectPlaylist, setPlaylistItems } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

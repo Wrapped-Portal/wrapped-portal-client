@@ -5,15 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
   Button,
-  Group,
-  Image,
   Input,
   Modal,
   Paper,
-  Stack,
   Switch,
   Text,
-  useMantineTheme,
+  List,
 } from '@mantine/core';
 import { selectPlaylist } from '../../store/reducers/playlistSlice';
 
@@ -21,36 +18,17 @@ export default function UserPlaylists() {
   const [data, setData] = useState(null);
   const [user, setUser] = useState(null);
   const [opened, setOpened] = useState(false);
-  const [openList, setOpenList] = useState(false);
-  const [list, setList] = useState(null);
-  const [listName, setListName] = useState(null);
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [isPublic, setIsPublic] = useState(false);
   const { token } = useSelector((state) => state.login);
-  const { selectedPlaylist, selectedTrack } = useSelector(state => state.playlistSlice,
+  const { selectedPlaylist, selectedTrack, playlistItems } = useSelector(state => state.playlistSlice,
   );
+
+  console.log(playlistItems)
 
   const dispatch = useDispatch();
 
-  const handlePlaylistClick = (playlistId) => {
-    dispatch(selectPlaylist(playlistId));
-  };
-
-
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/playlist`, {
-        params: {
-          token: token.accessToken,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  };
 
   const fetchUser = async () => {
     try {
@@ -68,21 +46,13 @@ export default function UserPlaylists() {
   useEffect(() => {
     (async () => {
       try {
-        const result = await fetchData();
-        setData(result);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-    (async () => {
-      try {
         const result = await fetchUser();
         setUser(result);
       } catch (error) {
         console.error(error);
       }
     })();
-  }, [selectedTrack]);
+  }, []);
 
   const createPlaylist = async () => {
     try {
@@ -116,21 +86,7 @@ export default function UserPlaylists() {
     setIsPublic(event.target.checked);
   };
 
-  const getPlaylistItems = async (playlistId) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/playlistitems`, {
-        params: {
-          token: token.accessToken,
-          playlistId: playlistId,
-        },
-      });
-      setList(response.data);
-    } catch (error) {
-      throw error;
-    }
-  };
 
-  console.log(data);
 
   return (
     <>
@@ -177,39 +133,6 @@ export default function UserPlaylists() {
         </form>
       </Modal>
 
-      <Modal
-        opened={openList}
-        onClose={() => setOpenList(false)}
-        title={`Playlist: ${listName}`}
-      >
-        <div className="current">
-          <Stack spacing="xs">
-            {list?.items?.map((item) => (
-              <Paper key={item?.track.id} >
-                <Group
-                  mt="md"
-                  mb="xs"
-                >
-                  <Image
-                    className="current_image"
-                    radius="md"
-                    width={80}
-                    src={item?.track.album.images[0]?.url}
-                  />
-                  <Stack>
-                    <Text className="current_text_name">
-                      {item?.track.name}
-                    </Text>
-                    <Text className="current_text_tracks">
-                      {item?.track.artists[0].name}
-                    </Text>
-                  </Stack>
-                </Group>
-              </Paper>
-            ))}
-          </Stack>
-        </div>
-      </Modal>
       <div className="playlist">
         <h3>Your Playlists</h3>
         <Button
@@ -221,45 +144,25 @@ export default function UserPlaylists() {
           Create Playlist
         </Button>
 
-        <Stack spacing="xs">
-          {data?.items.map((item) => (
-            <Paper
-              key={item?.id}
-              className="playlist_item"
-              onClick={() => handlePlaylistClick(item?.id)}
-            >
-              <Group
-                position="left"
-                mt="md"
-                mb="xs"
-              >
-                <Image
-                  className="playlist_image"
-                  radius="md"
-                  width={80}
-                  src={item?.images[0]?.url}
-                />
-                <Stack>
-                  <Text className="playlist_text_name">{item?.name}</Text>
-                  <Text className="playlist_text_tracks">
-                    Tracks: {item?.tracks.total}
+        <Paper
+          shadow="lg"
+          radius="md"
+          withBorder
+          className='paper'
+        >
+          <List type="ordered" className='list' >
+            {playlistItems?.items.map((item, index) => (
+                <List.Item key={`item-${index}`} className='list_item'>
+                  <Text fw={700}>
+                  {item?.track.name}
                   </Text>
-                </Stack>
-                <Button
-                  className="playlist_button_see"
-                  color={item?.id === selectedPlaylist ? 'indigo' : 'lime'}
-                  onClick={() => {
-                    getPlaylistItems(item?.id, token);
-                    setOpenList(true);
-                    setListName(item?.name);
-                  }}
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path fill="white" d="M10 21v-2H6.41l4.5-4.5l-1.41-1.41l-4.5 4.5V14H3v7h7m4.5-10.09l4.5-4.5V10h2V3h-7v2h3.59l-4.5 4.5l1.41 1.41Z"/></svg>
-                </Button>
-              </Group>
-            </Paper>
-          ))}
-        </Stack>
+                  <Text fz="sm" c="dimmed">
+                  {item?.track?.artists[0].name}
+                  </Text>
+                </List.Item>
+            ))}
+          </List>
+        </Paper>
       </div>
     </>
   );

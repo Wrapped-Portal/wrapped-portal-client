@@ -7,6 +7,7 @@ import CustomRec from './CustomRec';
 import SearchSongs from './SearchSongs';
 import UserPlaylists from './UserPlaylists';
 import UserTopResults from './UserTopResults';
+import Sidebar from './Sidebar';
 
 export default function Dashboard() {
   return (
@@ -51,7 +52,10 @@ export default function Dashboard() {
         <div className="column"></div>
         <div className="column"></div>
         <UserPlaylists />
+        <div className="column"></div>
+        <Sidebar />
       </div>
+      
     </main>
   );
 }

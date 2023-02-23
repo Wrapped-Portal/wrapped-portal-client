@@ -8,12 +8,15 @@ import {
   Paper,
   Text,
   List,
+  Image,
+  Group,
+  Stack,
 } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 
 export default function UserPlaylists() {
   const { token } = useSelector((state) => state.login);
-  const { playlistItems, selectedPlaylist  } = useSelector(state => state.playlistSlice,
+  const { playlistItems, selectedPlaylist } = useSelector(state => state.playlistSlice,
   );
 
   const dispatch = useDispatch();
@@ -33,7 +36,7 @@ export default function UserPlaylists() {
       throw error;
     }
   };
-  
+
   return (
     <>
       <div className="playlist">
@@ -47,12 +50,25 @@ export default function UserPlaylists() {
           <List type="ordered" className='list' >
             {playlistItems?.items.map((item, index) => (
               <List.Item key={`item-${index}`} className='list_item'>
+                <Group>
+                <Image
+                  radius="md"
+                  src={item.track.album.images[0].url}
+                  height={60}
+                  width={60}
+                  className='image-top'
+                />
+                <Stack className='text-top'>
+                  <div className='text-select'>
                 <Text fw={700}>
                   {item?.track.name}
                 </Text>
                 <Text fz="sm" c="dimmed">
                   {item?.track?.artists[0].name}
                 </Text>
+                </div>
+                </Stack>
+                </Group>
                 <Button
                   key={`button-${index}`}
                   color="red"
@@ -62,7 +78,7 @@ export default function UserPlaylists() {
                   onClick={() => handleRemoveTrackFromPlaylist(item?.track.uri, index)}
                   className='playlist_button'
                 >
-                  X
+                  -
                 </Button>
               </List.Item>
             ))}

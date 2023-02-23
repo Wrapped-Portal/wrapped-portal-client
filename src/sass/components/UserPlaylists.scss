@@ -1,7 +1,7 @@
 .playlist {
   margin-bottom: 60px;
   position: relative;
-  max-width: 22vw;
+  max-width: 100%;
 
   &_image {
     margin-left: 10px;
@@ -28,11 +28,11 @@
 }
 
 .list {
-  padding-right: 30px;
+  padding-right: 20px;
 }
 
 .playlist_button {
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  position: absolute;
+  top: 15px;
+  right: 0;
 }

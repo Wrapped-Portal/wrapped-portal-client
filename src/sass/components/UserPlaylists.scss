@@ -1,7 +1,7 @@
 .playlist {
-  margin-right: 40px;
   margin-bottom: 60px;
   position: relative;
+  max-width: 22vw;
 
   &_image {
     margin-left: 10px;
@@ -11,7 +11,6 @@
     font-weight: 600;
     font-size: 17px;
     padding-right: 80px;
-
   }
 
   &_text_tracks {
@@ -26,35 +25,14 @@
     margin-top: 5px;
     margin-bottom: 10px;
   }
+}
 
+.list {
+  padding-right: 30px;
 }
 
 .playlist_button {
   width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-.playlist_button_see {
-  position: absolute;
-  right: 16px;
-
-}
-
-.current {
-
-  &_image {
-    margin-left: 3px;
-  }
-
-  &_text_name {
-    font-weight: 600;
-    font-size: 18px;
-  }
-
-  &_text_tracks {
-    font-weight: 300;
-    font-size: 15px;
-  }
-
 }

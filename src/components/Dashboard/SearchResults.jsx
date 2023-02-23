@@ -8,6 +8,12 @@ export default function SearchResults() {
     (state) => state.searchSlice.results,
   );
 
+  const formatDuration = (duration_ms) => {
+    const minutes = Math.floor(duration_ms / 60000);
+    const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+
   return (
     <div>
       {tracks && <h3>Tracks</h3>}
@@ -18,6 +24,8 @@ export default function SearchResults() {
             {item?.artists.map((item, index) =>
               index === 0 ? item.name : ', ' + item.name,
             )}
+            {' - '}
+            {formatDuration(item.duration_ms)}
           </li>
         ))}
       </ul>

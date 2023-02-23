@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { createStyles,Button, Navbar, Group, Paper, Code, Stack, ScrollArea, Modal, Switch, Input } from '@mantine/core';
+import { createStyles,Button, Navbar, Group, Paper, Stack, ScrollArea, Modal, Switch, Input } from '@mantine/core';
 import { setPlaylistItems, selectPlaylist } from '../../store/reducers/playlistSlice';
 
 const useStyles = createStyles((theme, _params, _getRef) => {
@@ -23,7 +23,6 @@ const useStyles = createStyles((theme, _params, _getRef) => {
       bottom: theme.spacing.lg,
       marginBottom: theme.spacing.sm,
       width: 250,
-      height: 850,
       zIndex: 1, 
     },
 
@@ -255,10 +254,11 @@ export default function Sidebar() {
     </form>
   </Modal>
     <Navbar className={classes.sidebar} p="md">
-          <Code sx={{ fontWeight: 700 }}>Your Playlists</Code>
+        <p>Wrapped Portal</p>
       <Navbar.Section grow component={ScrollArea}>
         <Group className={classes.header} position="apart">
         </Group>
+        <p className="playlist_text_name">Your Playlists</p>
         {playlists}
       </Navbar.Section>
 

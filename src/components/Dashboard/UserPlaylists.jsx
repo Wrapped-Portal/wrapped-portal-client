@@ -13,18 +13,19 @@ import { selectTrack } from '../../store/reducers/playlistSlice';
 
 export default function UserPlaylists() {
   const { token } = useSelector((state) => state.login);
-  const { playlistItems, selectedPlaylist, selectedTrack  } = useSelector(state => state.playlistSlice,
+  const { playlistItems, selectedPlaylist  } = useSelector(state => state.playlistSlice,
   );
 
   const dispatch = useDispatch();
 
-  const handleRemoveTrackFromPlaylist = async (trackUri) => {
+  const handleRemoveTrackFromPlaylist = async (trackUri, index) => {
     dispatch(selectTrack(trackUri));
     try {
       const response = await axios.delete(`http://localhost:3001/remove?token=${token.accessToken}`, {
         data: {
           playlistId: selectedPlaylist,
           trackUri: trackUri,
+          index: index,
         }
       });
       return response.data;
@@ -33,7 +34,6 @@ export default function UserPlaylists() {
     }
   };
   
-
   return (
     <>
       <div className="playlist">
@@ -59,7 +59,7 @@ export default function UserPlaylists() {
                   radius="sm"
                   size="xs"
                   compact
-                  onClick={() => handleRemoveTrackFromPlaylist(item?.track.uri)}
+                  onClick={() => handleRemoveTrackFromPlaylist(item?.track.uri, index)}
                   className='playlist_button'
                 >
                   X

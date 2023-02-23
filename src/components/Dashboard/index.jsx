@@ -52,7 +52,6 @@ export default function Dashboard() {
         <div className="column"></div>
         <div className="column"></div>
         <UserPlaylists />
-        <div className="column"></div>
         <Sidebar />
       </div>
       

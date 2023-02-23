@@ -10,6 +10,7 @@ import soundBoardSlice from './reducers/soundBoardSlice';
 import recentlyPlayed from './middleware/recentlyPlayed';
 import playlistSlice from './reducers/playlistSlice';
 import addTrackToPlaylist from './middleware/addTrackToPlaylist';
+import searchSlice from './reducers/searchSlice';
 
 const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
     webPlayerSlice,
     soundBoardSlice,
     playlistSlice,
+    searchSlice,
   },
 
   middleware: [getToken, refresh, recentlyPlayed, addTrackToPlaylist],

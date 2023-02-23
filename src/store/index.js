@@ -11,7 +11,7 @@ import recentlyPlayed from './middleware/recentlyPlayed';
 import playlistSlice from './reducers/playlistSlice';
 import addTrackToPlaylist from './middleware/addTrackToPlaylist';
 import searchSlice from './reducers/searchSlice';
-
+import getSearchResults from './middleware/getSearchResults';
 const store = configureStore({
   reducer: {
     login: login,
@@ -21,7 +21,13 @@ const store = configureStore({
     searchSlice,
   },
 
-  middleware: [getToken, refresh, recentlyPlayed, addTrackToPlaylist],
+  middleware: [
+    getToken,
+    refresh,
+    recentlyPlayed,
+    addTrackToPlaylist,
+    getSearchResults,
+  ],
 });
 
 export default store;

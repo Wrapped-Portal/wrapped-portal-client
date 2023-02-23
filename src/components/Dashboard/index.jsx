@@ -8,6 +8,7 @@ import SearchSongs from './SearchSongs';
 import UserPlaylists from './UserPlaylists';
 import UserTopResults from './UserTopResults';
 import Sidebar from './Sidebar';
+import SearchResults from './SearchResults';
 
 export default function Dashboard() {
   return (
@@ -40,6 +41,7 @@ export default function Dashboard() {
               pb="xs"
             >
               <SearchSongs />
+              <SearchResults />
             </Tabs.Panel>
             <Tabs.Panel
               value="third"
@@ -49,12 +51,9 @@ export default function Dashboard() {
             </Tabs.Panel>
           </Tabs>
         </div>
-        <div className="column"></div>
-        <div className="column"></div>
         <UserPlaylists />
         <Sidebar />
       </div>
-      
     </main>
   );
 }

@@ -17,7 +17,7 @@ export default function UserPlaylists() {
   );
 
   const dispatch = useDispatch();
-  
+
   const handleRemoveTrackFromPlaylist = async (trackUri) => {
     dispatch(selectTrack(trackUri));
     try {
@@ -60,6 +60,7 @@ export default function UserPlaylists() {
                   size="xs"
                   compact
                   onClick={() => handleRemoveTrackFromPlaylist(item?.track.uri)}
+                  className='playlist_button'
                 >
                   X
                 </Button>

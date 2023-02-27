@@ -34,11 +34,10 @@ export default function Sidebar() {
   const { selectedTrack, selectedPlaylist, allPlaylists } = useSelector(
     (state) => state.playlistSlice,
   );
-  const fetchPlaylistItems = (playlistId, playlistName) => {
+  const fetchPlaylistItems = (playlistId, playlistName = '') => {
     if (playlistName !== active) {
-      setActive(playlistName);
       dispatch(selectPlaylist(playlistId));
-      dispatch(setPlaylistItems());
+      dispatch(setPlaylistItems(playlistId));
     }
   };
   const dispatch = useDispatch();
@@ -97,7 +96,8 @@ export default function Sidebar() {
       })}
       key={item?.id}
       onClick={async () => {
-        await fetchPlaylistItems(item?.id, item.name);
+        setActive(item.name);
+        fetchPlaylistItems(item?.id, item.name);
       }}
     >
       <Group

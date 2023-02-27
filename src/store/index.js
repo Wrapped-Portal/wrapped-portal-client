@@ -12,6 +12,10 @@ import playlistSlice from './reducers/playlistSlice';
 import addTrackToPlaylist from './middleware/addTrackToPlaylist';
 import searchSlice from './reducers/searchSlice';
 import getSearchResults from './middleware/getSearchResults';
+import getPlaylists from './middleware/getPlaylists';
+import createPlaylist from './middleware/createPlaylists';
+import userSlice from './reducers/userSlice';
+import getUser from './middleware/getUser';
 const store = configureStore({
   reducer: {
     login: login,
@@ -19,12 +23,16 @@ const store = configureStore({
     soundBoardSlice,
     playlistSlice,
     searchSlice,
+    userSlice,
   },
 
   middleware: [
     getToken,
     refresh,
     recentlyPlayed,
+    getUser,
+    createPlaylist,
+    getPlaylists,
     addTrackToPlaylist,
     getSearchResults,
   ],

@@ -18,9 +18,9 @@ export default function SearchSongs() {
   };
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => {
+    const timeOutId = setTimeout(async () => {
       dispatch(getResults(search));
-    }, 1000);
+    }, 300);
     return () => clearTimeout(timeOutId);
   }, [search]);
 

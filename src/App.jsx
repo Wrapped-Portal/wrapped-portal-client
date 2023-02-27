@@ -22,8 +22,6 @@ function App() {
       window.history.pushState({}, null, '/'); // Clear the address bar of parameters
     } else if (!token) {
       const accessToken = cookies.get('accessToken');
-      const cookie = cookies.get('accessToken', { doNotParse: false });
-      console.log(cookie, 'COOKIE');
       if (accessToken) {
         const refreshToken = cookies.get('refreshToken');
 
@@ -32,7 +30,6 @@ function App() {
     }
   }, []);
 
-  console.log('Current State: ', token);
   return (
     <>
       <Routes>

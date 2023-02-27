@@ -3,7 +3,6 @@
 import axios from 'axios';
 
 const getRecent = (store) => (next) => async (action) => {
-  console.log(action.type);
   if (action.type === 'webPlayer/setTrackUri') {
     try {
       const results = await axios.post(

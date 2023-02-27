@@ -15,7 +15,6 @@ const Footer = () => {
   useEffect(() => {
     dispatch(setTrackUri());
   }, []);
-  console.log(trackUri);
   useEffect(() => {
     dispatch(setPlayingStatus(playing));
   }, [dispatch, playing, setPlayingStatus]);

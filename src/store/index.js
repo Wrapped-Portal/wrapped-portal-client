@@ -12,6 +12,12 @@ import playlistSlice from './reducers/playlistSlice';
 import addTrackToPlaylist from './middleware/addTrackToPlaylist';
 import searchSlice from './reducers/searchSlice';
 import getSearchResults from './middleware/getSearchResults';
+import getPlaylists from './middleware/getPlaylists';
+import createPlaylist from './middleware/createPlaylists';
+import userSlice from './reducers/userSlice';
+import getUser from './middleware/getUser';
+import screenHeightSlice from './reducers/screenHeightSlice';
+import setPlaylistItems from './middleware/playlistItems';
 const store = configureStore({
   reducer: {
     login: login,
@@ -19,12 +25,18 @@ const store = configureStore({
     soundBoardSlice,
     playlistSlice,
     searchSlice,
+    userSlice,
+    screenHeightSlice,
   },
 
   middleware: [
     getToken,
     refresh,
     recentlyPlayed,
+    getUser,
+    setPlaylistItems,
+    createPlaylist,
+    getPlaylists,
     addTrackToPlaylist,
     getSearchResults,
   ],

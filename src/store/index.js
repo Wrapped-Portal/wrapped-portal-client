@@ -18,6 +18,7 @@ import userSlice from './reducers/userSlice';
 import getUser from './middleware/getUser';
 import screenHeightSlice from './reducers/screenHeightSlice';
 import setPlaylistItems from './middleware/playlistItems';
+import removeTrack from './middleware/removeTrack';
 const store = configureStore({
   reducer: {
     login: login,
@@ -34,10 +35,11 @@ const store = configureStore({
     refresh,
     recentlyPlayed,
     getUser,
-    setPlaylistItems,
     createPlaylist,
-    getPlaylists,
+    removeTrack,
     addTrackToPlaylist,
+    getPlaylists,
+    setPlaylistItems,
     getSearchResults,
   ],
 });

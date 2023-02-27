@@ -15,22 +15,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 export default function SearchResults() {
   const dispatch = useDispatch();
-  const { token } = useSelector((state) => state.login);
   const { tracks, artists, albums } = useSelector(
     (state) => state.searchSlice.results,
   );
-
-  const handleAddTrackToPlaylist = (selectedTrack) => {
-    dispatch(selectTrack(selectedTrack));
-    const payload = {
-      selectedTrack: selectedTrack,
-      accessToken: token.accessToken,
-    };
-    dispatch({
-      type: 'addTrackToPlaylist',
-      payload,
-    });
-  };
 
   const formatDuration = (duration_ms) => {
     const minutes = Math.floor(duration_ms / 60000);
@@ -74,7 +61,7 @@ export default function SearchResults() {
                     <p>{formatDuration(item.duration_ms)}</p>
                   </Group>
                   <Button
-                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
+                    onClick={() => dispatch(selectTrack(item?.uri))}
                     className="list_button"
                     key={`button-${index}`}
                     color="lime"
@@ -131,8 +118,8 @@ export default function SearchResults() {
                   color="dimmed"
                   size="sm"
                 >
-                  Please click anywhere on this card to claim your reward, this
-                  is not a fraud, trust us
+                  {console.log(item, 'item')}
+                  Followers: {item.followers.total}
                 </Text>
               </Card>
             ))}

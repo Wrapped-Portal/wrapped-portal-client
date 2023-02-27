@@ -20,7 +20,7 @@ Users can also get custom recommendations based on eight different parameters: d
 ### Playlists
 Users can create and modify playlists within the application. They can add songs to a playlist, remove songs from a playlist, and rename a playlist.
 
-## echnologies Used
+## Technologies Used
 This application was built using React and Vite. It also uses the Spotify API to fetch data from Spotify. Styling was done using SASS and the Mantine component framework.
 
 ## License

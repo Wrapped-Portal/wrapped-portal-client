@@ -16,6 +16,8 @@ import getPlaylists from './middleware/getPlaylists';
 import createPlaylist from './middleware/createPlaylists';
 import userSlice from './reducers/userSlice';
 import getUser from './middleware/getUser';
+import screenHeightSlice from './reducers/screenHeightSlice';
+
 const store = configureStore({
   reducer: {
     login: login,
@@ -24,6 +26,7 @@ const store = configureStore({
     playlistSlice,
     searchSlice,
     userSlice,
+    screenHeightSlice,
   },
 
   middleware: [

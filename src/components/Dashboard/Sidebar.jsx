@@ -3,12 +3,10 @@
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
-  createStyles,
   Button,
   Navbar,
   Group,
   Paper,
-  // Image,
   Code,
   Stack,
   ScrollArea,
@@ -111,13 +109,6 @@ export default function Sidebar() {
           <p className="playlist_text_name">{item?.name}</p>
           <p className="playlist_text_tracks">Tracks: {item?.tracks.total}</p>
         </Stack>
-        {/* <Image
-          className='playlist_image'
-          radius="md"
-          src={item.images[0].url}
-          height={60}
-          width={60}
-        /> */}
       </Group>
     </Paper>
   ));

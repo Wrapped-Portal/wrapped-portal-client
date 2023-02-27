@@ -11,7 +11,6 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     getResults: (state, action) => {
-      console.log(action);
       if (action.results) {
         state.results = action.results;
       }

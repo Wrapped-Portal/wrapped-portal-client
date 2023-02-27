@@ -12,9 +12,10 @@ import {
   Image,
 } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { selectTrack } from '../../store/reducers/playlistSlice';
 export default function SearchResults() {
   const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.login);
   const { tracks, artists, albums } = useSelector(
     (state) => state.searchSlice.results,
   );
@@ -73,6 +74,7 @@ export default function SearchResults() {
                     <p>{formatDuration(item.duration_ms)}</p>
                   </Group>
                   <Button
+                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
                     className="list_button"
                     key={`button-${index}`}
                     color="lime"
@@ -108,7 +110,6 @@ export default function SearchResults() {
                 target="_blank"
               >
                 <Card.Section>
-                  {console.log(item)}
                   <Image
                     src={item.images.at(-2).url}
                     height={200}

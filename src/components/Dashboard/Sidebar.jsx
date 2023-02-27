@@ -21,40 +21,27 @@ import {
 import {
   setPlaylistItems,
   selectPlaylist,
+  getUserPlaylists,
+  createPlaylist,
 } from '../../store/reducers/playlistSlice';
+import { setUser } from '../../store/reducers/userSlice';
 
 export default function Sidebar() {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight - 51);
-  const [data, setData] = useState(null);
   const [active, setActive] = useState('');
-  const [user, setUser] = useState(null);
   const [opened, setOpened] = useState(false);
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [isPublic, setIsPublic] = useState(false);
-  const { token } = useSelector((state) => state.login);
-  const { selectedTrack, selectedPlaylist } = useSelector(
+  const { user } = useSelector((state) => state.userSlice);
+  const { selectedTrack, selectedPlaylist, allPlaylists } = useSelector(
     (state) => state.playlistSlice,
   );
-
-  const fetchPlaylistItems = async (playlistId, playlistName) => {
+  const fetchPlaylistItems = (playlistId, playlistName) => {
     if (playlistName !== active) {
-      try {
-        setActive(playlistName);
-        const response = await axios.get(
-          `http://localhost:3001/playlistitems`,
-          {
-            params: {
-              token: token.accessToken,
-              playlistId: playlistId,
-            },
-          },
-        );
-        dispatch(await selectPlaylist(playlistId));
-        dispatch(await setPlaylistItems(response.data));
-      } catch (error) {
-        throw error;
-      }
+      setActive(playlistName);
+      dispatch(selectPlaylist(playlistId));
+      dispatch(setPlaylistItems());
     }
   };
   const dispatch = useDispatch();
@@ -137,82 +124,33 @@ export default function Sidebar() {
       },
     };
   });
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/playlist`, {
-        params: {
-          token: token.accessToken,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  };
 
   useEffect(() => {
-    (async () => {
-      try {
-        const result = await fetchData();
-        await setData(result);
-        if (selectedPlaylist) {
-          await fetchPlaylistItems(selectedPlaylist);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    dispatch(getUserPlaylists());
+    if (selectedPlaylist) {
+      fetchPlaylistItems(selectedPlaylist);
+    }
   }, [selectedTrack, selectedPlaylist]);
 
-  const fetchUser = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/user`, {
-        params: {
-          token: token.accessToken,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  };
-
   useEffect(() => {
-    (async () => {
-      try {
-        const result = await fetchUser();
-        setUser(result);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    dispatch(setUser());
+    dispatch(getUserPlaylists());
   }, []);
 
-  const createPlaylist = async () => {
-    try {
-      const body = {
-        name: name,
-        description: description,
-        public: isPublic,
-        user_id: user.id,
-      };
-
-      await axios.post('http://localhost:3001/makeplaylist', body, {
-        headers: {
-          Authorization: `Bearer ${token.accessToken}`,
-        },
-      });
-      const updatedData = await fetchData();
-
-      setData(updatedData);
-    } catch (error) {
-      console.error(error);
-    }
+  const newPlaylist = async () => {
+    const body = {
+      name: name,
+      description: description,
+      public: isPublic,
+      user_id: user.id,
+    };
+    dispatch(createPlaylist(body));
+    dispatch(getUserPlaylists());
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    createPlaylist();
+    newPlaylist();
     setOpened(false);
   };
 
@@ -222,14 +160,14 @@ export default function Sidebar() {
 
   const { classes, cx } = useStyles();
 
-  const playlists = data?.items.map((item) => (
+  const playlists = allPlaylists?.items?.map((item) => (
     <Paper
       className={cx(classes.link, {
         [classes.linkActive]: item.name === active,
       })}
       key={item?.id}
-      onClick={() => {
-        fetchPlaylistItems(item?.id, item.name);
+      onClick={async () => {
+        await fetchPlaylistItems(item?.id, item.name);
       }}
     >
       <Group

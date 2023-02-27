@@ -22,7 +22,6 @@ function App() {
       window.history.pushState({}, null, '/'); // Clear the address bar of parameters
     } else if (!token) {
       const accessToken = cookies.get('accessToken');
-      const cookie = cookies.get('accessToken', { doNotParse: false });
       if (accessToken) {
         const refreshToken = cookies.get('refreshToken');
 

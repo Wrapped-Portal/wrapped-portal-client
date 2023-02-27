@@ -51,23 +51,23 @@ export default function UserPlaylists() {
             {playlistItems?.items.map((item, index) => (
               <List.Item key={`item-${index}`} className='list_item'>
                 <Group>
-                <Image
-                  radius="md"
-                  src={item.track.album.images[0].url}
-                  height={60}
-                  width={60}
-                  className='image-top'
-                />
-                <Stack className='text-top'>
-                  <div className='text-select'>
-                <Text fw={700}>
-                  {item?.track.name}
-                </Text>
-                <Text fz="sm" c="dimmed">
-                  {item?.track?.artists[0].name}
-                </Text>
-                </div>
-                </Stack>
+                  <Image
+                    radius="md"
+                    src={item.track.album.images[0].url}
+                    height={60}
+                    width={60}
+                    className='image-top'
+                  />
+                  <Stack className='text-top'>
+                    <div className='text-select'>
+                      <Text fw={700}>
+                        {item?.track.name}
+                      </Text>
+                      <Text fz="sm" c="dimmed">
+                        {item?.track?.artists[0].name}
+                      </Text>
+                    </div>
+                  </Stack>
                 </Group>
                 <Button
                   key={`button-${index}`}

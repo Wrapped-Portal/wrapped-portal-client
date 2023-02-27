@@ -1,0 +1,16 @@
+/** @format */
+
+.card {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+    a {
+      padding: 2rem;
+      margin: 1rem;
+      width: 300px;
+    }
+  }
+}

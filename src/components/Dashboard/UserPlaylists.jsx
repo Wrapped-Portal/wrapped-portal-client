@@ -42,6 +42,7 @@ export default function UserPlaylists() {
                     src={item.track.album.images[0].url}
                     height={60}
                     width={60}
+
                     className="image-top"
                   />
                   <Stack className="text-top">
@@ -51,6 +52,7 @@ export default function UserPlaylists() {
                         fz="sm"
                         c="dimmed"
                       >
+
                         {item?.track?.artists[0].name}
                       </Text>
                     </div>

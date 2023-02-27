@@ -198,6 +198,7 @@ export default function Sidebar() {
               width="24"
               height="24"
               viewBox="0 0 24 24"
+              className='sidebar-bottom'
             >
               <path
                 fill="currentColor"
@@ -220,6 +221,7 @@ export default function Sidebar() {
               width="24"
               height="24"
               viewBox="0 0 24 24"
+              className='sidebar-bottom'
             >
               <path
                 fill="currentColor"

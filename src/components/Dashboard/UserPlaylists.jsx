@@ -33,12 +33,14 @@ export default function UserPlaylists() {
               className="list"
             >
               <Button
+                className='playall_button'
+                variant="gradient"
+                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
                 onClick={() => {
                   dispatch(playSong(playlistItems.items[0].track.uri));
                   dispatch(playAll(playlistItems.href.split('/').at(-2)));
                 }}
               >
-                {console.log(playlistItems.href.split('/').at(-2))}
                 Play All
               </Button>
               {playlistItems?.items.map((item, index) => (
@@ -48,6 +50,12 @@ export default function UserPlaylists() {
                   className="list_item"
                 >
                   <Group>
+                  <Text
+                     fw={600}
+                     className="numbers"
+                     >
+                      {index + 1}
+                      </Text>
                     <Image
                       radius="md"
                       src={item.track.album.images[0].url}

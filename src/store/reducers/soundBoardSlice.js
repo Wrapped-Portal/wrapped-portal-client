@@ -10,6 +10,8 @@ const initialState = {
   tempo: '',
   popular: '',
   instrumental: '',
+  acoustic: '',
+  live: '',
 };
 
 const mySlice = createSlice({
@@ -39,6 +41,12 @@ const mySlice = createSlice({
           break;
         case 'instrumental':
           state.instrumental = value;
+          break;
+        case 'acoustic':
+          state.acoustic = value;
+          break;
+        case 'live':
+          state.live = value;
           break;
         default:
           break;

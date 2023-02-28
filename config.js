@@ -3,6 +3,7 @@
 export const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 export const RESPONSE_TYPE = 'code';
 export const SCOPE = [
+  'playlist-read-private',
   'playlist-modify-public',
   'playlist-modify-private',
   'streaming',

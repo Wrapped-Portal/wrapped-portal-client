@@ -101,8 +101,10 @@ export default function SearchResults() {
               >
                 <Card.Section>
                   <Image
-                    src={item.images.at(-2).url}
+                    src={item.images[0].url}
                     alt={item.name}
+                    height={220}
+                    width={220}
                   />
                 </Card.Section>
 

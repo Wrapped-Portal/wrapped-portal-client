@@ -1,0 +1,27 @@
+/** @format */
+
+.play_button {
+  img[alt='play-button'] {
+    cursor: pointer;
+    position: absolute;
+
+    height: 80%;
+    top: 20%;
+    left: 23%;
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.play_button:hover {
+  img[alt='play-button'] {
+    opacity: 0.8;
+  }
+}
+
+.mantine-1dn2tzg:hover {
+  img[alt='play-button'] {
+    opacity: 0.8;
+  }
+}

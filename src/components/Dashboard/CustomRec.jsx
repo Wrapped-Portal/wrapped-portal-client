@@ -167,11 +167,18 @@ export default function CustomRec() {
                 key={item.id}
               >
                 <Card.Section>
-                  <Image
-                    className="hand__cursor"
-                    onClick={() => dispatch(playSong(item.uri))}
-                    src={item.album.images[0].url}
-                  />
+                  <div className="play_button">
+                    <img
+                      onClick={() => dispatch(playSong(item.uri))}
+                      src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                      alt="play-button"
+                    />
+                    <Image
+                      className="hand__cursor"
+                      onClick={() => dispatch(playSong(item.uri))}
+                      src={item.album.images[0].url}
+                    />
+                  </div>
                 </Card.Section>
                 <Card.Section>
                   <Text

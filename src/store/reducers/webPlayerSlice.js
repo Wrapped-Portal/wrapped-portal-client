@@ -26,13 +26,13 @@ const webPlayerSlice = createSlice({
 
     playAll: (state, action) => {
       if (action.payload) {
-        state.trackUri = action.payload?.uri;
+        state.trackUri = `spotify:playlist:${action.payload}`;
       }
     },
   },
 });
 
-export const { setPlayingStatus, setTrackUri, playSong } =
+export const { setPlayingStatus, setTrackUri, playSong, playAll } =
   webPlayerSlice.actions;
 
 export default webPlayerSlice.reducer;

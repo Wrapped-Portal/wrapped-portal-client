@@ -161,7 +161,7 @@ export default function Knob({ fieldName, bgColor, label, description }) {
       </Popover.Target>
       {description && (
         <Popover.Dropdown sx={{ pointerEvents: 'none' }}>
-          <Text size="sm">{description}</Text>
+          <Text c="black" size="sm">{description}</Text>
         </Popover.Dropdown>
       )}
     </Popover>

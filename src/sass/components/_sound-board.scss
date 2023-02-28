@@ -1,11 +1,16 @@
 /** @format */
 
 .sound-board {
+  margin-left: 45px;
   width: 50rem;
   height: 45rem;
   padding: 4rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  color: rgb(255, 255, 255);
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+
 
   gap: 0rem;
 
@@ -18,3 +23,11 @@
 .hand__cursor {
   cursor: pointer;
 }
+
+.knob_border {
+  border-left: 3px solid #ccc;
+  border-right: 3px solid #ccc;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+

@@ -1,11 +1,10 @@
 /** @format */
 
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import { Button, Paper, Text, List, Image, Group, Stack } from '@mantine/core';
 import { removeTrack } from '../../store/reducers/playlistSlice';
-import { playSong } from '../../store/reducers/webPlayerSlice';
+import { playSong, playAll } from '../../store/reducers/webPlayerSlice';
 
 export default function UserPlaylists() {
   const { playlistItems, selectedPlaylist } = useSelector(
@@ -33,7 +32,13 @@ export default function UserPlaylists() {
               type="ordered"
               className="list"
             >
-              <Button onClick={() => dispatch(playAll(playlistItems.items))}>
+              <Button
+                onClick={() => {
+                  dispatch(playSong(playlistItems.items[0].track.uri));
+                  dispatch(playAll(playlistItems.href.split('/').at(-2)));
+                }}
+              >
+                {console.log(playlistItems.href.split('/').at(-2))}
                 Play All
               </Button>
               {playlistItems?.items.map((item, index) => (

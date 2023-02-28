@@ -19,6 +19,7 @@ import getUser from './middleware/getUser';
 import screenHeightSlice from './reducers/screenHeightSlice';
 import setPlaylistItems from './middleware/playlistItems';
 import removeTrack from './middleware/removeTrack';
+
 const store = configureStore({
   reducer: {
     login: login,

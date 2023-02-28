@@ -2,18 +2,20 @@
 
 .dashboard {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .column {
   padding: 1rem;
+  margin-left: 250px;
+  margin-right: 20px;
 }
 
-.column:first-child {
-  flex: 0.5;
+.playlist_column {
+margin-right: 20px;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1150px) {
   .dashboard {
     flex-direction: column;
   }

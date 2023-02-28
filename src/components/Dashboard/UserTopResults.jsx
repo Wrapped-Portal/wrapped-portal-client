@@ -133,7 +133,16 @@ export default function UserTopResults() {
                 </List.Item>
               ) : (
                 <List.Item key={`item-${index}`}>
-                  <Text fw={700}>{item.name}</Text>
+                  <Group>
+                    <Image
+                      radius="md"
+                      src={item.images[0].url}
+                      height={60}
+                      width={60}
+                      className="image-top"
+                    />
+                    <Text fw={700}>{item.name}</Text>
+                  </Group>
                 </List.Item>
               ),
             )}

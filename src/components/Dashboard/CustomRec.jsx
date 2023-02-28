@@ -6,9 +6,9 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Image, Input, MultiSelect, Text } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
+import { playSong } from '../../store/reducers/webPlayerSlice';
 
 export default function CustomRec() {
-  
   const { token } = useSelector((state) => state.login);
 
   const [data, setData] = useState([]);
@@ -18,27 +18,39 @@ export default function CustomRec() {
   const [artist, setArtist] = useState('');
   const [genreChoices, setGenreChoices] = useState([]);
 
-  const { dance, energy, loud, vibe, tempo, popular, instrumental } =
-    useSelector((state) => state.soundBoardSlice);
+  const {
+    dance,
+    energy,
+    loud,
+    vibe,
+    tempo,
+    popular,
+    instrumental,
+    live,
+    acoustic,
+  } = useSelector((state) => state.soundBoardSlice);
   const fetchData = async () => {
     const stringifiedGenre = genre.join();
-
-    console.log(stringifiedGenre);
     try {
-      const response = await axios.get(`http://localhost:3001/recommendation`, {
-        params: {
-          token: token.accessToken,
-          artist,
-          stringifiedGenre,
-          dance,
-          energy,
-          loud,
-          vibe,
-          tempo,
-          popular,
-          instrumental,
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URI}recommendation`,
+        {
+          params: {
+            token: token.accessToken,
+            artist,
+            stringifiedGenre,
+            dance,
+            energy,
+            loud,
+            vibe,
+            tempo,
+            popular,
+            instrumental,
+            acoustic,
+            live,
+          },
         },
-      });
+      );
       return response.data;
     } catch (error) {
       throw error;
@@ -106,9 +118,9 @@ export default function CustomRec() {
         onSubmit={handleSubmit}
         className="form"
       >
-        <div className='options_rec'>
+        <div className="options_rec">
           <h3>Create Your Own Custom Recommendations</h3>
-          <div className='group_select'>
+          <div className="group_select">
             <h4>Enter an Artist to Base your Recommendations On</h4>
             <Input
               placeholder="Prince"
@@ -129,8 +141,8 @@ export default function CustomRec() {
                 className="smaller-input"
               />
             </>
-            <div className='knob-board'>
-            <SoundBoard />
+            <div className="knob-board">
+              <SoundBoard />
             </div>
 
             <Button
@@ -147,45 +159,49 @@ export default function CustomRec() {
       <div className="grid-container">
         {data && Array.isArray(data.tracks) && data.tracks.length > 0
           ? data.tracks.map((item) => (
-            <Card
-              shadow="sm"
-              p="lg"
-              radius="md"
-              withBorder
-              key={item.id}
-            >
-              <Card.Section>
-                <Image src={item.album.images[0].url} />
-              </Card.Section>
-              <Card.Section>
-                <Text
-                  weight={600}
-                  className="card-text-large"
-                >
-                  {item.name}
-                </Text>
-              </Card.Section>
-              <Card.Section>
-                <Text
-                  weight={300}
-                  className="card-text-small"
-                >
-                  {item.album.artists[0].name}
-                </Text>
-                <Button
-                  key={item.id}
-                  color="lime"
-                  radius="xs"
-                  size="xs"
-                  compact
-                  onClick={() => handleAddTrackToPlaylist(item?.uri)}
-                  className="custom_add"
-                >
-                  +
-                </Button>
-              </Card.Section>
-            </Card>
-          ))
+              <Card
+                shadow="sm"
+                p="lg"
+                radius="md"
+                withBorder
+                key={item.id}
+              >
+                <Card.Section>
+                  <Image
+                    className="hand__cursor"
+                    onClick={() => dispatch(playSong(item.uri))}
+                    src={item.album.images[0].url}
+                  />
+                </Card.Section>
+                <Card.Section>
+                  <Text
+                    weight={600}
+                    className="card-text-large"
+                  >
+                    {item.name}
+                  </Text>
+                </Card.Section>
+                <Card.Section>
+                  <Text
+                    weight={300}
+                    className="card-text-small"
+                  >
+                    {item.album.artists[0].name}
+                  </Text>
+                  <Button
+                    key={item.id}
+                    color="lime"
+                    radius="xs"
+                    size="xs"
+                    compact
+                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
+                    className="custom_add"
+                  >
+                    +
+                  </Button>
+                </Card.Section>
+              </Card>
+            ))
           : null}
       </div>
       {loading && <p>Loading...</p>}

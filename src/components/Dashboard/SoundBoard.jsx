@@ -8,38 +8,38 @@ export default function SoundBoard() {
     <div className="sound-board">
       <Knob
         description="Generic text that describes what is happening"
-        label="Dancability"
+        label="Danceability"
         bgColor={50}
         fieldName="dance"
       />
       <Knob
         description="Generic text that describes what is happening"
         label="Energy"
-        bgColor={150}
+        bgColor={50}
         fieldName="energy"
       />
       <Knob
         description="Generic text that describes what is happening"
         label="Loudness"
-        bgColor={250}
+        bgColor={50}
         fieldName="loud"
       />
       <Knob
         description="Generic text that describes what is happening"
         label="Vibe"
-        bgColor={350}
+        bgColor={150}
         fieldName="vibe"
       />
       <Knob
         description="Generic text that describes what is happening"
         label="Tempo"
-        bgColor={100}
+        bgColor={150}
         fieldName="tempo"
       />
       <Knob
         description="Generic text that describes what is happening"
         label="Popularity"
-        bgColor={200}
+        bgColor={150}
         fieldName="popular"
       />
       <Knob
@@ -47,6 +47,18 @@ export default function SoundBoard() {
         label="Instrumental"
         bgColor={300}
         fieldName="instrumental"
+      />
+      <Knob
+        description="Generic text that describes what is happening"
+        label="Liveness"
+        bgColor={300}
+        fieldName="live"
+      />
+      <Knob
+        description="Generic text that describes what is happening"
+        label="Acousticness"
+        bgColor={300}
+        fieldName="acoustic"
       />
     </div>
   );

@@ -16,6 +16,7 @@ const loginSlice = createSlice({
     },
     logout: (state) => {
       state.isLoggedIn = false;
+      state.token = '';
     },
     storeToken: (state, action) => {
       if (action.payload.token) {

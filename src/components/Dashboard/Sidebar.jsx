@@ -1,5 +1,5 @@
 /** @format */
-
+import Cookies from 'universal-cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
@@ -24,12 +24,14 @@ import {
 import { setUser } from '../../store/reducers/userSlice';
 import { useStyles } from './sidebarStyles';
 import { getHeight } from '../../store/reducers/screenHeightSlice';
+import { logout } from '../../store/reducers/loginSlice';
 export default function Sidebar() {
   const [active, setActive] = useState('');
   const [opened, setOpened] = useState(false);
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [isPublic, setIsPublic] = useState(false);
+  const cookies = new Cookies();
   const { user } = useSelector((state) => state.userSlice);
   const { selectedTrack, selectedPlaylist, allPlaylists } = useSelector(
     (state) => state.playlistSlice,
@@ -41,6 +43,13 @@ export default function Sidebar() {
     }
   };
   const dispatch = useDispatch();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    cookies.remove('accessToken');
+    cookies.remove('refreshToken');
+    dispatch(logout());
+  };
 
   useEffect(() => {
     function handleResize() {
@@ -198,7 +207,7 @@ export default function Sidebar() {
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              className='sidebar-bottom'
+              className="sidebar-bottom"
             >
               <path
                 fill="currentColor"
@@ -213,7 +222,7 @@ export default function Sidebar() {
           <a
             href="#"
             className={classes.link}
-            onClick={(event) => event.preventDefault()}
+            onClick={handleLogout}
           >
             <span>Logout</span>
             <svg
@@ -221,7 +230,7 @@ export default function Sidebar() {
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              className='sidebar-bottom'
+              className="sidebar-bottom"
             >
               <path
                 fill="currentColor"

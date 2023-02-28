@@ -77,6 +77,8 @@ export default function CustomRec() {
     'Tempo',
     'Popularity',
     'Instrumentalness',
+    'Acousticness',
+    'Liveness'
   ];
 
   const handleOptionSelection = (selectedOption) => {

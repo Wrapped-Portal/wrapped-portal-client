@@ -13,6 +13,7 @@ import {
 } from '@mantine/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTrack } from '../../store/reducers/playlistSlice';
+import { playSong } from '../../store/reducers/webPlayerSlice';
 export default function SearchResults() {
   const dispatch = useDispatch();
   const { tracks, artists, albums } = useSelector(
@@ -42,6 +43,7 @@ export default function SearchResults() {
             {tracks?.tracks.items.map((item, index) => (
               <>
                 <List.Item
+                  onClick={() => dispatch(playSong(item.uri))}
                   key={`item-${index}`}
                   className="list_item"
                 >
@@ -60,6 +62,7 @@ export default function SearchResults() {
                     </Stack>
                     <p>{formatDuration(item.duration_ms)}</p>
                   </Group>
+
                   <Button
                     onClick={() => dispatch(selectTrack(item?.uri))}
                     className="list_button"

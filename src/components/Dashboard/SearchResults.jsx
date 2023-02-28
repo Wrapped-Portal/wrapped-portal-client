@@ -102,8 +102,6 @@ export default function SearchResults() {
                 <Card.Section>
                   <Image
                     src={item.images.at(-2).url}
-                    height={200}
-                    width={200}
                     alt={item.name}
                   />
                 </Card.Section>
@@ -151,8 +149,6 @@ export default function SearchResults() {
                   {console.log(item)}
                   <Image
                     src={item.images.at(-2).url}
-                    height={200}
-                    width={200}
                     alt={item.name}
                   />
                 </Card.Section>

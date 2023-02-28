@@ -8,6 +8,7 @@ import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
 
 export default function CustomRec() {
+  
   const { token } = useSelector((state) => state.login);
 
   const [data, setData] = useState([]);
@@ -61,7 +62,6 @@ export default function CustomRec() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-  
     try {
       const result = await fetchData();
       setData((prevData) => {
@@ -83,7 +83,6 @@ export default function CustomRec() {
       setLoading(false);
     }
   };
-  
 
   useEffect(() => {
     async function fetchGenres() {
@@ -107,40 +106,42 @@ export default function CustomRec() {
         onSubmit={handleSubmit}
         className="form"
       >
-        <div className="left-column">
+        <div className='options_rec'>
           <h3>Create Your Own Custom Recommendations</h3>
-          <h4>Enter an Artist to Base your Recommendations On</h4>
-          <Input
-            placeholder="Prince"
-            radius="xl"
-            onChange={(e) => setArtist(e.target.value)}
-            className="smaller-input"
-          />
-
-          <>
-            <h4>Choose up to Five Genres</h4>
-
-            <MultiSelect
+          <div className='group_select'>
+            <h4>Enter an Artist to Base your Recommendations On</h4>
+            <Input
+              placeholder="Prince"
               radius="xl"
-              data={genreChoices}
-              maxSelectedValues={5}
-              placeholder="Choose up to Five Genres"
-              onChange={(value) => setGenre(value)}
+              onChange={(e) => setArtist(e.target.value)}
               className="smaller-input"
             />
-          </>
-        </div>
-        <div className="right-column">
-          <SoundBoard />
 
-          <Button
-            color="lime"
-            className="smaller-slider "
-            radius="xl"
-            type="submit"
-          >
-            Submit
-          </Button>
+            <>
+              <h4>Choose up to Five Genres</h4>
+
+              <MultiSelect
+                radius="xl"
+                data={genreChoices}
+                maxSelectedValues={5}
+                placeholder="Choose up to Five Genres"
+                onChange={(value) => setGenre(value)}
+                className="smaller-input"
+              />
+            </>
+            <div className='knob-board'>
+            <SoundBoard />
+            </div>
+
+            <Button
+              color="lime"
+              className="smaller-slider "
+              radius="xl"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
         </div>
       </form>
       <div className="grid-container">
@@ -161,14 +162,14 @@ export default function CustomRec() {
                   weight={600}
                   className="card-text-large"
                 >
-                {item.name}
+                  {item.name}
                 </Text>
               </Card.Section>
               <Card.Section>
                 <Text
                   weight={300}
                   className="card-text-small"
-                  >
+                >
                   {item.album.artists[0].name}
                 </Text>
                 <Button

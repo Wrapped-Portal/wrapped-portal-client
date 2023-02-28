@@ -1,4 +1,4 @@
-
+/** @format */
 
 .list li {
   align-items: center;
@@ -10,6 +10,10 @@
 .paper {
   margin-top: 10px;
   margin-bottom: 50px;
+}
+
+.list_item {
+  cursor: pointer;
 }
 
 .list_item_text {
@@ -47,8 +51,6 @@
   flex-direction: column;
   margin-right: 10px;
 }
-
-
 
 .image-top {
   margin-top: 10px;

@@ -14,6 +14,7 @@ import {
   Stack,
 } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
+import { playSong } from '../../store/reducers/webPlayerSlice';
 
 export default function UserTopResults() {
   const [data, setData] = useState(null);
@@ -94,6 +95,7 @@ export default function UserTopResults() {
             {data?.items.map((item, index) =>
               item.album ? (
                 <List.Item
+                  onClick={() => dispatch(playSong(item.uri))}
                   key={`item-${index}`}
                   className="list_item"
                 >

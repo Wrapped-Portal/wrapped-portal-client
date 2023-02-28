@@ -14,7 +14,17 @@ const webPlayerSlice = createSlice({
     setPlayingStatus: (state, action) => {
       state.playing = action.payload;
     },
+    playSong: (state, action) => {
+      state.trackUri = action.payload;
+      state.playing = true;
+    },
     setTrackUri: (state, action) => {
+      if (action.payload) {
+        state.trackUri = action.payload?.uri;
+      }
+    },
+
+    playAll: (state, action) => {
       if (action.payload) {
         state.trackUri = action.payload?.uri;
       }
@@ -22,6 +32,7 @@ const webPlayerSlice = createSlice({
   },
 });
 
-export const { setPlayingStatus, setTrackUri } = webPlayerSlice.actions;
+export const { setPlayingStatus, setTrackUri, playSong } =
+  webPlayerSlice.actions;
 
 export default webPlayerSlice.reducer;

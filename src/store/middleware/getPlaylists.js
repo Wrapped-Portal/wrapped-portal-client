@@ -2,8 +2,6 @@
 
 import axios from 'axios';
 
-/** @format */
-
 const getPlaylists = (store) => (next) => async (action) => {
   if (
     action.type === 'playlist/getUserPlaylists' ||

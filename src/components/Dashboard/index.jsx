@@ -51,7 +51,9 @@ export default function Dashboard() {
             </Tabs.Panel>
           </Tabs>
         </div>
+        <div className="playlist_column">
         <UserPlaylists />
+        </div>
         <Sidebar />
       </div>
     </main>

@@ -49,6 +49,11 @@ export default function UserPlaylists() {
                   className="list_item"
                 >
                   <Group onClick={() => dispatch(playSong(item.track.uri))}>
+                    <img
+                      className="play_button-icon"
+                      src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                      alt="play-button"
+                    />
                     <Text
                       fw={600}
                       className="numbers"

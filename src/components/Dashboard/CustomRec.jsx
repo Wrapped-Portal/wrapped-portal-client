@@ -160,49 +160,57 @@ export default function CustomRec() {
       <div className="grid-container">
         {data && Array.isArray(data.tracks) && data.tracks.length > 0
           ? data.tracks.map((item) => (
-            <Card
-              shadow="sm"
-              p="lg"
-              radius="md"
-              withBorder
-              key={item.id}
-            >
-              <Card.Section>
-                <Image
-                  className="hand__cursor"
-                  onClick={() => dispatch(playSong(item.uri))}
-                  src={item.album.images[0].url}
-                />
-              </Card.Section>
-              <Card.Section>
-                <Text
-                  weight={600}
-                  className="card-text-large"
-                >
-                  {item.name}
-                </Text>
-              </Card.Section>
-              <Card.Section>
-                <Text
-                  weight={300}
-                  className="card-text-small"
-                >
-                  {item.album.artists[0].name}
-                </Text>
-                <Button
-                  key={item.id}
-                  color="lime"
-                  radius="xs"
-                  size="xs"
-                  compact
-                  onClick={() => handleAddTrackToPlaylist(item?.uri)}
-                  className="custom_add"
-                >
-                  +
-                </Button>
-              </Card.Section>
-            </Card>
-          ))
+
+              <Card
+                shadow="sm"
+                p="lg"
+                radius="md"
+                withBorder
+                key={item.id}
+              >
+                <Card.Section>
+                  <div className="play_button">
+                    <img
+                      onClick={() => dispatch(playSong(item.uri))}
+                      src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                      alt="play-button"
+                    />
+                    <Image
+                      className="hand__cursor"
+                      onClick={() => dispatch(playSong(item.uri))}
+                      src={item.album.images[0].url}
+                    />
+                  </div>
+                </Card.Section>
+                <Card.Section>
+                  <Text
+                    weight={600}
+                    className="card-text-large"
+                  >
+                    {item.name}
+                  </Text>
+                </Card.Section>
+                <Card.Section>
+                  <Text
+                    weight={300}
+                    className="card-text-small"
+                  >
+                    {item.album.artists[0].name}
+                  </Text>
+                  <Button
+                    key={item.id}
+                    color="lime"
+                    radius="xs"
+                    size="xs"
+                    compact
+                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
+                    className="custom_add"
+                  >
+                    +
+                  </Button>
+                </Card.Section>
+              </Card>
+            ))
           : null}
       </div>
       {loading && <p>Loading...</p>}

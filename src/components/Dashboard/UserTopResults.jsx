@@ -27,13 +27,16 @@ export default function UserTopResults() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/top`, {
-        params: {
-          token: token.accessToken,
-          type,
-          range,
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URI}top`,
+        {
+          params: {
+            token: token.accessToken,
+            type,
+            range,
+          },
         },
-      });
+      );
       return response.data;
     } catch (error) {
       throw error;

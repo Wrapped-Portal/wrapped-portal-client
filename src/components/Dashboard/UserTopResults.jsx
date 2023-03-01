@@ -100,6 +100,12 @@ export default function UserTopResults() {
                   className="list_item"
                 >
                   <Group>
+                    <Text
+                     fw={600}
+                     className="numbers"
+                     >
+                      {index + 1}
+                      </Text>
                     <Image
                       radius="md"
                       src={item.album.images[0].url}
@@ -134,6 +140,12 @@ export default function UserTopResults() {
               ) : (
                 <List.Item key={`item-${index}`}>
                   <Group>
+                  <Text
+                     fw={600}
+                     className="numbers"
+                     >
+                      {index + 1}
+                      </Text>
                     <Image
                       radius="md"
                       src={item.images[0].url}

@@ -141,13 +141,14 @@ export default function CustomRec() {
                 className="smaller-input"
               />
             </>
+            <h4>Select Your Parameters</h4>
             <div className="knob-board">
               <SoundBoard />
             </div>
 
             <Button
               color="lime"
-              className="smaller-slider "
+              className="rec_button"
               radius="xl"
               type="submit"
             >
@@ -159,6 +160,7 @@ export default function CustomRec() {
       <div className="grid-container">
         {data && Array.isArray(data.tracks) && data.tracks.length > 0
           ? data.tracks.map((item) => (
+
               <Card
                 shadow="sm"
                 p="lg"

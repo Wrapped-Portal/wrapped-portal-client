@@ -83,97 +83,87 @@ export default function SearchResults() {
 
       {artists && <h3>Artists</h3>}
       {artists && (
-        <Paper
-          shadow="lg"
-          radius="md"
-          withBorder
-          className="paper card"
-        >
-          <ul>
-            {artists?.artists.items.map((item) => (
-              <Card
-                key={crypto.randomUUID()}
-                shadow="sm"
-                p="xl"
-                component="a"
-                href={item.external_urls.spotify}
-                target="_blank"
+
+        <div className="grid-container">
+          {artists?.artists.items.map((item) => (
+            <Card
+              key={crypto.randomUUID()}
+              shadow="sm"
+              p="lg"
+              component="a"
+              href={item.external_urls.spotify}
+              target="_blank"
+              radius="md"
+              withBorder
+
+            >
+              <Card.Section>
+                <Image
+                  src={item.images[0].url}
+                  alt={item.name}
+                  height={250}
+                />
+              </Card.Section>
+
+              <Text
+                weight={500}
+                size="lg"
+                mt="md"
               >
-                <Card.Section>
-                  <Image
-                    src={item.images[0].url}
-                    alt={item.name}
-                    height={220}
-                    width={220}
-                  />
-                </Card.Section>
+                {item.name}
+              </Text>
 
-                <Text
-                  weight={500}
-                  size="lg"
-                  mt="md"
-                >
-                  {item.name}
-                </Text>
-
-                <Text
-                  mt="xs"
-                  color="dimmed"
-                  size="sm"
-                >
-                  {console.log(item, 'item')}
-                  Followers: {item.followers.total}
-                </Text>
-              </Card>
-            ))}
-          </ul>
-        </Paper>
+              <Text
+                mt="xs"
+                color="dimmed"
+                size="sm"
+              >
+                {console.log(item, 'item')}
+                Followers: {item.followers.total}
+              </Text>
+            </Card>
+          ))}
+        </div>
       )}
       {albums && <h3>Albums</h3>}
       {albums && (
-        <Paper
-          shadow="lg"
-          radius="md"
-          withBorder
-          className="paper card"
-        >
-          <ul>
-            {albums?.albums.items.map((item) => (
-              <Card
-                key={crypto.randomUUID()}
-                shadow="sm"
-                p="xl"
-                component="a"
-                href={item.external_urls.spotify}
-                target="_blank"
+        <div className="grid-container">
+
+          {albums?.albums.items.map((item) => (
+            <Card
+              key={crypto.randomUUID()}
+              shadow="sm"
+              p="lg"
+              component="a"
+              href={item.external_urls.spotify}
+              target="_blank"
+              radius="md"
+              withBorder
+            >
+              <Card.Section>
+                <Image
+                  src={item.images.at(-2).url}
+                  alt={item.name}
+                />
+              </Card.Section>
+
+              <Text
+                weight={500}
+                size="lg"
+                mt="md"
               >
-                <Card.Section>
-                  {console.log(item)}
-                  <Image
-                    src={item.images.at(-2).url}
-                    alt={item.name}
-                  />
-                </Card.Section>
-
-                <Text
-                  weight={500}
-                  size="lg"
-                  mt="md"
-                >
-                  {item.name}
-                </Text>
-
-                <Text
-                  mt="xs"
-                  color="dimmed"
-                  size="sm"
-                >
-                  {item?.artists.map((item) => item.name + ' ')}
-                </Text>
-              </Card>
-            ))}
-          </ul>
-        </Paper>
+                {item.name}
+              </Text>
+              <Text
+                mt="xs"
+                color="dimmed"
+                size="sm"
+              >
+                {item?.artists.map((item) => item.name + ' ')}
+              </Text>
+            </Card>
+          ))}
+        </div>
       )}
     </div>
   );

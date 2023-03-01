@@ -95,17 +95,16 @@ export default function UserTopResults() {
             {data?.items.map((item, index) =>
               item.album ? (
                 <List.Item
-                  onClick={() => dispatch(playSong(item.uri))}
                   key={`item-${index}`}
                   className="list_item"
                 >
-                  <Group>
+                  <Group onClick={() => dispatch(playSong(item.uri))}>
                     <Text
-                     fw={600}
-                     className="numbers"
-                     >
+                      fw={600}
+                      className="numbers"
+                    >
                       {index + 1}
-                      </Text>
+                    </Text>
                     <Image
                       radius="md"
                       src={item.album.images[0].url}
@@ -140,12 +139,12 @@ export default function UserTopResults() {
               ) : (
                 <List.Item key={`item-${index}`}>
                   <Group>
-                  <Text
-                     fw={600}
-                     className="numbers"
-                     >
+                    <Text
+                      fw={600}
+                      className="numbers"
+                    >
                       {index + 1}
-                      </Text>
+                    </Text>
                     <Image
                       radius="md"
                       src={item.images[0].url}

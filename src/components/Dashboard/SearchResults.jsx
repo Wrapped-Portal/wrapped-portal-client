@@ -43,11 +43,11 @@ export default function SearchResults() {
             {tracks?.tracks.items.map((item, index) => (
               <>
                 <List.Item
-                  onClick={() => dispatch(playSong(item.uri))}
                   key={`item-${index}`}
                   className="list_item"
                 >
                   <Group
+                    onClick={() => dispatch(playSong(item.uri))}
                     className="group__songs"
                     position="apart"
                   >
@@ -83,7 +83,6 @@ export default function SearchResults() {
 
       {artists && <h3>Artists</h3>}
       {artists && (
-
         <div className="grid-container">
           {artists?.artists.items.map((item) => (
             <Card
@@ -95,7 +94,6 @@ export default function SearchResults() {
               target="_blank"
               radius="md"
               withBorder
-
             >
               <Card.Section>
                 <Image
@@ -128,7 +126,6 @@ export default function SearchResults() {
       {albums && <h3>Albums</h3>}
       {albums && (
         <div className="grid-container">
-
           {albums?.albums.items.map((item) => (
             <Card
               key={crypto.randomUUID()}

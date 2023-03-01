@@ -12,13 +12,24 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
     let refreshTokenInterval;
 
     const startRefreshTokenInterval = (expirationTimestamp) => {
+      const logRemainingTime = () => {
+        const remainingTime = expirationTimestamp - Date.now();
+        console.log(
+          `Remaining time on access token cookie: ${Math.round(
+            remainingTime / 1000,
+          )} seconds`,
+        );
+      };
+
       const remainingTime = expirationTimestamp - Date.now();
       const intervalDuration = remainingTime - 60 * 1000;
+
+      logRemainingTime();
+      setInterval(logRemainingTime, 10000);
 
       refreshTokenInterval = setInterval(async () => {
         try {
           const accessTokenExpiration = cookies.get('accessTokenTimestamp');
-          const refreshTokenExpiration = cookies.get('refreshTokenTimestamp');
 
           // Check if access token has expired or is about to expire
           if (Date.now() >= accessTokenExpiration - 60 * 1000) {
@@ -41,21 +52,19 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
               maxAge: expiresIn,
             });
 
-            // Update the store and the refresh token cookie
-            store.dispatch(
-              storeToken({
+            // Pass the new token data along to the next middleware
+            next({
+              type: 'login/storeToken',
+              payload: {
                 token: {
                   accessToken,
                   refreshToken: results.data.refreshToken,
                   expiresIn,
                 },
-              }),
-            );
-            cookies.set('refreshToken', results.data.refreshToken, {
-              path: '/',
-              maxAge: expiresIn,
+              },
             });
-            cookies.set('refreshTokenTimestamp', expirationTimestamp, {
+
+            cookies.set('refreshToken', results.data.refreshToken, {
               path: '/',
               maxAge: expiresIn,
             });
@@ -64,10 +73,10 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
             startRefreshTokenInterval(expirationTimestamp);
           }
           // Check if refresh token has expired
-          else if (Date.now() >= refreshTokenExpiration) {
+          else if (Date.now() >= accessTokenExpiration) {
             // Clear the interval and log the user out
             clearInterval(refreshTokenInterval);
-            store.dispatch({ type: 'login/logout' });
+            next({ type: 'login/logout' });
           }
         } catch (e) {
           console.error('Error: Refresh Token Middleware:', e.message);
@@ -76,13 +85,9 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
     };
 
     const accessTokenExpiration = cookies.get('accessTokenTimestamp');
-    const refreshTokenExpiration = cookies.get('refreshTokenTimestamp');
 
-    if (accessTokenExpiration && refreshTokenExpiration) {
-      const expirationTimestamp = Math.min(
-        accessTokenExpiration,
-        refreshTokenExpiration,
-      );
+    if (accessTokenExpiration) {
+      const expirationTimestamp = Math.min(accessTokenExpiration);
       startRefreshTokenInterval(expirationTimestamp);
     }
   }

@@ -5,19 +5,19 @@
 
 #mantine-r1-tab-first:hover {
   .tab__text {
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.619);
   }
 }
 
 #mantine-r1-tab-second:hover {
   .tab__text {
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.619);
   }
 }
 
 #mantine-r1-tab-third:hover {
   .tab__text {
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.619);
   }
 }
 
@@ -42,3 +42,8 @@
 .mantine-1dn2tzg {
   flex-wrap: nowrap;
 }
+
+.mantine-9wjbo7[data-active] {
+  background: linear-gradient(to right, teal, limegreen);
+}
+

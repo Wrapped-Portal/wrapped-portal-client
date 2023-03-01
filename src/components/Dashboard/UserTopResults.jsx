@@ -149,7 +149,7 @@ export default function UserTopResults() {
                   <Group>
                     <Text
                       fw={600}
-                      className="numbers"
+                      className="numbers--artists"
                     >
                       {index + 1}
                     </Text>

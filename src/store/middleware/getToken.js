@@ -36,10 +36,6 @@ const getToken = (store) => (next) => async (action) => {
             maxAge: expiresIn,
           });
 
-          cookies.set('refreshTokenTimestamp', expirationTimestamp, {
-            path: '/',
-            maxAge: expiresIn,
-          });
 
           next(action);
         } catch (e) {

@@ -33,7 +33,7 @@ export default function UserPlaylists() {
               className="list"
             >
               <Button
-                className='playall_button'
+                className="playall_button"
                 variant="gradient"
                 gradient={{ from: 'teal', to: 'lime', deg: 105 }}
                 onClick={() => {
@@ -45,17 +45,21 @@ export default function UserPlaylists() {
               </Button>
               {playlistItems?.items.map((item, index) => (
                 <List.Item
-                  onClick={() => dispatch(playSong(item.track.uri))}
                   key={`item-${index}`}
                   className="list_item"
                 >
-                  <Group>
-                  <Text
-                     fw={600}
-                     className="numbers"
-                     >
+                  <Group onClick={() => dispatch(playSong(item.track.uri))}>
+                    <img
+                      className="play_button-icon"
+                      src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                      alt="play-button"
+                    />
+                    <Text
+                      fw={600}
+                      className="numbers"
+                    >
                       {index + 1}
-                      </Text>
+                    </Text>
                     <Image
                       radius="md"
                       src={item.track.album.images[0].url}

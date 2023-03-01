@@ -27,13 +27,16 @@ export default function UserTopResults() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/top`, {
-        params: {
-          token: token.accessToken,
-          type,
-          range,
+      const response = await axios.get(
+        `${import.meta.env.VITE_SERVER_URI}top`,
+        {
+          params: {
+            token: token.accessToken,
+            type,
+            range,
+          },
         },
-      });
+      );
       return response.data;
     } catch (error) {
       throw error;
@@ -95,17 +98,21 @@ export default function UserTopResults() {
             {data?.items.map((item, index) =>
               item.album ? (
                 <List.Item
-                  onClick={() => dispatch(playSong(item.uri))}
                   key={`item-${index}`}
                   className="list_item"
                 >
-                  <Group>
+                  <Group onClick={() => dispatch(playSong(item.uri))}>
+                    <img
+                      className="play_button-icon"
+                      src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                      alt="play-button"
+                    />
                     <Text
-                     fw={600}
-                     className="numbers"
-                     >
+                      fw={600}
+                      className="numbers"
+                    >
                       {index + 1}
-                      </Text>
+                    </Text>
                     <Image
                       radius="md"
                       src={item.album.images[0].url}
@@ -140,12 +147,12 @@ export default function UserTopResults() {
               ) : (
                 <List.Item key={`item-${index}`}>
                   <Group>
-                  <Text
-                     fw={600}
-                     className="numbers"
-                     >
+                    <Text
+                      fw={600}
+                      className="numbers"
+                    >
                       {index + 1}
-                      </Text>
+                    </Text>
                     <Image
                       radius="md"
                       src={item.images[0].url}

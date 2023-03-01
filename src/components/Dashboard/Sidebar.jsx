@@ -3,6 +3,7 @@ import Cookies from 'universal-cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
+  Image,
   Button,
   Navbar,
   Group,
@@ -98,6 +99,8 @@ export default function Sidebar() {
 
   const { classes, cx } = useStyles();
 
+  console.log(allPlaylists);
+
   const playlists = allPlaylists?.items?.map((item) => (
     <Paper
       className={cx(classes.link, {
@@ -114,6 +117,12 @@ export default function Sidebar() {
         mt="md"
         mb="xs"
       >
+        <Image
+         radius="md"
+         width={50}
+        height={50}
+        src={item.images[0].url}
+        />
         <Stack>
           <p className="playlist_text_name">{item?.name}</p>
           <p className="playlist_text_tracks">Tracks: {item?.tracks.total}</p>

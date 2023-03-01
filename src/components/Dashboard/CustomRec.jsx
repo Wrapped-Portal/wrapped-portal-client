@@ -147,10 +147,11 @@ export default function CustomRec() {
             </div>
 
             <Button
-              color="lime"
+                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
               className="rec_button"
               radius="xl"
               type="submit"
+              variant='gradient'
             >
               Submit
             </Button>

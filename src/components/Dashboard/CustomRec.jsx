@@ -124,7 +124,6 @@ export default function CustomRec() {
             <h4>Enter an Artist to Base your Recommendations On</h4>
             <Input
               placeholder="Prince"
-              radius="xl"
               onChange={(e) => setArtist(e.target.value)}
               className="smaller-input"
             />
@@ -133,7 +132,6 @@ export default function CustomRec() {
               <h4>Choose up to Five Genres</h4>
 
               <MultiSelect
-                radius="xl"
                 data={genreChoices}
                 maxSelectedValues={5}
                 placeholder="Choose up to Five Genres"
@@ -147,11 +145,10 @@ export default function CustomRec() {
             </div>
 
             <Button
-                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+              gradient={{ from: 'teal', to: 'lime', deg: 105 }}
               className="rec_button"
-              radius="xl"
               type="submit"
-              variant='gradient'
+              variant="gradient"
             >
               Submit
             </Button>
@@ -161,7 +158,6 @@ export default function CustomRec() {
       <div className="grid-container">
         {data && Array.isArray(data.tracks) && data.tracks.length > 0
           ? data.tracks.map((item) => (
-
               <Card
                 shadow="sm"
                 p="lg"

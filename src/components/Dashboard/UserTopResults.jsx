@@ -62,8 +62,20 @@ export default function UserTopResults() {
           <div className="input-wrapper">
             <h4 className="input">Tracks or Artists</h4>
             <Input
+              rightSection={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
+                  />
+                </svg>
+              }
               className="top-input"
-              radius="xl"
               component="select"
               onChange={(event) => setType(event.target.value)}
             >
@@ -74,8 +86,20 @@ export default function UserTopResults() {
           <div className="input-wrapper">
             <h4 className="input">Time Range</h4>
             <Input
+              rightSection={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
+                  />
+                </svg>
+              }
               className="top-input"
-              radius="xl"
               component="select"
               onChange={(event) => setRange(event.target.value)}
             >

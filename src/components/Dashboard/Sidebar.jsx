@@ -1,4 +1,5 @@
 /** @format */
+import wrapped from '../../assets/wrapped.svg';
 import Cookies from 'universal-cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
@@ -118,10 +119,10 @@ export default function Sidebar() {
         mb="xs"
       >
         <Image
-         radius="md"
-         width={50}
-        height={50}
-        src={item.images[0].url}
+          radius="md"
+          width={50}
+          height={50}
+          src={item.images[0]?.url || wrapped}
         />
         <Stack>
           <p className="playlist_text_name">{item?.name}</p>

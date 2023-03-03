@@ -7,9 +7,9 @@ import axios from 'axios';
 /** @format */
 
 const removeTrack = (store) => (next) => async (action) => {
-  console.log(action.type);
+
   if (action.type === 'playlist/removeTrack') {
-    console.log(action.payload);
+    
     try {
       const data = {
         playlistId: action.payload.playlistId,

@@ -8,9 +8,6 @@ const setPlaylistItems = (store) => (next) => async (action) => {
     action.type === 'playlist/selectTrack' ||
     action.type === 'playlist/removeTrack'
   ) {
-    if (!store.getState().playlistSlice.selectedPlaylist) {
-      console.log('NO PLAYLIST SELECTED');
-    }
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URI}playlistitems`,

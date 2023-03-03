@@ -19,7 +19,7 @@ import getUser from './middleware/getUser';
 import screenHeightSlice from './reducers/screenHeightSlice';
 import setPlaylistItems from './middleware/playlistItems';
 import removeTrack from './middleware/removeTrack';
-
+import connectBackend from './middleware/connectBackend';
 const store = configureStore({
   reducer: {
     login: login,
@@ -32,6 +32,7 @@ const store = configureStore({
   },
 
   middleware: [
+    connectBackend,
     getToken,
     refresh,
     recentlyPlayed,

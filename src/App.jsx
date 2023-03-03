@@ -15,6 +15,7 @@ const cookies = new Cookies();
 function App() {
   const { isLoggedIn, token } = useSelector((state) => state.login);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const code = new URLSearchParams(window.location.search).get('code'); // grab the code from the url path
     if (code) {

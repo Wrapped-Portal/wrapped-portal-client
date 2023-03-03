@@ -3,9 +3,9 @@
 import axios from 'axios';
 
 const addTrackToPlaylist = (store) => (next) => (action) => {
-  console.log(action.type);
+
   if (action.type === 'playlist/selectTrack') {
-    console.log('adding track', action.payload);
+  
 
     const playlistState = store.getState().playlistSlice.selectedPlaylist;
     const accessToken = store.getState().login.token.accessToken;

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie';
 import spotify from '../../assets/Spotify-logo.png';
 import { loginClick } from '../../store/reducers/loginSlice';
-import LoadingBars from './LoadingBars';
+import LoadingBars from '../LoadingBars';
 
 const cookies = new Cookies();
 

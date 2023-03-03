@@ -1,12 +1,15 @@
 /** @format */
 
 import axios from 'axios';
+import { switchPlaylist } from '../reducers/playlistSlice';
 
 const getPlaylists = (store) => (next) => async (action) => {
   if (
     action.type === 'playlist/getUserPlaylists' ||
     action.type === 'playlist/createPlaylist'
   ) {
+    store.dispatch(switchPlaylist());
+
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_SERVER_URI}playlist`,

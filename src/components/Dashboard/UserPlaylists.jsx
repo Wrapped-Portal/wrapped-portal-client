@@ -5,6 +5,7 @@ import React from 'react';
 import { Button, Paper, Text, List, Image, Group, Stack } from '@mantine/core';
 import { removeTrack } from '../../store/reducers/playlistSlice';
 import { playSong, playAll } from '../../store/reducers/webPlayerSlice';
+import LoadingBars from '../LoadingBars';
 
 export default function UserPlaylists() {
   const { playlistItems, selectedPlaylist } = useSelector(
@@ -21,6 +22,16 @@ export default function UserPlaylists() {
     <>
       <div className="playlist">
         <h3>Current Playlist</h3>
+        {!playlistItems && selectedPlaylist && (
+          <Paper
+            shadow="lg"
+            radius="md"
+            withBorder
+            className="paper"
+          >
+            <LoadingBars />
+          </Paper>
+        )}
         {playlistItems && (
           <Paper
             shadow="lg"
@@ -47,6 +58,7 @@ export default function UserPlaylists() {
               ) : (
                 'Add songs to your playlist!'
               )}
+
               {playlistItems?.items.map((item, index) => (
                 <List.Item
                   key={`item-${index}`}

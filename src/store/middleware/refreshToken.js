@@ -12,20 +12,13 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
     let refreshTokenInterval;
 
     const startRefreshTokenInterval = (expirationTimestamp) => {
-      const logRemainingTime = () => {
-        const remainingTime = expirationTimestamp - Date.now();
-        console.log(
-          `Remaining time on access token cookie: ${Math.round(
-            remainingTime / 1000,
-          )} seconds`,
-        );
-      };
+     
 
       const remainingTime = expirationTimestamp - Date.now();
       const intervalDuration = remainingTime - 60 * 1000;
 
-      logRemainingTime();
-      setInterval(logRemainingTime, 10000);
+    
+      
 
       refreshTokenInterval = setInterval(async () => {
         try {

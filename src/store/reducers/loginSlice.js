@@ -1,8 +1,10 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 const initialState = {
+  loginClicked: false,
   isLoggedIn: false,
   token: '',
 };
@@ -14,9 +16,14 @@ const loginSlice = createSlice({
     login: (state) => {
       state.isLoggedIn = true;
     },
+    loginClick: (state) => {
+      state.loginClicked = true;
+    },
     logout: (state) => {
       state.isLoggedIn = false;
       state.token = '';
+      state.loginClicked = false;
+      cookies.remove('loginClicked');
     },
     storeToken: (state, action) => {
       if (action.payload.token) {
@@ -33,6 +40,7 @@ const loginSlice = createSlice({
   },
 });
 
-export const { login, logout, storeToken, restoreSession } = loginSlice.actions;
+export const { login, logout, storeToken, restoreSession, loginClick } =
+  loginSlice.actions;
 
 export default loginSlice.reducer;

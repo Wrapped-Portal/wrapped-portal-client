@@ -116,7 +116,7 @@ export default function SearchResults() {
                 color="dimmed"
                 size="sm"
               >
-                {console.log(item, 'item')}
+               
                 Followers: {item.followers.total}
               </Text>
             </Card>

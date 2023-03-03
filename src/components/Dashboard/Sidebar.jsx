@@ -100,7 +100,7 @@ export default function Sidebar() {
 
   const { classes, cx } = useStyles();
 
-  console.log(allPlaylists);
+ 
 
   const playlists = allPlaylists?.items?.map((item) => (
     <Paper

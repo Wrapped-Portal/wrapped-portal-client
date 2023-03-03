@@ -32,17 +32,21 @@ export default function UserPlaylists() {
               type="ordered"
               className="list"
             >
-              <Button
-                className="playall_button"
-                variant="gradient"
-                gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-                onClick={() => {
-                  dispatch(playSong(playlistItems.items[0].track.uri));
-                  dispatch(playAll(playlistItems.href.split('/').at(-2)));
-                }}
-              >
-                Play All
-              </Button>
+              {playlistItems.items.length ? (
+                <Button
+                  className="playall_button"
+                  variant="gradient"
+                  gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+                  onClick={() => {
+                    dispatch(playSong(playlistItems.items[0].track.uri));
+                    dispatch(playAll(playlistItems.href.split('/').at(-2)));
+                  }}
+                >
+                  Play All
+                </Button>
+              ) : (
+                'Add songs to your playlist!'
+              )}
               {playlistItems?.items.map((item, index) => (
                 <List.Item
                   key={`item-${index}`}

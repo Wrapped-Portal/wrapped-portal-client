@@ -22,6 +22,7 @@ import {
   selectPlaylist,
   getUserPlaylists,
   createPlaylist,
+
 } from '../../store/reducers/playlistSlice';
 import { setUser } from '../../store/reducers/userSlice';
 import { useStyles } from './sidebarStyles';
@@ -39,6 +40,7 @@ export default function Sidebar() {
     (state) => state.playlistSlice,
   );
   const fetchPlaylistItems = (playlistId, playlistName = '') => {
+ 
     if (playlistName !== active) {
       dispatch(selectPlaylist(playlistId));
       dispatch(setPlaylistItems(playlistId));
@@ -99,8 +101,6 @@ export default function Sidebar() {
   };
 
   const { classes, cx } = useStyles();
-
- 
 
   const playlists = allPlaylists?.items?.map((item) => (
     <Paper

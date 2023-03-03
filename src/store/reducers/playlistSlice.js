@@ -13,6 +13,9 @@ const playlistSlice = createSlice({
   name: 'playlist',
   initialState,
   reducers: {
+    switchPlaylist: (state) => {
+      state.playlistItems = null;
+    },
     selectTrack: (state, action) => {
       state.selectedTrack = action.payload;
     },
@@ -35,6 +38,7 @@ const playlistSlice = createSlice({
 });
 
 export const {
+  switchPlaylist,
   removeTrack,
   createPlaylist,
   selectTrack,

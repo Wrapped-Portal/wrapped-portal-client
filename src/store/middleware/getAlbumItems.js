@@ -7,15 +7,13 @@ const AlbumTracksMiddleware = (store) => (next) => async (action) => {
 
     const accessToken = store.getState().login.token.accessToken;
     if (action.payload) {
-      const url = `${import.meta.env.VITE_SERVER_URI}album?token=${accessToken}`;
+      const url = `${import.meta.env.VITE_SERVER_URI}album?token=${accessToken}&albumId=${action.payload}`;
+
       const config = {};
 
-      const data = {
-        albumId: action.payload,
-      };
       try {
       const response = await axios.get(
-        url, data, config)
+        url, config)
         const results = response.data;
         const newAction = {
           type: 'selected/getAlbumTracks',

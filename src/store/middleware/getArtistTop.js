@@ -5,18 +5,14 @@ import axios from 'axios';
 const ArtistTopMiddleware = (store) => (next) => async (action) => {
   if (action.type === 'selected/getArtistTop') {
 
-    const playlistState = store.getState().playlistSlice.selectedPlaylist;
     const accessToken = store.getState().login.token.accessToken;
-    if (action.payload && playlistState) {
-      const url = `${import.meta.env.VITE_SERVER_URI}artist?token=${accessToken}`;
+    if (action.payload) {
+      const url = `${import.meta.env.VITE_SERVER_URI}artist?token=${accessToken}&artistId=${action.payload}`;
       const config = {};
 
-      const data = {
-        artistId: action.payload,
-      };
       try {
         const response = await axios.get(
-          url, data, config)
+          url, config)
           const results = response.data;
           const newAction = {
             type: 'selected/getArtistTop',

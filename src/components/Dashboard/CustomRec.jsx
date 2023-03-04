@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Image, Input, MultiSelect, Text } from '@mantine/core';
+import { Button, Paper, List, Image, Input, MultiSelect, Text, Group, Stack } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
 import { playSong } from '../../store/reducers/webPlayerSlice';
@@ -11,7 +11,7 @@ import { playSong } from '../../store/reducers/webPlayerSlice';
 export default function CustomRec() {
   const { token } = useSelector((state) => state.login);
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [genre, setGenre] = useState([]);
@@ -29,6 +29,7 @@ export default function CustomRec() {
     live,
     acoustic,
   } = useSelector((state) => state.soundBoardSlice);
+
   const fetchData = async () => {
     const stringifiedGenre = genre.join();
     try {
@@ -58,18 +59,6 @@ export default function CustomRec() {
   };
 
   const dispatch = useDispatch();
-
-  const handleAddTrackToPlaylist = (selectedTrack) => {
-    dispatch(selectTrack(selectedTrack));
-    const payload = {
-      selectedTrack: selectedTrack,
-      accessToken: token.accessToken,
-    };
-    dispatch({
-      type: 'addTrackToPlaylist',
-      payload,
-    });
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -155,64 +144,73 @@ export default function CustomRec() {
           </div>
         </div>
       </form>
-      <div className="grid-container">
-        {data && Array.isArray(data.tracks) && data.tracks.length > 0
-          ? data.tracks.map((item) => (
-              <Card
-                shadow="sm"
-                p="lg"
-                radius="md"
-                withBorder
-                key={item.id}
-              >
-                <Card.Section>
-                  <div className="play_button">
+      {data && (
+        <Paper
+          shadow="lg"
+          radius="md"
+          withBorder
+          className="paper"
+        >
+          <List
+            type="ordered"
+            className="list"
+          >
+            {data && Array.isArray(data.tracks) && data.tracks.length > 0
+              ? data.tracks.map((item, index) => (
+                <List.Item
+                  key={`item-${index}`}
+                  className="list_item"
+                >
+                  <Group onClick={() => dispatch(playSong(item.uri))}>
                     <img
-                      onClick={() => dispatch(playSong(item.uri))}
+                      className="play_button-icon"
                       src="https://cdn-icons-png.flaticon.com/512/0/375.png"
                       alt="play-button"
                     />
+                    <Text
+                      fw={600}
+                      className="numbers"
+                    >
+                      {index + 1}
+                    </Text>
                     <Image
-                      className="hand__cursor"
-                      onClick={() => dispatch(playSong(item.uri))}
+                      radius="md"
                       src={item.album.images[0].url}
+                      height={60}
+                      width={60}
+                      className="image-top"
                     />
-                  </div>
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    weight={600}
-                    className="card-text-large"
-                  >
-                    {item.name}
-                  </Text>
-                </Card.Section>
-                <Card.Section>
-                  <Text
-                    weight={300}
-                    className="card-text-small"
-                  >
-                    {item.album.artists[0].name}
-                  </Text>
+                    <Stack className="text-top">
+                      <Text fw={700}>{item.name}</Text>
+                      <Text
+                        className="top-artist-text"
+                        fz="sm"
+                        c="dimmed"
+                      >
+                        {item.album.artists[0].name}
+                      </Text>
+                    </Stack>
+                  </Group>
+
                   <Button
-                    key={item.id}
+                    className="list_button"
+                    key={`button-${index}`}
                     color="lime"
-                    radius="xs"
+                    radius="sm"
                     size="xs"
                     compact
-                    onClick={() => handleAddTrackToPlaylist(item?.uri)}
-                    className="custom_add"
+                    onClick={() => dispatch(selectTrack(item?.uri))}
                   >
                     +
                   </Button>
-                </Card.Section>
-              </Card>
-            ))
-          : null}
-      </div>
+                </List.Item>
+              ))
+              : null}
+          </List>
+        </Paper>
+      )}
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}
-      {data.length > 0 && <p>Data: {JSON.stringify(data)}</p>}
     </div>
   );
 }

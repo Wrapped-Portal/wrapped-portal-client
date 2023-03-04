@@ -21,7 +21,7 @@ import setPlaylistItems from './middleware/playlistItems';
 import removeTrack from './middleware/removeTrack';
 import connectBackend from './middleware/connectBackend';
 import selectedSlice from './reducers/selectedSlice';
-import  getAlbumTracks  from './middleware/getAlbumTracks';
+import  getAlbumTracks  from './middleware/getAlbumItems';
 import  getArtistTop  from './middleware/getArtistTop';
 
 const store = configureStore({

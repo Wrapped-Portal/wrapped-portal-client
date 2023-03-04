@@ -22,11 +22,9 @@ const addTrackToPlaylist = (store) => (next) => (action) => {
         .post(url, data, config)
         .then((response) => {
           console.log('Successfully added track to playlist:', response);
-          // Dispatch an action to update the state in Redux as needed
         })
         .catch((error) => {
           console.error('Error adding track to playlist:', error);
-          // Dispatch an action to handle the error as needed
         });
     }
   }

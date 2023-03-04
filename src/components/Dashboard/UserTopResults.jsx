@@ -15,6 +15,7 @@ import {
 } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
+import { getArtistTop } from '../../store/reducers/selectedSlice';
 
 export default function UserTopResults() {
   const [data, setData] = useState(null);
@@ -22,6 +23,7 @@ export default function UserTopResults() {
   const [range, setRange] = useState('short_term');
 
   const { token } = useSelector((state) => state.login);
+  const { selectedData } = useSelector((state) => state.selectedSlice);
 
   const dispatch = useDispatch();
 
@@ -53,6 +55,8 @@ export default function UserTopResults() {
       }
     })();
   }, [type, range]);
+
+  console.log(selectedData)
 
   return (
     <>
@@ -110,87 +114,89 @@ export default function UserTopResults() {
           </div>
         </div>
         {data && (
-        <Paper
-          shadow="lg"
-          radius="md"
-          withBorder
-          className="paper"
-        >
-          <List
-            type="ordered"
-            className="list"
+          <Paper
+            shadow="lg"
+            radius="md"
+            withBorder
+            className="paper"
           >
-            {data?.items.map((item, index) =>
-              item.album ? (
-                <List.Item
-                  key={`item-${index}`}
-                  className="list_item"
-                >
-                  <Group onClick={() => dispatch(playSong(item.uri))}>
-                    <img
-                      className="play_button-icon"
-                      src="https://cdn-icons-png.flaticon.com/512/0/375.png"
-                      alt="play-button"
-                    />
-                    <Text
-                      fw={600}
-                      className="numbers"
-                    >
-                      {index + 1}
-                    </Text>
-                    <Image
-                      radius="md"
-                      src={item.album.images[0].url}
-                      height={60}
-                      width={60}
-                      className="image-top"
-                    />
-                    <Stack className="text-top">
-                      <Text fw={700}>{item.name}</Text>
-                      <Text
-                        className="top-artist-text"
-                        fz="sm"
-                        c="dimmed"
-                      >
-                        {item.album.artists[0].name}
-                      </Text>
-                    </Stack>
-                  </Group>
-                  <Button
-                    className="list_button"
-                    key={`button-${index}`}
-                    color="lime"
-                    radius="sm"
-                    size="xs"
-                    compact
-                    onClick={() => dispatch(selectTrack(item?.uri))}
+            <List
+              type="ordered"
+              className="list"
+            >
+              {data?.items.map((item, index) =>
+                item.album ? (
+                  <List.Item
+                    key={`item-${index}`}
+                    className="list_item"
                   >
-                    +
-                  </Button>
-                </List.Item>
-              ) : (
-                <List.Item key={`item-${index}`}>
-                  <Group>
-                    <Text
-                      fw={600}
-                      className="numbers--artists"
+                    <Group onClick={() => dispatch(playSong(item.uri))}>
+                      <img
+                        className="play_button-icon"
+                        src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                        alt="play-button"
+                      />
+                      <Text
+                        fw={600}
+                        className="numbers"
+                      >
+                        {index + 1}
+                      </Text>
+                      <Image
+                        radius="md"
+                        src={item.album.images[0].url}
+                        height={60}
+                        width={60}
+                        className="image-top"
+                      />
+                      <Stack className="text-top">
+                        <Text fw={700}>{item.name}</Text>
+                        <Text
+                          className="top-artist-text"
+                          fz="sm"
+                          c="dimmed"
+                        >
+                          {item.album.artists[0].name}
+                        </Text>
+                      </Stack>
+                    </Group>
+                    <Button
+                      className="list_button"
+                      key={`button-${index}`}
+                      color="lime"
+                      radius="sm"
+                      size="xs"
+                      compact
+                      onClick={() => dispatch(selectTrack(item?.uri))}
                     >
-                      {index + 1}
-                    </Text>
-                    <Image
-                      radius="md"
-                      src={item.images[0].url}
-                      height={60}
-                      width={60}
-                      className="image-top"
-                    />
-                    <Text fw={700}>{item.name}</Text>
-                  </Group>
-                </List.Item>
-              ),
-            )}
-          </List>
-        </Paper>
+                      +
+                    </Button>
+                  </List.Item>
+                ) : (
+                  <List.Item key={`item-${index}`}>
+                    <Group
+                      onClick={() => dispatch(getArtistTop(item.id))}
+                    >
+                      <Text
+                        fw={600}
+                        className="numbers--artists"
+                      >
+                        {index + 1}
+                      </Text>
+                      <Image
+                        radius="md"
+                        src={item.images[0].url}
+                        height={60}
+                        width={60}
+                        className="image-top"
+                      />
+                      <Text fw={700}>{item.name}</Text>
+                    </Group>
+                  </List.Item>
+                ),
+              )}
+            </List>
+          </Paper>
         )}
       </div>
     </>

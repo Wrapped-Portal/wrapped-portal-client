@@ -14,17 +14,21 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
+import { getAlbumTracks, getArtistTop } from '../../store/reducers/selectedSlice';
 export default function SearchResults() {
   const dispatch = useDispatch();
   const { tracks, artists, albums } = useSelector(
     (state) => state.searchSlice.results,
   );
+  const { selectedData } = useSelector((state) => state.selectedSlice);
 
   const formatDuration = (duration_ms) => {
     const minutes = Math.floor(duration_ms / 60000);
     const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
+
+console.log(selectedData)
 
   return (
     <div>
@@ -90,10 +94,9 @@ export default function SearchResults() {
               shadow="sm"
               p="lg"
               component="a"
-              href={item.external_urls.spotify}
-              target="_blank"
               radius="md"
               withBorder
+              onClick={() => dispatch(getArtistTop(item.id))}
             >
               <Card.Section>
                 <Image
@@ -132,10 +135,9 @@ export default function SearchResults() {
               shadow="sm"
               p="lg"
               component="a"
-              href={item.external_urls.spotify}
-              target="_blank"
               radius="md"
               withBorder
+              onClick={() => dispatch(getAlbumTracks(item.id))}
             >
               <Card.Section>
                 <Image

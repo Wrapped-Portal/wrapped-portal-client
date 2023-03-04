@@ -109,6 +109,7 @@ export default function UserTopResults() {
             </Input>
           </div>
         </div>
+        {data && (
         <Paper
           shadow="lg"
           radius="md"
@@ -155,7 +156,6 @@ export default function UserTopResults() {
                       </Text>
                     </Stack>
                   </Group>
-
                   <Button
                     className="list_button"
                     key={`button-${index}`}
@@ -191,6 +191,7 @@ export default function UserTopResults() {
             )}
           </List>
         </Paper>
+        )}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 /** @format */
 
 import React from 'react';
+import wrapped from '../../assets/wrapped.svg';
 import {
   Text,
   List,
@@ -14,7 +15,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
-import { getAlbumTracks, getArtistTop } from '../../store/reducers/selectedSlice';
+import {
+  getAlbumTracks,
+  getArtistTop,
+} from '../../store/reducers/selectedSlice';
 export default function SearchResults() {
   const dispatch = useDispatch();
   const { tracks, artists, albums } = useSelector(
@@ -28,7 +32,7 @@ export default function SearchResults() {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-console.log(selectedData)
+  console.log(selectedData);
 
   return (
     <div>
@@ -100,7 +104,7 @@ console.log(selectedData)
             >
               <Card.Section>
                 <Image
-                  src={item.images[0].url}
+                  src={item.images[0]?.url || wrapped}
                   alt={item.name}
                   height={250}
                 />
@@ -119,7 +123,6 @@ console.log(selectedData)
                 color="dimmed"
                 size="sm"
               >
-               
                 Followers: {item.followers.total}
               </Text>
             </Card>
@@ -141,7 +144,7 @@ console.log(selectedData)
             >
               <Card.Section>
                 <Image
-                  src={item.images.at(-2).url}
+                  src={item.images.at(-2)?.url}
                   alt={item.name}
                 />
               </Card.Section>

@@ -20,6 +20,10 @@ import screenHeightSlice from './reducers/screenHeightSlice';
 import setPlaylistItems from './middleware/playlistItems';
 import removeTrack from './middleware/removeTrack';
 import connectBackend from './middleware/connectBackend';
+import selectedSlice from './reducers/selectedSlice';
+import  getAlbumTracks  from './middleware/getAlbumTracks';
+import  getArtistTop  from './middleware/getArtistTop';
+
 const store = configureStore({
   reducer: {
     login: login,
@@ -29,6 +33,7 @@ const store = configureStore({
     searchSlice,
     userSlice,
     screenHeightSlice,
+    selectedSlice,
   },
 
   middleware: [
@@ -41,6 +46,8 @@ const store = configureStore({
     removeTrack,
     addTrackToPlaylist,
     getPlaylists,
+    getAlbumTracks,
+    getArtistTop,
     setPlaylistItems,
     getSearchResults,
   ],

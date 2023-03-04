@@ -59,9 +59,8 @@ export default function Dashboard() {
                 value="second"
                 icon={
                   <svg
-                    className="tab__text"
+                    className="tab__text icon icon-tabler icon-tabler-list-search"
                     xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-list-search"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"

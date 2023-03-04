@@ -29,10 +29,15 @@ color: white;
     background-color: rgba(255, 255, 255, 0.111);
     border-radius: 10px;
   }
+
+  &__description__item {
+    float: left;
+     width: 50%;
+  }
   
   &__text {
     color: rgba(255, 255, 255, 0.76);
-
+    margin-bottom: 10px;
     margin-right: 20px;
   }
 
@@ -41,8 +46,9 @@ color: white;
     padding-left: 1rem;
     overflow: hidden;
     height: 5.9rem;
-    width: 20%;
-    background: linear-gradient(rgb(2, 173, 2), rgb(7, 119, 7));
+    width: 21%;
+    color: black;
+    background: linear-gradient(rgb(3, 201, 3), rgb(10, 157, 10));
     position: relative;
     border: black solid 1px;
     box-shadow: 5px 5px 5px #1b1a1a;
@@ -54,7 +60,7 @@ color: white;
     &:hover {
       transform: translateY(-4px);
       box-shadow: 5px 5px 5px #333;
-      background: linear-gradient(rgb(3, 193, 3), rgb(6, 146, 6));
+      background: linear-gradient(rgb(4, 227, 4), rgb(8, 182, 8));
     }
     &:active {
       transform: translateY(-2px);
@@ -63,7 +69,7 @@ color: white;
     &--logo {
       position: absolute;
       left: 9rem;
-      bottom: -16.8rem;
+      bottom: -16.4rem;
     }
   }
 }

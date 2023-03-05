@@ -12,13 +12,8 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
     let refreshTokenInterval;
 
     const startRefreshTokenInterval = (expirationTimestamp) => {
-     
-
       const remainingTime = expirationTimestamp - Date.now();
       const intervalDuration = remainingTime - 60 * 1000;
-
-    
-      
 
       refreshTokenInterval = setInterval(async () => {
         try {
@@ -32,16 +27,23 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
               { refreshToken },
             );
             const { accessToken } = results.data;
+            const cookieOptions = isDevMode
+              ? { secure: false }
+              : { secure: true };
 
             // Set the new expiration timestamp for the access token cookie
             const expiresIn = 3600;
             const expirationTimestamp = Date.now() + expiresIn * 1000;
             cookies.set('accessToken', accessToken, {
               path: '/',
+              httpOnly: true,
+              ...cookieOptions,
               maxAge: expiresIn,
             });
             cookies.set('accessTokenTimestamp', expirationTimestamp, {
               path: '/',
+              httpOnly: true,
+              ...cookieOptions,
               maxAge: expiresIn,
             });
 
@@ -59,6 +61,8 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
 
             cookies.set('refreshToken', results.data.refreshToken, {
               path: '/',
+              httpOnly: true,
+              ...cookieOptions,
               maxAge: expiresIn,
             });
 

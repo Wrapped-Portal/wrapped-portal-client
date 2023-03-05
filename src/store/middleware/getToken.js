@@ -26,10 +26,17 @@ const getToken = (store) => (next) => async (action) => {
           const accessTokenTimestampExists = cookies.get(
             'accessTokenTimestamp',
           );
+          const isDevMode = import.meta.env.VITE_DEV_MODE === 'true';
+
+          const cookieOptions = isDevMode
+            ? { secure: false }
+            : { secure: true };
 
           if (!accessTokenExists) {
             cookies.set('accessToken', accessToken, {
               path: '/',
+
+              ...cookieOptions,
               maxAge: expiresIn,
             });
           }
@@ -37,14 +44,18 @@ const getToken = (store) => (next) => async (action) => {
           if (!refreshTokenExists) {
             cookies.set('refreshToken', refreshToken, {
               path: '/',
+
               maxAge: expiresIn,
+              ...cookieOptions,
             });
           }
 
           if (!accessTokenTimestampExists) {
             cookies.set('accessTokenTimestamp', expirationTimestamp, {
               path: '/',
+
               maxAge: expiresIn,
+              ...cookieOptions,
             });
           }
 

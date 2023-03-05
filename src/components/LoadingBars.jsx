@@ -16,7 +16,7 @@ export default function LoadingBars() {
           height="12"
           x="1"
           y="6"
-          fill="currentColor"
+          fill="white"
         >
           <animate
             id="svgSpinnersBarsScale0"
@@ -41,7 +41,7 @@ export default function LoadingBars() {
           height="12"
           x="5.8"
           y="6"
-          fill="currentColor"
+          fill="white"
         >
           <animate
             attributeName="y"
@@ -65,7 +65,7 @@ export default function LoadingBars() {
           height="12"
           x="10.6"
           y="6"
-          fill="currentColor"
+          fill="white"
         >
           <animate
             attributeName="y"
@@ -89,7 +89,7 @@ export default function LoadingBars() {
           height="12"
           x="15.4"
           y="6"
-          fill="currentColor"
+          fill="white"
         >
           <animate
             attributeName="y"
@@ -113,7 +113,7 @@ export default function LoadingBars() {
           height="12"
           x="20.2"
           y="6"
-          fill="currentColor"
+          fill="white"
         >
           <animate
             id="svgSpinnersBarsScale1"

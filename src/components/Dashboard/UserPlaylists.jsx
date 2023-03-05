@@ -23,14 +23,9 @@ export default function UserPlaylists() {
       <div className="playlist">
         <h3>Current Playlist</h3>
         {!playlistItems && selectedPlaylist && (
-          <Paper
-            shadow="lg"
-            radius="md"
-            withBorder
-            className="paper"
-          >
-            <LoadingBars />
-          </Paper>
+          <div  className='loading' >
+            <LoadingBars/>
+            </div>
         )}
         {playlistItems && (
           <Paper

@@ -7,17 +7,25 @@
 
   &__title {
     margin-left: 100px;
+    margin-right: 100px;
+    border-bottom: 5px double rgba(255, 254, 254, 0.716);
+    padding-bottom: 10px;
+    justify-content: center;
+  }
 
+  &__svg {
+    background: linear-gradient(rgb(3, 201, 3), rgb(10, 157, 10));
+    border-radius: 6px;
   }
 
   &__header__text {
-margin-left: 100px;
-margin-top: 40px;
-padding: 30px;
-background-color: rgba(255, 255, 255, 0.111);
-border-radius: 10px;
-margin-right: 100px;
-color: white;
+    margin-left: 100px;
+    margin-top: 40px;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.111);
+    border-radius: 10px;
+    margin-right: 100px;
+    color: white;
   }
 
   &__description__contain {
@@ -32,13 +40,14 @@ color: white;
 
   &__description__item {
     float: left;
-     width: 50%;
+    width: 50%;
   }
-  
+
   &__text {
-    color: rgba(255, 255, 255, 0.76);
+    color: rgba(255, 255, 255, 0.804);
     margin-bottom: 10px;
     margin-right: 20px;
+    font-weight: 60;
   }
 
   &__login {
@@ -54,18 +63,22 @@ color: white;
     box-shadow: 5px 5px 5px #1b1a1a;
     border-radius: 20px;
     transition: all 0.3s ease-in;
+
     &:focus {
       outline: orange 5px auto;
     }
+
     &:hover {
       transform: translateY(-4px);
       box-shadow: 5px 5px 5px #333;
       background: linear-gradient(rgb(4, 227, 4), rgb(8, 182, 8));
     }
+
     &:active {
       transform: translateY(-2px);
       box-shadow: 5px 5px 5px #1b1a1a;
     }
+
     &--logo {
       position: absolute;
       left: 9rem;

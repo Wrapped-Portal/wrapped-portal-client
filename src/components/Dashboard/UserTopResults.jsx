@@ -12,6 +12,7 @@ import {
   Text,
   Group,
   Stack,
+  Modal,
 } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
@@ -19,6 +20,7 @@ import { getArtistTop } from '../../store/reducers/selectedSlice';
 
 export default function UserTopResults() {
   const [data, setData] = useState(null);
+  const [opened, setOpened] = useState(false);
   const [type, setType] = useState('tracks');
   const [range, setRange] = useState('short_term');
 
@@ -56,10 +58,66 @@ export default function UserTopResults() {
     })();
   }, [type, range]);
 
-  console.log(selectedData)
-
   return (
     <>
+      {selectedData?.tracks && (
+        <Modal
+          opened={opened}
+          onClose={() => setOpened(false)}
+          title={`${selectedData.tracks[2].artists[0].name}'s Top Tracks`}
+        >
+          <List type="ordered" className="list">
+            {selectedData?.tracks.map((item, index) =>
+              <List.Item
+                key={`item-${index}`}
+                className="list_item"
+              >
+                <Group onClick={() => dispatch(playSong(item.uri))}>
+                  <img
+                    className="play_button-icon"
+                    src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                    alt="play-button"
+                  />
+                  <Text
+                    fw={600}
+                    className="numbers"
+                  >
+                    {index + 1}
+                  </Text>
+                  <Image
+                    radius="md"
+                    src={item.album.images[0].url}
+                    height={60}
+                    width={60}
+                    className="image-top"
+                  />
+                  <Stack className="text-top">
+                    <Text fw={700}>{item.name}</Text>
+                    <Text
+                      className="top-artist-text"
+                      fz="sm"
+                      c="dimmed"
+                    >
+                      {item.album.artists[0].name}
+                    </Text>
+                  </Stack>
+                </Group>
+                <Button
+                  className="list_button"
+                  key={`button-${index}`}
+                  color="lime"
+                  radius="sm"
+                  size="xs"
+                  compact
+                  onClick={() => dispatch(selectTrack(item?.uri))}
+                >
+                  +
+                </Button>
+              </List.Item>
+            )}
+          </List>
+        </Modal>
+      )}
       <div className="topResults">
         <h3>Your Top Listens</h3>
         <div className="input-container">
@@ -175,7 +233,10 @@ export default function UserTopResults() {
                 ) : (
                   <List.Item key={`item-${index}`}>
                     <Group
-                      onClick={() => dispatch(getArtistTop(item.id))}
+                      onClick={() => {
+                        dispatch(getArtistTop(item.id));
+                        setOpened(true);
+                      }}
                     >
                       <Text
                         fw={600}

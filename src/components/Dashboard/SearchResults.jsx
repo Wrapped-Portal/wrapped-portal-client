@@ -108,44 +108,54 @@ export default function SearchResults() {
             <Modal
               opened={albumOpened}
               onClose={() => setAlbumOpened(false)}
-              title={currentAlbum.name}
+              size="50%"
+              withCloseButton={false}
             >
-              <Image
-                radius="md"
-                src={currentAlbum.images[0].url}
-                height={60}
-                width={60}
-                className="image-top"
-              />
-              <Text>{currentAlbum.artists[0].name}</Text>
-              <Text>{currentAlbum.album_type}</Text>
-              <Text>{currentAlbum.release_date}</Text>
-              <Text>{currentAlbum.total_tracks}</Text>
+              <Group>
+                <Image
+                  radius="md"
+                  src={currentAlbum.images[0].url}
+                  height={200}
+                  width={200}
+                />
+                <Stack>
+                  <Text c="dimmed" fz="xs" fw={600}>{currentAlbum.album_type.toUpperCase()}</Text>
+                  <Text fz="xl" fw={900} >{currentAlbum.name}</Text>
+                  <Group>
+                    <Text fw={600} fz="md">{currentAlbum.artists[0].name}</Text>
+                    <Text fz="sm">{currentAlbum.release_date.split('-')[0]}</Text>
+                    <Text fz="sm">{currentAlbum.total_tracks} Songs</Text>
+                  </Group>
+                </Stack>
+              </Group>
               <List type="ordered" className="list">
                 {selectedData?.items.map((item, index) =>
                   <List.Item
                     key={`item-${index}`}
                     className="list_item"
                   >
-                    <Group onClick={() => dispatch(playSong(item.uri))}>
-                      <img
-                        className="play_button-icon"
-                        src="https://cdn-icons-png.flaticon.com/512/0/375.png"
-                        alt="play-button"
-                      />
-                      <Text
-                        fw={600}
-                        className="numbers"
-                      >
-                        {index + 1}
-                      </Text>
-                      <Stack className="text-top">
-                        <Text fw={700}>{item.name}</Text>
-                      </Stack>
+                    <Group position="apart" onClick={() => dispatch(playSong(item.uri))}>
+                      <Group >
+
+                        <img
+                          className="play_button-icon"
+                          src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                          alt="play-button"
+                        />
+                        <Text
+                          fw={600}
+                          className="numbers"
+                        >
+                          {index + 1}
+                        </Text>
+                        <Stack className="text-top">
+                          <Text fw={700}>{item.name}</Text>
+                        </Stack>
+                      </Group>
                       <p>{formatDuration(item.duration_ms)}</p>
                     </Group>
                     <Button
-                      className="list_button"
+                      className="list_button_modal"
                       key={`button-${index}`}
                       color="lime"
                       radius="sm"

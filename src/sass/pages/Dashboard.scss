@@ -9,10 +9,12 @@
   padding: 1rem;
   margin-left: 250px;
   flex: 0.8;
+  margin-right: 20px;
 }
 
 .playlist_column {
   margin-right: 20px;
+  max-width: 450px;
 }
 
 @media (max-width: 1150px) {
@@ -23,5 +25,9 @@
   .column {
     padding: 1rem;
     flex: 1;
+  }
+  .playlist_column {
+    margin-right: 20px;
+    margin-left: 450px;
   }
 }

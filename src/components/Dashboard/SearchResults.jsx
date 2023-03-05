@@ -32,7 +32,7 @@ export default function SearchResults() {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
-  console.log(selectedData);
+
 
   return (
     <div>

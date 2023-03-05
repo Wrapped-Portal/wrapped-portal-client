@@ -56,7 +56,7 @@ export default function UserTopResults() {
     })();
   }, [type, range]);
 
-  console.log(selectedData)
+
 
   return (
     <>

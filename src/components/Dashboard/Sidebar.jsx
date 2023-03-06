@@ -104,11 +104,11 @@ export default function Sidebar() {
   const playlists = allPlaylists?.items?.map((item) => (
     <Paper
       className={cx(classes.link, {
-        [classes.linkActive]: item.name === active,
+        [classes.linkActive]: item.id === active,
       })}
       key={item?.id}
       onClick={async () => {
-        dispatch(setActive(item.name));
+        dispatch(setActive(item?.id));
         fetchPlaylistItems(item?.id, item.name);
       }}
     >

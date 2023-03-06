@@ -5,7 +5,6 @@ import axios from 'axios';
 const addTrackToPlaylist = (store) => (next) => (action) => {
 
   if (action.type === 'playlist/selectTrack') {
-  
 
     const playlistState = store.getState().playlistSlice.selectedPlaylist;
     const accessToken = store.getState().login.token.accessToken;

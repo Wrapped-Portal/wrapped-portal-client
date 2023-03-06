@@ -3,7 +3,17 @@
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-import { Button, Paper, List, Image, Input, MultiSelect, Text, Group, Stack } from '@mantine/core';
+import {
+  Button,
+  Paper,
+  List,
+  Image,
+  Input,
+  MultiSelect,
+  Text,
+  Group,
+  Stack,
+} from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
 import { playSong } from '../../store/reducers/webPlayerSlice';
@@ -88,27 +98,27 @@ export default function CustomRec() {
   };
 
   const handleCreateCustomPlaylist = async () => {
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-  const yyyy = today.getFullYear();
-  const date = `${mm}/${dd}/${yyyy}`;
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const yyyy = today.getFullYear();
+    const date = `${mm}/${dd}/${yyyy}`;
 
-  const body = {
-    name: `Custom Recommendations ${date} `,
-    description: `Your Custom Reccommendations made on ${date}. Artist chosen to base the recommendations on: "${artist}". Created on Wrapped Portal`,
-    public: true,
-    user_id: user.id,
+    const body = {
+      name: `Custom Recommendations ${date} `,
+      description: `Your Custom Reccommendations made on ${date}. Artist chosen to base the recommendations on: "${artist}". Created on Wrapped Portal`,
+      public: true,
+      user_id: user.id,
+    };
+    const uris = data?.tracks.map((item) => item.uri).join(',');
+
+    let payload = {
+      body: body,
+      uris: uris,
+    };
+
+    dispatch(createCustomPlaylist(payload));
   };
-  const uris = data?.tracks.map((item) => item.uri).join(',');
-
-  let payload = {
-    body: body,
-    uris: uris,
-  }
-
-  dispatch(createCustomPlaylist(payload));
-};
 
   useEffect(() => {
     async function fetchGenres() {
@@ -119,11 +129,11 @@ export default function CustomRec() {
         setGenreChoices(genres);
       } catch (error) {
         console.error('Error fetching genres:', error);
-        setGenreChoices([]); 
+        setGenreChoices([]);
       }
     }
 
-    fetchGenres(); 
+    fetchGenres();
   }, []);
 
   return (
@@ -147,8 +157,8 @@ export default function CustomRec() {
 
               <MultiSelect
                 data={genreChoices}
-                maxSelectedValues={5}
-                placeholder="Choose up to Five Genres"
+                maxSelectedValues={4}
+                placeholder="Choose up to Four Genres"
                 onChange={(value) => setGenre(value)}
                 className="smaller-input"
               />
@@ -171,78 +181,78 @@ export default function CustomRec() {
       </form>
       {data && (
         <>
-        <Paper
-          shadow="lg"
-          radius="md"
-          withBorder
-          className="paper"
-        >
-          <List
-            type="ordered"
-            className="list"
+          <Paper
+            shadow="lg"
+            radius="md"
+            withBorder
+            className="paper"
           >
-            {data && Array.isArray(data.tracks) && data.tracks.length > 0
-              ? data.tracks.map((item, index) => (
-                <List.Item
-                  key={`item-${index}`}
-                  className="list_item"
-                >
-                  <Group onClick={() => dispatch(playSong(item.uri))}>
-                    <img
-                      className="play_button-icon"
-                      src="https://cdn-icons-png.flaticon.com/512/0/375.png"
-                      alt="play-button"
-                    />
-                    <Text
-                      fw={600}
-                      className="numbers"
-                    >
-                      {index + 1}
-                    </Text>
-                    <Image
-                      radius="md"
-                      src={item.album.images[2].url}
-                      height={60}
-                      width={60}
-                      className="image-top"
-                    />
-                    <Stack className="text-top">
-                      <Text fw={700}>{item.name}</Text>
-                      <Text
-                        className="top-artist-text"
-                        fz="sm"
-                        c="dimmed"
-                      >
-                        {item.album.artists[0].name}
-                      </Text>
-                    </Stack>
-                  </Group>
-
-                  <Button
-                    className="list_button"
-                    key={`button-${index}`}
-                    color="lime"
-                    radius="sm"
-                    size="xs"
-                    compact
-                    onClick={() => dispatch(selectTrack(item?.uri))}
-                  >
-                    +
-                  </Button>
-                </List.Item>
-              ))
-              : null}
-          </List>
-        </Paper>
-                    <Button
-            className='top_playlist_button'
-              variant="gradient"
-              gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-              onClick={() => handleCreateCustomPlaylist()}
+            <List
+              type="ordered"
+              className="list"
             >
-              Create Playlist For Custom Reccomendations
-            </Button>
-            </>
+              {data && Array.isArray(data.tracks) && data.tracks.length > 0
+                ? data.tracks.map((item, index) => (
+                    <List.Item
+                      key={`item-${index}`}
+                      className="list_item"
+                    >
+                      <Group onClick={() => dispatch(playSong(item.uri))}>
+                        <img
+                          className="play_button-icon"
+                          src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                          alt="play-button"
+                        />
+                        <Text
+                          fw={600}
+                          className="numbers"
+                        >
+                          {index + 1}
+                        </Text>
+                        <Image
+                          radius="md"
+                          src={item.album.images[2].url}
+                          height={60}
+                          width={60}
+                          className="image-top"
+                        />
+                        <Stack className="text-top">
+                          <Text fw={700}>{item.name}</Text>
+                          <Text
+                            className="top-artist-text"
+                            fz="sm"
+                            c="dimmed"
+                          >
+                            {item.album.artists[0].name}
+                          </Text>
+                        </Stack>
+                      </Group>
+
+                      <Button
+                        className="list_button"
+                        key={`button-${index}`}
+                        color="lime"
+                        radius="sm"
+                        size="xs"
+                        compact
+                        onClick={() => dispatch(selectTrack(item?.uri))}
+                      >
+                        +
+                      </Button>
+                    </List.Item>
+                  ))
+                : null}
+            </List>
+          </Paper>
+          <Button
+            className="top_playlist_button"
+            variant="gradient"
+            gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+            onClick={() => handleCreateCustomPlaylist()}
+          >
+            Create Playlist For Custom Reccomendations
+          </Button>
+        </>
       )}
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}

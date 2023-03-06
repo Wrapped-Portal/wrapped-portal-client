@@ -34,6 +34,9 @@ const playlistSlice = createSlice({
     createPlaylist: (state, action) => {
       state.allPlaylists = action.playlists;
     },
+    createCustomPlaylist: (state, action) => {
+      state.selectedPlaylist = action.playlists;
+    },
   },
 });
 
@@ -41,6 +44,7 @@ export const {
   switchPlaylist,
   removeTrack,
   createPlaylist,
+  createCustomPlaylist,
   selectTrack,
   selectPlaylist,
   setPlaylistItems,

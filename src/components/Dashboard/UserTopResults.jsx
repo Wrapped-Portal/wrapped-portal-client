@@ -17,6 +17,7 @@ import {
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
 import { getArtistTop } from '../../store/reducers/selectedSlice';
+import { createCustomPlaylist } from '../../store/reducers/playlistSlice';
 
 export default function UserTopResults() {
   const [data, setData] = useState(null);
@@ -25,7 +26,11 @@ export default function UserTopResults() {
   const [range, setRange] = useState('short_term');
 
   const { token } = useSelector((state) => state.login);
+  const { user } = useSelector((state) => state.userSlice);
   const { selectedData } = useSelector((state) => state.selectedSlice);
+  const { selectedPlaylist } = useSelector(
+    (state) => state.playlistSlice,
+  );
 
   const dispatch = useDispatch();
 
@@ -57,6 +62,40 @@ export default function UserTopResults() {
       }
     })();
   }, [type, range]);
+  
+const handleCreateTopPlaylist = async () => {
+  let time = '';
+  if (range === 'short_term') {
+    time = 'last month'
+  }
+  if (range === 'medium_term') {
+    time = 'last 6 months'
+  }
+  if (range === 'long_term') {
+    time = 'All Time'
+  }
+
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const yyyy = today.getFullYear();
+  const date = `${mm}/${dd}/${yyyy}`;
+
+  const body = {
+    name: `Top Tracks ${date} (${time}) `,
+    description: `Your favorite tracks ${time} as of ${date}. Created on Wrapped Portal`,
+    public: true,
+    user_id: user.id,
+  };
+  const uris = data?.items.map((item) => item.uri).join(',');
+
+  let payload = {
+    body: body,
+    uris: uris,
+  }
+
+  dispatch(createCustomPlaylist(payload));
+};
 
   return (
     <>
@@ -172,92 +211,104 @@ export default function UserTopResults() {
           </div>
         </div>
         {data && (
-          <Paper
-            shadow="lg"
-            radius="md"
-            withBorder
-            className="paper"
-          >
-            <List
-              type="ordered"
-              className="list"
+          <>
+            <Paper
+              shadow="lg"
+              radius="md"
+              withBorder
+              className="paper"
             >
-              {data?.items.map((item, index) =>
-                item.album ? (
-                  <List.Item
-                    key={`item-${index}`}
-                    className="list_item"
-                  >
-                    <Group onClick={() => dispatch(playSong(item.uri))}>
-                      <img
-                        className="play_button-icon"
-                        src="https://cdn-icons-png.flaticon.com/512/0/375.png"
-                        alt="play-button"
-                      />
-                      <Text
-                        fw={600}
-                        className="numbers"
-                      >
-                        {index + 1}
-                      </Text>
-                      <Image
-                        radius="md"
-                        src={item.album.images[0].url}
-                        height={60}
-                        width={60}
-                        className="image-top"
-                      />
-                      <Stack className="text-top">
-                        <Text fw={700}>{item.name}</Text>
+              <List
+                type="ordered"
+                className="list"
+              >
+                {data?.items.map((item, index) =>
+                  item.album ? (
+                    <List.Item
+                      key={`item-${index}`}
+                      className="list_item"
+                    >
+                      <Group onClick={() => dispatch(playSong(item.uri))}>
+                        <img
+                          className="play_button-icon"
+                          src="https://cdn-icons-png.flaticon.com/512/0/375.png"
+                          alt="play-button"
+                        />
                         <Text
-                          className="top-artist-text"
-                          fz="sm"
-                          c="dimmed"
+                          fw={600}
+                          className="numbers"
                         >
-                          {item.album.artists[0].name}
+                          {index + 1}
                         </Text>
-                      </Stack>
-                    </Group>
-                    <Button
-                      className="list_button"
-                      key={`button-${index}`}
-                      color="lime"
-                      radius="sm"
-                      size="xs"
-                      compact
-                      onClick={() => dispatch(selectTrack(item?.uri))}
-                    >
-                      +
-                    </Button>
-                  </List.Item>
-                ) : (
-                  <List.Item key={`item-${index}`}>
-                    <Group
-                      onClick={() => {
-                        dispatch(getArtistTop(item.id));
-                        setOpened(true);
-                      }}
-                    >
-                      <Text
-                        fw={600}
-                        className="numbers--artists"
+                        <Image
+                          radius="md"
+                          src={item.album.images[0].url}
+                          height={60}
+                          width={60}
+                          className="image-top"
+                        />
+                        <Stack className="text-top">
+                          <Text fw={700}>{item.name}</Text>
+                          <Text
+                            className="top-artist-text"
+                            fz="sm"
+                            c="dimmed"
+                          >
+                            {item.album.artists[0].name}
+                          </Text>
+                        </Stack>
+                      </Group>
+                      <Button
+                        className="list_button"
+                        key={`button-${index}`}
+                        color="lime"
+                        radius="sm"
+                        size="xs"
+                        compact
+                        onClick={() => dispatch(selectTrack(item?.uri))}
                       >
-                        {index + 1}
-                      </Text>
-                      <Image
-                        radius="md"
-                        src={item.images[0].url}
-                        height={60}
-                        width={60}
-                        className="image-top"
-                      />
-                      <Text fw={700}>{item.name}</Text>
-                    </Group>
-                  </List.Item>
-                ),
-              )}
-            </List>
-          </Paper>
+                        +
+                      </Button>
+                    </List.Item>
+                  ) : (
+                    <List.Item key={`item-${index}`}>
+                      <Group
+                        onClick={() => {
+                          dispatch(getArtistTop(item.id));
+                          setOpened(true);
+                        }}
+                      >
+                        <Text
+                          fw={600}
+                          className="numbers--artists"
+                        >
+                          {index + 1}
+                        </Text>
+                        <Image
+                          radius="md"
+                          src={item.images[0].url}
+                          height={60}
+                          width={60}
+                          className="image-top"
+                        />
+                        <Text fw={700}>{item.name}</Text>
+                      </Group>
+                    </List.Item>
+                  ),
+                )}
+              </List>
+            </Paper>
+            {data?.items[0].album && (
+            <Button
+            className='top_playlist_button'
+              variant="gradient"
+              gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+              onClick={() => handleCreateTopPlaylist()}
+            >
+              Create Playlist For Top Tracks
+            </Button>
+            )}
+          </>
         )}
       </div>
     </>

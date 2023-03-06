@@ -23,6 +23,7 @@ import connectBackend from './middleware/connectBackend';
 import selectedSlice from './reducers/selectedSlice';
 import  getAlbumTracks  from './middleware/getAlbumItems';
 import  getArtistTop  from './middleware/getArtistTop';
+import createCustomPlaylist from './middleware/createCustomPlaylist';
 
 const store = configureStore({
   reducer: {
@@ -40,16 +41,17 @@ const store = configureStore({
     connectBackend,
     getToken,
     refresh,
+    createPlaylist,
     recentlyPlayed,
     getUser,
-    createPlaylist,
     removeTrack,
     addTrackToPlaylist,
     getPlaylists,
     getAlbumTracks,
     getArtistTop,
-    setPlaylistItems,
     getSearchResults,
+    setPlaylistItems,
+    createCustomPlaylist,
   ],
 });
 

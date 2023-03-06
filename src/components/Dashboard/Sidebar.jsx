@@ -22,21 +22,20 @@ import {
   selectPlaylist,
   getUserPlaylists,
   createPlaylist,
-
+  setActive,
 } from '../../store/reducers/playlistSlice';
 import { setUser } from '../../store/reducers/userSlice';
 import { useStyles } from './sidebarStyles';
 import { getHeight } from '../../store/reducers/screenHeightSlice';
 import { logout } from '../../store/reducers/loginSlice';
 export default function Sidebar() {
-  const [active, setActive] = useState('');
   const [opened, setOpened] = useState(false);
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [isPublic, setIsPublic] = useState(false);
   const cookies = new Cookies();
   const { user } = useSelector((state) => state.userSlice);
-  const { selectedTrack, selectedPlaylist, allPlaylists } = useSelector(
+  const { selectedTrack, selectedPlaylist, allPlaylists, active } = useSelector(
     (state) => state.playlistSlice,
   );
   const fetchPlaylistItems = (playlistId, playlistName = '') => {
@@ -109,7 +108,7 @@ export default function Sidebar() {
       })}
       key={item?.id}
       onClick={async () => {
-        setActive(item.name);
+        dispatch(setActive(item.name));
         fetchPlaylistItems(item?.id, item.name);
       }}
     >

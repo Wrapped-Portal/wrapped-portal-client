@@ -121,7 +121,7 @@ export default function Sidebar() {
           radius="md"
           width={50}
           height={50}
-          src={item.images[2]?.url || wrapped}
+          src={item.images[0]?.url || wrapped}
         />
         <Stack>
           <p className="playlist_text_name">{item?.name}</p>

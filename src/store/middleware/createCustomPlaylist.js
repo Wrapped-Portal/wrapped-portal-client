@@ -20,7 +20,7 @@ const createCustomPlaylist = (store) => (next) => async (action) => {
     const playlistId = response.data.id;
     action.playlists = playlistId;
 
-    store.dispatch(setActive(response.data.name));
+    store.dispatch(setActive(response.data.id));
 
     if (action.payload.uris) {
       const accessToken = store.getState().login.token.accessToken;

@@ -7,9 +7,20 @@ To get started with this application, follow these steps:
 1. Clone the repository to your local machine.
 2. Navigate to the project directory in your terminal.
 3. Install the dependencies by running npm install.
-4. Start the development server by running npm run dev.
-5. Open your browser and navigate to http://localhost:3000 to see the application running.
+4. Create a .env in the root folder of the application along side the package.json
+5. Start the development server by running npm run dev.
+6. Open your browser and navigate to http://localhost:3000 to see the application running.
 
+## Enviromental variables  
+the client URI is the address to your vite server.   
+the server uri is the address to the server backend.   
+
+VITE_CLIENT_URI=http://localhost:5173/  
+VITE_CLIENT_ID=<insert client id from spotify dashboard>  
+VITE_CLIENT_SECRET=<insert client id from spotify dashboard  
+VITE_SERVER_URI=http://localhost:3001/  
+VITE_DEV_MODE=true  
+  
 ## Features
 ### Song Search
 The application allows users to search for songs on Spotify by entering keywords in the search bar. The search results will be displayed in a list, and users can select a song to view more details about it.

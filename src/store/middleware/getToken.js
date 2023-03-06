@@ -21,21 +21,43 @@ const getToken = (store) => (next) => async (action) => {
           // Set the expiration timestamp for the cookies
           const expirationTimestamp = Date.now() + expiresIn * 1000;
 
-          cookies.set('accessToken', accessToken, {
-            path: '/',
-            maxAge: expiresIn,
-          });
+          const accessTokenExists = cookies.get('accessToken');
+          const refreshTokenExists = cookies.get('refreshToken');
+          const accessTokenTimestampExists = cookies.get(
+            'accessTokenTimestamp',
+          );
+          const isDevMode = import.meta.env.VITE_DEV_MODE === 'true';
 
-          cookies.set('accessTokenTimestamp', expirationTimestamp, {
-            path: '/',
-            maxAge: expiresIn,
-          });
+          const cookieOptions = isDevMode
+            ? { secure: false }
+            : { secure: true };
 
-          cookies.set('refreshToken', refreshToken, {
-            path: '/',
-            maxAge: expiresIn,
-          });
+          if (!accessTokenExists) {
+            cookies.set('accessToken', accessToken, {
+              path: '/',
 
+              ...cookieOptions,
+              maxAge: expiresIn,
+            });
+          }
+
+          if (!refreshTokenExists) {
+            cookies.set('refreshToken', refreshToken, {
+              path: '/',
+
+              maxAge: expiresIn,
+              ...cookieOptions,
+            });
+          }
+
+          if (!accessTokenTimestampExists) {
+            cookies.set('accessTokenTimestamp', expirationTimestamp, {
+              path: '/',
+
+              maxAge: expiresIn,
+              ...cookieOptions,
+            });
+          }
 
           next(action);
         } catch (e) {

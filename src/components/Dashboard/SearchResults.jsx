@@ -36,11 +36,13 @@ export default function SearchResults() {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
+
   const handleAlbumModal = (item) => {
     setCurrentAlbum(item)
     dispatch(getAlbumTracks(item.id));
     setAlbumOpened(true);
   }
+
 
   return (
     <>

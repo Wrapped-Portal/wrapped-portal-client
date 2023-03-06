@@ -153,7 +153,7 @@ export default function CustomRec() {
             />
 
             <>
-              <h4>Choose up to Five Genres</h4>
+              <h4>Choose up to Four Genres</h4>
 
               <MultiSelect
                 data={genreChoices}

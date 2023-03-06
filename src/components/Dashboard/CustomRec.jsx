@@ -201,7 +201,7 @@ export default function CustomRec() {
                     </Text>
                     <Image
                       radius="md"
-                      src={item.album.images[0].url}
+                      src={item.album.images[2].url}
                       height={60}
                       width={60}
                       className="image-top"

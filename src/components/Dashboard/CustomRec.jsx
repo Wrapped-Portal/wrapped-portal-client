@@ -7,9 +7,11 @@ import { Button, Paper, List, Image, Input, MultiSelect, Text, Group, Stack } fr
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
 import { playSong } from '../../store/reducers/webPlayerSlice';
+import { createCustomPlaylist } from '../../store/reducers/playlistSlice';
 
 export default function CustomRec() {
   const { token } = useSelector((state) => state.login);
+  const { user } = useSelector((state) => state.userSlice);
 
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
@@ -85,20 +87,43 @@ export default function CustomRec() {
     }
   };
 
+  const handleCreateCustomPlaylist = async () => {
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const yyyy = today.getFullYear();
+  const date = `${mm}/${dd}/${yyyy}`;
+
+  const body = {
+    name: `Custom Recommendations ${date} `,
+    description: `Your Custom Reccommendations made on ${date}. Artist chosen to base the recommendations on: "${artist}". Created on Wrapped Portal`,
+    public: true,
+    user_id: user.id,
+  };
+  const uris = data?.tracks.map((item) => item.uri).join(',');
+
+  let payload = {
+    body: body,
+    uris: uris,
+  }
+
+  dispatch(createCustomPlaylist(payload));
+};
+
   useEffect(() => {
     async function fetchGenres() {
       try {
         const response = await fetch('genres.json');
         const genres = await response.json();
 
-        setGenreChoices(genres); // set the state variable
+        setGenreChoices(genres);
       } catch (error) {
         console.error('Error fetching genres:', error);
-        setGenreChoices([]); // set an empty array as the default
+        setGenreChoices([]); 
       }
     }
 
-    fetchGenres(); // call the async function inside useEffect
+    fetchGenres(); 
   }, []);
 
   return (
@@ -145,6 +170,7 @@ export default function CustomRec() {
         </div>
       </form>
       {data && (
+        <>
         <Paper
           shadow="lg"
           radius="md"
@@ -208,6 +234,15 @@ export default function CustomRec() {
               : null}
           </List>
         </Paper>
+                    <Button
+            className='top_playlist_button'
+              variant="gradient"
+              gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+              onClick={() => handleCreateCustomPlaylist()}
+            >
+              Create Playlist For Custom Reccomendations
+            </Button>
+            </>
       )}
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error.message}</p>}

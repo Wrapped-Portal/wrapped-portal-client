@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-import { setPlaylistItems } from '../reducers/playlistSlice';
+import { setPlaylistItems, setActive } from '../reducers/playlistSlice';
 
 const createCustomPlaylist = (store) => (next) => async (action) => {
   if (action.type === 'playlist/createCustomPlaylist') {
@@ -18,6 +18,8 @@ const createCustomPlaylist = (store) => (next) => async (action) => {
       );
 
       action.playlists = response.data.id;
+
+      store.dispatch(setActive(response.data.name));
 
       const accessToken = store.getState().login.token.accessToken;
       if (action.payload.uris) {

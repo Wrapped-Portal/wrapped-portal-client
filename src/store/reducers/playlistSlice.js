@@ -7,6 +7,7 @@ const initialState = {
   selectedPlaylist: null,
   playlistItems: null,
   allPlaylists: [],
+  active: '',
 };
 
 const playlistSlice = createSlice({
@@ -37,6 +38,9 @@ const playlistSlice = createSlice({
     createCustomPlaylist: (state, action) => {
       state.selectedPlaylist = action.playlists;
     },
+    setActive: (state, action) => {
+      state.active = action.payload;
+    }
   },
 });
 
@@ -49,6 +53,7 @@ export const {
   selectPlaylist,
   setPlaylistItems,
   getUserPlaylists,
+  setActive,
 } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

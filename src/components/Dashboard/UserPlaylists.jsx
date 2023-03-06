@@ -73,7 +73,7 @@ export default function UserPlaylists() {
                     </Text>
                     <Image
                       radius="md"
-                      src={item.track.album.images[0].url}
+                      src={item.track.album.images[2].url}
                       height={60}
                       width={60}
                       className="image-top"

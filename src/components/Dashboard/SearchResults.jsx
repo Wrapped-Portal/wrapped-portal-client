@@ -74,7 +74,7 @@ export default function SearchResults() {
                       </Text>
                       <Image
                         radius="md"
-                        src={item.album.images[0].url}
+                        src={item.album.images[2].url}
                         height={60}
                         width={60}
                         className="image-top"
@@ -116,7 +116,7 @@ export default function SearchResults() {
               <Group>
                 <Image
                   radius="md"
-                  src={currentAlbum.images[0].url}
+                  src={currentAlbum.images[1].url}
                   height={200}
                   width={200}
                 />
@@ -243,10 +243,11 @@ export default function SearchResults() {
                   dispatch(getArtistTop(item.id));
                   setOpened(true);
                 }}
+                className='hover'
               >
                 <Card.Section>
                   <Image
-                    src={item.images[0]?.url || wrapped}
+                    src={item.images[1]?.url || wrapped}
                     alt={item.name}
                     height={250}
                   />
@@ -283,6 +284,7 @@ export default function SearchResults() {
                 radius="md"
                 withBorder
                 onClick={() => handleAlbumModal(item)}
+                className='hover'
               >
                 <Card.Section>
                   <Image

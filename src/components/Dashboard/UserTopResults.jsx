@@ -125,7 +125,7 @@ const handleCreateTopPlaylist = async () => {
                   </Text>
                   <Image
                     radius="md"
-                    src={item.album.images[0].url}
+                    src={item.album.images[2].url}
                     height={60}
                     width={60}
                     className="image-top"
@@ -242,7 +242,7 @@ const handleCreateTopPlaylist = async () => {
                         </Text>
                         <Image
                           radius="md"
-                          src={item.album.images[0].url}
+                          src={item.album.images[2].url}
                           height={60}
                           width={60}
                           className="image-top"
@@ -277,6 +277,7 @@ const handleCreateTopPlaylist = async () => {
                           dispatch(getArtistTop(item.id));
                           setOpened(true);
                         }}
+                        className='hover'
                       >
                         <Text
                           fw={600}
@@ -286,7 +287,7 @@ const handleCreateTopPlaylist = async () => {
                         </Text>
                         <Image
                           radius="md"
-                          src={item.images[0].url}
+                          src={item.images[2].url}
                           height={60}
                           width={60}
                           className="image-top"

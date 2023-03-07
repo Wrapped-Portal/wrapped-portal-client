@@ -33,7 +33,7 @@ export default function Splash() {
       </Stack>
       <div className='splash__image'>
       <Image
-        src='../../../public/studio2.jpeg'
+        src='../../../studio2.jpeg'
         radius="md"
         width={1600}
         height={400}

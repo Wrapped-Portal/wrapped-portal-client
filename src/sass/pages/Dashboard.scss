@@ -32,3 +32,32 @@
     margin-left: 450px;
   }
 }
+
+.logo {
+  position: absolute;
+  left: -18px;
+  top: 8px;
+  transition: all 0.2s ease;
+}
+.logo--tracks {
+  top: 26px;
+  left: -10px;
+}
+.logo--track-list {
+  top: 26px;
+  left: 0px;
+}
+
+.logo--top-tracks {
+  top: 29px;
+  left: -30px;
+}
+
+.logo--rec{
+  left: -28px;
+  top: 25px;
+}
+
+.logo:hover {
+  transform: translateY(-4px);
+}

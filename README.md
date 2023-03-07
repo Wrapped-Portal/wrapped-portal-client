@@ -1,4 +1,4 @@
-# React Spotify Wrapped App
+# Tune Port
 This is a React application that uses Vite as a development server to provide a Spotify-wrapped experience. The application allows users to search for songs, get custom recommendations based on eight different parameters, and create and modify playlists.
 
 ## Getting Started

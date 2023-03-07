@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import { storeToken } from '../reducers/loginSlice';
+
 const cookies = new Cookies();
 
 const refreshTokenMiddleware = (store) => (next) => (action) => {
@@ -12,6 +12,7 @@ const refreshTokenMiddleware = (store) => (next) => (action) => {
     let refreshTokenInterval;
 
     const startRefreshTokenInterval = (expirationTimestamp) => {
+      const isDevMode = import.meta.env.VITE_DEV_MODE === 'true';
       const remainingTime = expirationTimestamp - Date.now();
       const intervalDuration = remainingTime - 60 * 1000;
 

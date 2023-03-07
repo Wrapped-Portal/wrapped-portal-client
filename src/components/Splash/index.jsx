@@ -4,6 +4,7 @@ import React from 'react';
 import Button from './Button';
 import {
   Group,
+  Image,
   Stack
 } from '@mantine/core';
 
@@ -26,65 +27,81 @@ export default function Splash() {
         </svg>
       </Group>
       <Stack className='splash__header__text'>
-        <h3>Your Custom Spotify Experience</h3>
-        <p className='splash__text'>Login with Spotify to access your listening stats, get personalized recommendations, and create custom playlists with ease.</p>
+        <h3 className='splash__textBold'>Your Custom Spotify Experience</h3>
+        <p className='splash__text__header'>Login with Spotify to access your listening stats, get personalized recommendations, and create custom playlists with ease.</p>
         <Button />
       </Stack>
+      <div className='splash__image'>
+      <Image
+        src='../../../public/studio2.jpeg'
+        radius="md"
+        width={1600}
+        height={400}
+      />
+      </div>
       <div className='splash__description__contain'>
         <div className='splash__description__item'>
           <Group>
-            <svg xmlns="http://www.w3.org/2000/svg" className='splash__svg' width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round" >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
-              <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
-              <path d="M9 17v-5"></path>
-              <path d="M12 17v-1"></path>
-              <path d="M15 17v-3"></path>
-            </svg>
-            <h3>Discover Your Listening Habits</h3>
+            <div className='splash__svg__container'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round" >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2"></path>
+                <path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v0a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z"></path>
+                <path d="M9 17v-5"></path>
+                <path d="M12 17v-1"></path>
+                <path d="M15 17v-3"></path>
+              </svg>
+            </div>
+            <h3 >Discover Your Listening Habits</h3>
           </Group>
-          <p className='splash__text'>You can easily explore your music listening habits like never before. We allow you to see your top listened to tracks and artists in three different time frames - last month, last 6 months, and all-time. By analyzing your listening patterns, you can gain insights into your musical preferences and discover new tracks that align with your taste.</p>
+          <p className='splash__text'>Explore your music habits like never before! See your top tracks and artists in the last month, last 6 months, and all-time. Discover new tracks that align with your taste.</p>
         </div>
         <div className='splash__description__item'>
           <Group>
-            <svg xmlns="http://www.w3.org/2000/svg" className='splash__svg' width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M14 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-              <path d="M17 17v-13h4"></path>
-              <path d="M13 5h-10"></path>
-              <path d="M3 9l10 0"></path>
-              <path d="M9 13h-6"></path>
-            </svg>
+            <div className='splash__svg__container'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M14 17m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
+                <path d="M17 17v-13h4"></path>
+                <path d="M13 5h-10"></path>
+                <path d="M3 9l10 0"></path>
+                <path d="M9 13h-6"></path>
+              </svg>
+            </div>
             <h3>Create Custom Playlists</h3>
           </Group>
-          <p className='splash__text'>Creating custom playlists on Spotify can be time-consuming, especially when you're not sure which songs to add. With our website, you can easily add any song from our page to your existing playlists or create new custom playlists with just a few clicks. Whether you're looking to build a playlist for a workout session, a road trip, or just for relaxing at home, we have made the process effortless</p>
+          <p className='splash__text'>Save time creating custom playlists on Spotify with our website! Add any song from our page to your existing playlists or create new ones effortlessly.</p>
         </div>
         <div className='splash__description__item'>
           <Group>
-            <svg xmlns="http://www.w3.org/2000/svg" className='splash__svg' width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path>
-            </svg>
+            <div className='splash__svg__container'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3"></path>
+              </svg>
+            </div>
             <h3>Get Custom Recommendations</h3>
           </Group>
-          <p className='splash__text'>We go beyond simply tracking your listening habits, we offer you the opportunity to get customized recommendations. You can tweak unique Spotify parameters such as tempo, energy, and danceability to generate recommendations that fit your mood and musical preferences. This way, you can easily discover new music that speaks to you</p>
+          <p className='splash__text'>Get customized recommendations! Tweak unique Spotify parameters to generate recommendations that fit your mood and preferences.</p>
         </div>
         <div className='splash__description__item'>
           <Group>
-            <svg xmlns="http://www.w3.org/2000/svg" className='splash__svg' width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round">
-              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-              <path d="M16 4l4 0l0 4"></path>
-              <path d="M14 10l6 -6"></path>
-              <path d="M8 20l-4 0l0 -4"></path>
-              <path d="M4 20l6 -6"></path>
-              <path d="M16 20l4 0l0 -4"></path>
-              <path d="M14 14l6 6"></path>
-              <path d="M8 4l-4 0l0 4"></path>
-              <path d="M4 4l6 6"></path>
-            </svg>
+            <div className='splash__svg__container'>
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" strokeWidth="2" stroke="black" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M16 4l4 0l0 4"></path>
+                <path d="M14 10l6 -6"></path>
+                <path d="M8 20l-4 0l0 -4"></path>
+                <path d="M4 20l6 -6"></path>
+                <path d="M16 20l4 0l0 -4"></path>
+                <path d="M14 14l6 6"></path>
+                <path d="M8 4l-4 0l0 4"></path>
+                <path d="M4 4l6 6"></path>
+              </svg>
+            </div>
             <h3>Maximize Your Spotify Experience</h3>
           </Group>
-          <p className='splash__text'>Wrapped Portal is designed to help you get the most out of your Spotify experience. By providing you with customized recommendations, access to your listening habits, and easy playlist creation tools, we make it easier for you to discover new music and enjoy your existing library. With our website, you can take your musical journey to the next level</p>
+          <p className='splash__text'>Maximize your Spotify experience with Wrapped Portal! Get customized recommendations, access your listening habits, and create playlists easily to take your musical journey to the next level.</p>
         </div>
       </div>
     </main>

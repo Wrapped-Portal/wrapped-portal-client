@@ -118,7 +118,7 @@ export default function Sidebar() {
         mb="xs"
       >
         <Image
-          radius="md"
+
           width={50}
           height={50}
           src={item.images[0]?.url || wrapped}

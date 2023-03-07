@@ -210,7 +210,6 @@ export default function CustomRec() {
                           {index + 1}
                         </Text>
                         <Image
-                          radius="md"
                           src={item.album.images[2].url}
                           height={60}
                           width={60}

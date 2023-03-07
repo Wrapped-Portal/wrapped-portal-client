@@ -99,16 +99,19 @@ export default function UserTopResults() {
     <>
       {selectedData?.tracks && (
         <Modal
-          opened={opened}
-          onClose={() => setOpened(false)}
-          title={`${selectedData.tracks[2].artists[0].name}'s Top Tracks`}
+          size={700}
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title={`${selectedData.tracks[2].artists[0].name}'s Top Tracks`}
         >
           <List
             type="ordered"
             className="list"
-          >
+            >
             {selectedData?.tracks.map((item, index) => (
               <List.Item
+
+                mx="sm"
                 key={`item-${index}`}
                 className="list_item"
               >
@@ -251,10 +254,7 @@ export default function UserTopResults() {
                       key={`item-${index}`}
                       className="list_item"
                     >
-                      <Group
-                      
-                        onClick={() => dispatch(playSong(item.uri))}
-                      >
+                      <Group onClick={() => dispatch(playSong(item.uri))}>
                         <a
                           href={item.external_urls.spotify}
                           className="logo logo--top-tracks"

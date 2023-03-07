@@ -118,7 +118,7 @@ export default function Sidebar() {
         mb="xs"
       >
         <Image
-          radius="md"
+
           width={50}
           height={50}
           src={item.images[0]?.url || wrapped}
@@ -180,7 +180,7 @@ export default function Sidebar() {
         p="md"
       >
         <Group>
-          <p className="sidebar-title">Wrapped Portal</p>
+          <p className="sidebar-title">Tune Port</p>
           <svg
             className="sidebar-icon"
             xmlns="http://www.w3.org/2000/svg"

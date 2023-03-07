@@ -72,7 +72,6 @@ export default function UserPlaylists() {
                       {index + 1}
                     </Text>
                     <Image
-                      radius="md"
                       src={item.track.album.images[2].url}
                       height={60}
                       width={60}

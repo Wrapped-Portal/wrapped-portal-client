@@ -83,7 +83,7 @@ const handleCreateTopPlaylist = async () => {
 
   const body = {
     name: `Top Tracks ${date} (${time}) `,
-    description: `Your favorite tracks ${time} as of ${date}. Created on Wrapped Portal`,
+    description: `Your favorite tracks ${time} as of ${date}. Created on Tune Port`,
     public: true,
     user_id: user.id,
   };
@@ -124,7 +124,6 @@ const handleCreateTopPlaylist = async () => {
                     {index + 1}
                   </Text>
                   <Image
-                    radius="md"
                     src={item.album.images[2].url}
                     height={60}
                     width={60}
@@ -241,7 +240,6 @@ const handleCreateTopPlaylist = async () => {
                           {index + 1}
                         </Text>
                         <Image
-                          radius="md"
                           src={item.album.images[2].url}
                           height={60}
                           width={60}
@@ -286,7 +284,6 @@ const handleCreateTopPlaylist = async () => {
                           {index + 1}
                         </Text>
                         <Image
-                          radius="md"
                           src={item.images[2].url}
                           height={60}
                           width={60}

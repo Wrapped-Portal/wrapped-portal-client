@@ -106,7 +106,7 @@ export default function CustomRec() {
 
     const body = {
       name: `Custom Recommendations ${date} `,
-      description: `Your Custom Reccommendations made on ${date}. Artist chosen to base the recommendations on: "${artist}". Created on Wrapped Portal`,
+      description: `Your Custom Reccommendations made on ${date}. Artist chosen to base the recommendations on: "${artist}". Created on Tune Port`,
       public: true,
       user_id: user.id,
     };
@@ -210,7 +210,6 @@ export default function CustomRec() {
                           {index + 1}
                         </Text>
                         <Image
-                          radius="md"
                           src={item.album.images[2].url}
                           height={60}
                           width={60}

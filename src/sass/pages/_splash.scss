@@ -13,9 +13,11 @@
     justify-content: center;
   }
 
-  &__svg {
+  &__svg__container {
     background: linear-gradient(rgb(3, 201, 3), rgb(10, 157, 10));
     border-radius: 6px;
+    padding: 14px;
+    margin-top: 39px;
   }
 
   &__header__text {
@@ -32,7 +34,7 @@
     margin-left: 100px;
     margin-right: 100px;
     margin-bottom: 30px;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.111);
     border-radius: 10px;
@@ -48,14 +50,33 @@
     margin-bottom: 10px;
     margin-right: 20px;
     font-weight: 60;
+    margin-left: 85px;
+    margin-top: -20px;
   }
+
+  &__textBold {
+    margin-bottom: 10px;
+  }
+
+  &__text__header {
+    color: rgba(255, 255, 255, 0.804);
+    font-weight: 60;
+    margin-left: 10px;
+  }
+
+  &__image {
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
 
   &__login {
     align-items: center;
     padding-left: 1rem;
     overflow: hidden;
     height: 5.9rem;
-    width: 21%;
+    width: 320px;
     color: black;
     background: linear-gradient(rgb(3, 201, 3), rgb(10, 157, 10));
     position: relative;

@@ -83,7 +83,7 @@ const handleCreateTopPlaylist = async () => {
 
   const body = {
     name: `Top Tracks ${date} (${time}) `,
-    description: `Your favorite tracks ${time} as of ${date}. Created on Wrapped Portal`,
+    description: `Your favorite tracks ${time} as of ${date}. Created on Tune Port`,
     public: true,
     user_id: user.id,
   };

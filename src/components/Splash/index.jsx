@@ -12,7 +12,7 @@ export default function Splash() {
   return (
     <main className="splash">
       <Group className='splash__title' >
-        <h1>Wrapped Portal</h1>
+        <h1>Tune Port</h1>
         <svg
           className="sidebar-icon"
           xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ export default function Splash() {
             </div>
             <h3>Maximize Your Spotify Experience</h3>
           </Group>
-          <p className='splash__text'>Maximize your Spotify experience with Wrapped Portal! Get customized recommendations, access your listening habits, and create playlists easily to take your musical journey to the next level.</p>
+          <p className='splash__text'>Maximize your Spotify experience with Tune Port! Get customized recommendations, access your listening habits, and create playlists easily to take your musical journey to the next level.</p>
         </div>
       </div>
     </main>

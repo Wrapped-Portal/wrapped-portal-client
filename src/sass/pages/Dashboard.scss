@@ -58,6 +58,17 @@
   top: 25px;
 }
 
+.logo--list {
+transition: all 0.2s ease;
+margin-top: 12.5px;
+margin-left: 10px;
+}
+
+.logo--list:hover {
+  transform: translateY(-4px);
+}
+
+
 .logo:hover {
   transform: translateY(-4px);
 }

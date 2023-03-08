@@ -233,7 +233,7 @@ export default function SearchResults() {
             >
               {tracks?.tracks.items.map((item, index) => (
                 <List.Item
-                  mx="44px"
+                  mx={24}
                   key={`item-${index}`}
                   className="list_item"
                 >
@@ -351,7 +351,8 @@ export default function SearchResults() {
               <Card
                 key={crypto.randomUUID()}
                 shadow="sm"
-                p="lg"
+                
+                py={50}
                 component="a"
                 withBorder
                 onClick={() => handleAlbumModal(item)}

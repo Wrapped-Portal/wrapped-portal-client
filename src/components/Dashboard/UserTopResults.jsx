@@ -99,6 +99,7 @@ export default function UserTopResults() {
     <>
       {selectedData?.tracks && (
         <Modal
+          
           size={700}
           opened={opened}
           onClose={() => setOpened(false)}
@@ -110,7 +111,7 @@ export default function UserTopResults() {
           >
             {selectedData?.tracks.map((item, index) => (
               <List.Item
-                mx="sm"
+                mx={25}
                 key={`item-${index}`}
                 className="list_item"
               >

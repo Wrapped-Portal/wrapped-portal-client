@@ -39,7 +39,6 @@ export default function Sidebar() {
     (state) => state.playlistSlice,
   );
   const fetchPlaylistItems = (playlistId, playlistName = '') => {
- 
     if (playlistName !== active) {
       dispatch(selectPlaylist(playlistId));
       dispatch(setPlaylistItems(playlistId));
@@ -116,9 +115,9 @@ export default function Sidebar() {
         position="left"
         mt="md"
         mb="xs"
+        mr="xs"
       >
         <Image
-
           width={50}
           height={50}
           src={item.images[0]?.url || wrapped}

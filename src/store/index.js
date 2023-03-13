@@ -21,9 +21,10 @@ import setPlaylistItems from './middleware/playlistItems';
 import removeTrack from './middleware/removeTrack';
 import connectBackend from './middleware/connectBackend';
 import selectedSlice from './reducers/selectedSlice';
-import  getAlbumTracks  from './middleware/getAlbumItems';
-import  getArtistTop  from './middleware/getArtistTop';
+import getAlbumTracks from './middleware/getAlbumItems';
+import getArtistTop from './middleware/getArtistTop';
 import createCustomPlaylist from './middleware/createCustomPlaylist';
+import genreSlice from './reducers/genreSlice';
 
 const store = configureStore({
   reducer: {
@@ -35,6 +36,7 @@ const store = configureStore({
     userSlice,
     screenHeightSlice,
     selectedSlice,
+    genreSlice,
   },
 
   middleware: [

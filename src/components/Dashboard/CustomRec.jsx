@@ -22,13 +22,12 @@ import { createCustomPlaylist } from '../../store/reducers/playlistSlice';
 export default function CustomRec() {
   const { token } = useSelector((state) => state.login);
   const { user } = useSelector((state) => state.userSlice);
-
+  const { genres } = useSelector((state) => state.genreSlice);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [genre, setGenre] = useState([]);
   const [artist, setArtist] = useState('');
-  const [genreChoices, setGenreChoices] = useState([]);
 
   const {
     dance,
@@ -124,22 +123,6 @@ export default function CustomRec() {
     dispatch(createCustomPlaylist(payload));
   };
 
-  useEffect(() => {
-    async function fetchGenres() {
-      try {
-        const response = await fetch('genres.json');
-        const genres = await response.json();
-
-        setGenreChoices(genres);
-      } catch (error) {
-        console.error('Error fetching genres:', error);
-        setGenreChoices([]);
-      }
-    }
-
-    fetchGenres();
-  }, []);
-
   return (
     <div className="rec">
       <form
@@ -158,9 +141,9 @@ export default function CustomRec() {
 
             <>
               <h4>Choose up to Four Genres</h4>
-
+             
               <MultiSelect
-                data={genreChoices}
+                data={genres}
                 maxSelectedValues={4}
                 placeholder="Choose up to Four Genres"
                 onChange={(value) => setGenre(value)}
@@ -278,7 +261,7 @@ export default function CustomRec() {
             gradient={{ from: 'teal', to: 'lime', deg: 105 }}
             onClick={() => handleCreateCustomPlaylist()}
           >
-            Create Playlist For Custom Reccomendations
+            Create Playlist For Custom recommendations
           </Button>
         </>
       )}

@@ -326,7 +326,7 @@ export default function UserTopResults() {
                         size="xs"
                         compact
                         onClick={() => dispatch(selectTrack(item?.uri))}
-                        disabled={disabled}
+                        // disabled={disabled}
                       >
                         +
                       </Button>

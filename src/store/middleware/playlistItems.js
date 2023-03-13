@@ -1,6 +1,7 @@
 /** @format */
 
 import axios from 'axios';
+import { setDisabled } from '../reducers/playlistSlice';
 
 const setPlaylistItems = (store) => (next) => async (action) => {
   if (
@@ -21,6 +22,12 @@ const setPlaylistItems = (store) => (next) => async (action) => {
           },
         },
       );
+      let playlists = store.getState().playlistSlice.allPlaylists
+      const activePlaylistObject = playlists.items?.filter((playlist) => playlist.id === store.getState().playlistSlice.selectedPlaylist);
+      let user = store.getState().userSlice.user
+      if (activePlaylistObject.at(0).owner.display_name !== user.display_name) {
+        store.dispatch(setDisabled(true));
+      }
       const newAction = {
         type: action.type,
         playlistItems: response.data,

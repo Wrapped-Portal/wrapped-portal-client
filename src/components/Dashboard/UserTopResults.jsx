@@ -24,12 +24,24 @@ export default function UserTopResults() {
   const [opened, setOpened] = useState(false);
   const [type, setType] = useState('tracks');
   const [range, setRange] = useState('short_term');
+  const [disabled, setDisabled] = useState(true);
 
   const { token } = useSelector((state) => state.login);
   const { user } = useSelector((state) => state.userSlice);
+  // const { selectedPlaylist, allPlaylists } = useSelector(
+  //   (state) => state.playlistSlice,
+  // );
   const { selectedData } = useSelector((state) => state.selectedSlice);
 
   const dispatch = useDispatch();
+
+  // const activePlaylistObject = allPlaylists?.items?.filter((playlist) => playlist.id === selectedPlaylist);
+
+  // if (activePlaylistObject?.owner?.display_name !== user?.display_name) {
+  //   setDisabled(false);
+  // }
+
+
 
   const fetchData = async () => {
     try {
@@ -314,6 +326,7 @@ export default function UserTopResults() {
                         size="xs"
                         compact
                         onClick={() => dispatch(selectTrack(item?.uri))}
+                        disabled={disabled}
                       >
                         +
                       </Button>

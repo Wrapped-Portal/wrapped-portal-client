@@ -23,6 +23,7 @@ export default function CustomRec() {
   const { token } = useSelector((state) => state.login);
   const { user } = useSelector((state) => state.userSlice);
   const { genres } = useSelector((state) => state.genreSlice);
+  const { disabled } = useSelector((state) => state.playlistSlice);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -247,6 +248,7 @@ export default function CustomRec() {
                         size="xs"
                         compact
                         onClick={() => dispatch(selectTrack(item?.uri))}
+                        disabled={disabled}
                       >
                         +
                       </Button>

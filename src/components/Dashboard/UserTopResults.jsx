@@ -32,12 +32,6 @@ export default function UserTopResults() {
 
   const dispatch = useDispatch();
 
-
-
-  console.log(disabled)
-
-
-
   const fetchData = async () => {
     try {
       const response = await axios.get(

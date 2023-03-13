@@ -8,7 +8,7 @@ const initialState = {
   playlistItems: null,
   allPlaylists: [],
   active: '',
-  disabled: false
+  disabled: true,
 };
 
 const playlistSlice = createSlice({

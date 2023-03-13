@@ -3,7 +3,10 @@
 import axios from 'axios';
 
 const getRecent = (store) => (next) => async (action) => {
-  if (action.type === 'webPlayer/setTrackUri') {
+  if (
+    action.type === 'webPlayer/setTrackUri' &&
+    store.getState().userSlice.product === 'premium'
+  ) {
     try {
       const results = await axios.post(
         `${import.meta.env.VITE_SERVER_URI}recent`,

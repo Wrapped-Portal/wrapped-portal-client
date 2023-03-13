@@ -29,6 +29,7 @@ export default function SearchResults() {
     (state) => state.searchSlice.results,
   );
   const { selectedData } = useSelector((state) => state.selectedSlice);
+  const { disabled } = useSelector((state) => state.playlistSlice);
 
   const formatDuration = (duration_ms) => {
     const minutes = Math.floor(duration_ms / 60000);
@@ -109,6 +110,7 @@ export default function SearchResults() {
                       size="xs"
                       compact
                       onClick={() => dispatch(selectTrack(item?.uri))}
+                      disabled={disabled}
                     >
                       +
                     </Button>
@@ -207,6 +209,7 @@ export default function SearchResults() {
                       size="xs"
                       compact
                       onClick={() => dispatch(selectTrack(item?.uri))}
+                      disabled={disabled}
                     >
                       +
                     </Button>
@@ -286,6 +289,7 @@ export default function SearchResults() {
                     size="xs"
                     compact
                     onClick={() => dispatch(selectTrack(item?.uri))}
+                    disabled={disabled}
                   >
                     +
                   </Button>

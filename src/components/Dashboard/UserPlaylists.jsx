@@ -8,7 +8,7 @@ import { playSong, playAll } from '../../store/reducers/webPlayerSlice';
 import LoadingBars from '../LoadingBars';
 
 export default function UserPlaylists() {
-  const { playlistItems, selectedPlaylist } = useSelector(
+  const { playlistItems, selectedPlaylist, disabled } = useSelector(
     (state) => state.playlistSlice,
   );
 
@@ -114,6 +114,7 @@ export default function UserPlaylists() {
                       handleRemoveTrackFromPlaylist(item?.track.uri, index)
                     }
                     className="playlist_button"
+                    disabled={disabled}
                   >
                     -
                   </Button>

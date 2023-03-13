@@ -102,7 +102,7 @@ export default function UserTopResults() {
           size={700}
           opened={opened}
           onClose={() => setOpened(false)}
-          title={`${selectedData.tracks[2].artists[0].name}'s Top Tracks`}
+          title={`${selectedData?.tracks[2].artists[0].name}'s Top Tracks`}
         >
           <List
             type="ordered"
@@ -152,7 +152,7 @@ export default function UserTopResults() {
                     {index + 1}
                   </Text>
                   <Image
-                    src={item.album.images[2].url}
+                    src={item?.album.images[2].url}
                     height={60}
                     width={60}
                     className="image-top"
@@ -164,7 +164,7 @@ export default function UserTopResults() {
                       fz="sm"
                       c="dimmed"
                     >
-                      {item.album.artists[0].name}
+                      {item?.album.artists[0].name}
                     </Text>
                   </Stack>
                 </Group>
@@ -250,7 +250,7 @@ export default function UserTopResults() {
                 className="list"
               >
                 {data?.items.map((item, index) =>
-                  item.album ? (
+                  item?.album ? (
                     <List.Item
                       mx="42px"
                       key={`item-${index}`}
@@ -291,7 +291,7 @@ export default function UserTopResults() {
                           {index + 1}
                         </Text>
                         <Image
-                          src={item.album.images[2].url}
+                          src={item?.album.images[2].url}
                           height={60}
                           width={60}
                           className="image-top"
@@ -303,7 +303,7 @@ export default function UserTopResults() {
                             fz="sm"
                             c="dimmed"
                           >
-                            {item.album.artists[0].name}
+                            {item?.album.artists[0].name}
                           </Text>
                         </Stack>
                       </Group>
@@ -372,7 +372,7 @@ export default function UserTopResults() {
                 )}
               </List>
             </Paper>
-            {data?.items[0].album && (
+            {data?.items[0]?.album && (
               <Button
                 className="top_playlist_button"
                 variant="gradient"

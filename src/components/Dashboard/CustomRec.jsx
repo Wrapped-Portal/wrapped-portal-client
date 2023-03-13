@@ -196,7 +196,7 @@ export default function CustomRec() {
               className="list"
             >
               {data && Array.isArray(data.tracks) && data.tracks.length > 0
-                ? data.tracks.map((item, index) => (
+                ? data?.tracks.map((item, index) => (
                     <List.Item
                       mx="44px"
                       key={`item-${index}`}

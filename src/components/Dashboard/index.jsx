@@ -11,6 +11,7 @@ import Sidebar from './Sidebar';
 import SearchResults from './SearchResults';
 
 export default function Dashboard() {
+  
   return (
     <main>
       <div className="dashboard">

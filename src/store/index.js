@@ -18,6 +18,7 @@ import userSlice from './reducers/userSlice';
 import getUser from './middleware/getUser';
 import screenHeightSlice from './reducers/screenHeightSlice';
 import setPlaylistItems from './middleware/playlistItems';
+import setMorePlaylistItems from './middleware/morePlaylistItems';
 import removeTrack from './middleware/removeTrack';
 import connectBackend from './middleware/connectBackend';
 import selectedSlice from './reducers/selectedSlice';
@@ -53,6 +54,7 @@ const store = configureStore({
     getArtistTop,
     getSearchResults,
     setPlaylistItems,
+    setMorePlaylistItems,
     createCustomPlaylist,
   ],
 });

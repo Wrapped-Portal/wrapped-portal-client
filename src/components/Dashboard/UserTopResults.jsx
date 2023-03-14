@@ -13,6 +13,7 @@ import {
   Group,
   Stack,
   Modal,
+  NativeSelect,
 } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
@@ -94,6 +95,8 @@ export default function UserTopResults() {
 
     dispatch(createCustomPlaylist(payload));
   };
+
+  console.log(type, range)
 
   return (
     <>
@@ -188,56 +191,23 @@ export default function UserTopResults() {
       <div className="topResults">
         <h3>Your Top Listens</h3>
         <div className="input-container">
-          <div className="input-wrapper">
-            <h4 className="input">Tracks or Artists</h4>
-            <Input
-              rightSection={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
-                  />
-                </svg>
-              }
-              className="top-input"
-              component="select"
-              onChange={(event) => setType(event.target.value)}
-            >
-              <option value="tracks">Tracks</option>
-              <option value="artists">Artists</option>
-            </Input>
-          </div>
-          <div className="input-wrapper">
-            <h4 className="input">Time Range</h4>
-            <Input
-              rightSection={
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="currentColor"
-                    d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6l1.41-1.42Z"
-                  />
-                </svg>
-              }
-              className="top-input"
-              component="select"
-              onChange={(event) => setRange(event.target.value)}
-            >
-              <option value="short_term">Past Month</option>
-              <option value="medium_term">Past 6 Months</option>
-              <option value="long_term">All Time</option>
-            </Input>
-          </div>
-        </div>
+    <div className="input-wrapper">
+      <h4 className="input">Select Tracks or Artists</h4>
+      <NativeSelect
+        data={['Tracks', 'Artists']}
+        onChange={(event) => setType(event.target.value.toLowerCase())}
+        className="top-input"
+      />
+    </div>
+    <div className="input-wrapper">
+      <h4 className="input">Select a Time Range</h4>
+      <NativeSelect
+        data={[{ value: 'short_term', label: 'Past Month' },{ value: 'medium_term', label: 'Past 6 Months' },{ value: 'long_term', label: 'All Time' },]}
+        onChange={(event) => setRange(event.target.value)}
+        className="top-input"
+      />
+    </div>
+  </div>
         {data && (
           <>
             <Paper

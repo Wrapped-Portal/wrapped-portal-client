@@ -21,8 +21,6 @@ const setMorePlaylistItems = (store) => (next) => async (action) => {
     counter = 1;
   }
 
-
-
   if (
     action.type === 'playlist/setMorePlaylistItems' ||
     action.type === 'playlist/selectTrack' ||

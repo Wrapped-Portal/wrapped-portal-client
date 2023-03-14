@@ -3,12 +3,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 import React from 'react';
 import { Button, Paper, Text, List, Image, Group, Stack } from '@mantine/core';
-import { removeTrack } from '../../store/reducers/playlistSlice';
+import { removeTrack, setMorePlaylistItems } from '../../store/reducers/playlistSlice';
 import { playSong, playAll } from '../../store/reducers/webPlayerSlice';
 import LoadingBars from '../LoadingBars';
 
 export default function UserPlaylists() {
-  const { playlistItems, selectedPlaylist, disabled } = useSelector(
+  const { playlistItems, selectedPlaylist, disabled, playlistObject } = useSelector(
     (state) => state.playlistSlice,
   );
 
@@ -17,7 +17,16 @@ export default function UserPlaylists() {
   const handleRemoveTrackFromPlaylist = async (trackUri, index) => {
     dispatch(removeTrack({ trackUri, index, playlistId: selectedPlaylist }));
   };
+  
+  let moreTracks = true
+  
+  if (playlistObject?.at(0)?.tracks?.total > playlistItems?.length) {
+    moreTracks = false 
+  } else {
+    moreTracks = true
+  }
 
+  console.log(playlistItems)
 
   return (
     <>
@@ -29,6 +38,7 @@ export default function UserPlaylists() {
           </div>
         )}
         {playlistItems && (
+          <>
           <Paper
             shadow="lg"
             radius="md"
@@ -39,13 +49,13 @@ export default function UserPlaylists() {
               type="ordered"
               className="list"
             >
-              {playlistItems.items.length ? (
+              {playlistItems.length ? (
                 <Button
                   className="playall_button"
                   variant="gradient"
                   gradient={{ from: 'teal', to: 'lime', deg: 105 }}
                   onClick={() => {
-                    dispatch(playSong(playlistItems.items[0].track.uri));
+                    dispatch(playSong(playlistItems[0].track.uri));
                     dispatch(playAll(playlistItems.href.split('/').at(-2)));
                   }}
                 >
@@ -55,13 +65,11 @@ export default function UserPlaylists() {
                 'Add songs to your playlist!'
               )}
 
-              {playlistItems?.items.map((item, index) => (
+              {playlistItems?.map((item, index) => (
                 <List.Item
                   key={`item-${index}`}
                   className="list_item"
                 >
-
-
                   <Group
                     onClick={() => dispatch(playSong(item.track.uri))}
                   // className='list_select_group'
@@ -122,6 +130,17 @@ export default function UserPlaylists() {
               ))}
             </List>
           </Paper>
+        <Button
+        disabled={moreTracks}
+        className="playall_button"
+        variant="gradient"
+        gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+        onClick={() => {
+          dispatch(setMorePlaylistItems({ moreItems: 50 }));
+        }}>
+          See More Tracks
+        </Button>
+        </>
         )}
       </div>
     </>

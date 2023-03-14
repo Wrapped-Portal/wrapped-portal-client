@@ -9,6 +9,7 @@ const initialState = {
   allPlaylists: [],
   active: '',
   disabled: true,
+  playlistObject: null,
 };
 
 const playlistSlice = createSlice({
@@ -29,6 +30,16 @@ const playlistSlice = createSlice({
     },
     setPlaylistItems: (state, action) => {
       state.playlistItems = action.playlistItems;
+    },
+    setMorePlaylistItems: (state, action) => {
+      if (Array.isArray(state.playlistItems)) {
+        state.playlistItems = [...state.playlistItems, ...action.moreItems];
+      } else {
+        state.playlistItems = [...action.moreItems];
+      }
+    },
+    setPlaylistObject: (state, action) => {
+      state.playlistObject = action.payload;
     },
     getUserPlaylists: (state, action) => {
       state.allPlaylists = action.playlists;
@@ -56,6 +67,8 @@ export const {
   selectTrack,
   selectPlaylist,
   setPlaylistItems,
+  setMorePlaylistItems,
+  setPlaylistObject,
   getUserPlaylists,
   setActive,
   setDisabled,

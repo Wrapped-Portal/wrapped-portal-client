@@ -1,10 +1,17 @@
 /** @format */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from './Button';
 import { Group, Image, Stack } from '@mantine/core';
 
 export default function Splash() {
+  useEffect(async () => {
+    const spinUpBackend = async () => {
+      await fetch('https://wrapped-portal.onrender.com/');
+    };
+    await spinUpBackend();
+  }, []);
+
   return (
     <main className="splash">
       <Group className="splash__title">

@@ -1,15 +1,16 @@
 /** @format */
 
 .dashboard {
+  margin-top: 7rem;
   display: flex;
   justify-content: space-around;
 }
 
 .column {
   padding: 1rem;
-  margin-left: 250px;
+  width: 200rem;
+  margin: auto;
   flex: 0.8;
-  margin-right: 20px;
 }
 
 .playlist_column {
@@ -58,25 +59,28 @@
   top: 25px;
 }
 
-
 .logo--card {
   left: 80%;
   top: 89%;
 }
 
-
 .logo--list {
-transition: all 0.2s ease;
-margin-top: 12.5px;
-margin-left: 10px;
+  transition: all 0.2s ease;
+  margin-top: 12.5px;
+  margin-left: 10px;
 }
 
 .logo--list:hover {
   transform: translateY(-4px);
 }
 
-
-
 .logo:hover {
   transform: translateY(-4px);
+}
+
+@media (width > 850px) {
+  .column {
+    margin-left: 350px;
+    width: 50%;
+  }
 }

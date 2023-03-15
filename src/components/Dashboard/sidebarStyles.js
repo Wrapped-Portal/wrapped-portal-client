@@ -3,6 +3,14 @@
 import { createStyles } from '@mantine/core';
 import { useSelector } from 'react-redux';
 
+let widthScreen = window.innerWidth < 850 ? '100%' : '30rem';
+
+const updateWidthScreen = () => {
+  widthScreen = window.innerWidth < 850 ? '100%' : '30rem';
+};
+
+window.addEventListener('resize', updateWidthScreen);
+
 export const useStyles = createStyles((theme, _params, _getRef) => {
   const { screenHeight } = useSelector((state) => state.screenHeightSlice);
   return {
@@ -15,14 +23,13 @@ export const useStyles = createStyles((theme, _params, _getRef) => {
           : theme.colors.gray[2]
       }`,
     },
-
     sidebar: {
       position: 'fixed',
       right: theme.spacing.md * 2, // update this value
       top: 0,
       bottom: theme.spacing.lg,
       marginBottom: theme.spacing.sm,
-      width: 250,
+      width: widthScreen,
       height: screenHeight,
       zIndex: 1,
     },

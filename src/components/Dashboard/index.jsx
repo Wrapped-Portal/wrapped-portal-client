@@ -1,7 +1,7 @@
 /** @format */
 
-import { Tabs } from '@mantine/core';
-import React from 'react';
+import { Burger, Group, MediaQuery, Tabs } from '@mantine/core';
+import React, { useEffect, useState } from 'react';
 
 import CustomRec from './CustomRec';
 import SearchSongs from './SearchSongs';
@@ -9,11 +9,51 @@ import UserPlaylists from './UserPlaylists';
 import UserTopResults from './UserTopResults';
 import Sidebar from './Sidebar';
 import SearchResults from './SearchResults';
-
+import { setUser } from '../../store/reducers/userSlice';
+import { useDispatch } from 'react-redux';
+import Circle from '../icons/Circle';
 export default function Dashboard() {
-  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setUser());
+  }, []);
+  const [opened, setOpened] = useState(false);
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 850) {
+        setOpened(true);
+      } else {
+        setOpened(false);
+      }
+    }
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <main>
+      <MediaQuery
+        largerThan={850}
+        styles={{ display: 'none' }}
+      >
+        <Group>
+          <Burger
+            opened={opened}
+            onClick={() => setOpened((o) => !o)}
+            size="sm"
+            mr="xl"
+            ml="xl"
+            mt={-69}
+          />
+          <Circle />
+        </Group>
+      </MediaQuery>
       <div className="dashboard">
         <div className="column">
           <Tabs
@@ -137,7 +177,7 @@ export default function Dashboard() {
         <div className="playlist_column">
           <UserPlaylists />
         </div>
-        <Sidebar />
+        {opened && <Sidebar />}
       </div>
     </main>
   );

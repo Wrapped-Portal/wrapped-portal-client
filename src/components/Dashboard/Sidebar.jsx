@@ -24,7 +24,7 @@ import {
   createPlaylist,
   setActive,
 } from '../../store/reducers/playlistSlice';
-import { setUser } from '../../store/reducers/userSlice';
+
 import { useStyles } from './sidebarStyles';
 import { getHeight } from '../../store/reducers/screenHeightSlice';
 import { logout } from '../../store/reducers/loginSlice';
@@ -73,7 +73,6 @@ export default function Sidebar() {
   }, [selectedTrack, selectedPlaylist]);
 
   useEffect(() => {
-    dispatch(setUser());
     dispatch(getUserPlaylists());
   }, []);
 

@@ -27,6 +27,7 @@
 
 .mantine-Navbar-root {
   z-index: 0;
+  padding-top: 5rem;
 }
 
 .search {
@@ -48,6 +49,11 @@
 }
 
 .mantine-9wjbo7:hover {
- background-color: #f8f9fae6; 
+  background-color: #f8f9fae6;
 }
 
+.mantine-Burger-root,
+.mantine-MediaQuery-media {
+  position: fixed;
+  z-index: 10022;
+}

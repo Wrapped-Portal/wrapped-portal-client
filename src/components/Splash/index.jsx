@@ -5,11 +5,11 @@ import Button from './Button';
 import { Group, Image, Stack } from '@mantine/core';
 
 export default function Splash() {
-  useEffect(async () => {
+  useEffect(() => {
     const spinUpBackend = async () => {
       await fetch('https://wrapped-portal.onrender.com/');
     };
-    await spinUpBackend();
+    spinUpBackend();
   }, []);
 
   return (

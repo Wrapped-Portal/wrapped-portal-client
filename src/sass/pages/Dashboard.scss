@@ -82,9 +82,10 @@
   transform: translateY(-4px);
 }
 
-@media (max-width > 750px) {
+@media (width < 851px) {
   .playlist_column {
-    margin-left: 0px;
+    margin-right: 20px;
+    margin-left: 10px;
   }
   .column {
     margin-left: 10px !important;

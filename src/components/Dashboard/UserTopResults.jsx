@@ -99,7 +99,7 @@ export default function UserTopResults() {
 
   useEffect(() => {
     if (alert?.data) {
-      setAlertText({ title: 'Success!', body: 'Track Added!', color: 'lime' });
+      setAlertText({ title: 'Success!', body: 'Track Added to Playlist!', color: 'lime' });
     } if (alert === 'error') {
       setAlertText({ title: 'Error', body: 'Track Failed to be Added.', color:'red'  });
     }
@@ -206,12 +206,11 @@ export default function UserTopResults() {
       )}
       <div className="topResults">
       <Alert 
-       title={alertText.title}
         color={alertText.color} 
         variant="filled"
         className={`top__alert ${alert ? 'visible' : ''}`}
         >
-      {alertText.body}
+     {alertText.title} {alertText.body}
     </Alert>
         <h3>Your Top Listens</h3>
         <div className="input-container">

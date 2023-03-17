@@ -10,7 +10,11 @@ export default function SoundBoard() {
 
   return (
     <>
-      <Button onClick={handleToggleChange}>
+      <Button
+        className="board_button"
+        variant="gradient"
+        gradient={{ from: 'teal', to: 'lime', deg: 105 }}
+        onClick={handleToggleChange}>
         {isSlider ? 'Switch to Knobs' : 'Switch to Sliders'}
       </Button>
       <div className="sound-board">

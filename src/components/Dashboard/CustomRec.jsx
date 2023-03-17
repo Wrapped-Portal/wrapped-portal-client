@@ -30,7 +30,7 @@ export default function CustomRec() {
   const [error, setError] = useState(null);
   const [genre, setGenre] = useState([]);
   const [input, setInput] = useState('');
-  const [type, setType] = useState('artists');
+  const [type, setType] = useState('artist');
 
   const {
     dance,
@@ -127,6 +127,14 @@ export default function CustomRec() {
     dispatch(createCustomPlaylist(payload));
   };
 
+  let label = 'Artist';
+  if(type === 'track') {
+    label = 'Track'
+  }
+  if(type === 'artist') {
+    label = 'Artist'
+  }
+
   return (
     <div className="rec">
       <form
@@ -142,9 +150,9 @@ export default function CustomRec() {
         onChange={(event) => setType(event.target.value.toLowerCase())}
         className="smaller-input"
       />
-                  <h4>Enter Artist/Track to Base Your Recommendations On</h4>
+                  <h4>{`Enter ${label} to Base Your Recommendations On`}</h4>
             <Input
-              placeholder="Song or Artist Name"
+              placeholder={`${label} Name`}
               onChange={(e) => setInput(e.target.value)}
               className="smaller-input"
             />

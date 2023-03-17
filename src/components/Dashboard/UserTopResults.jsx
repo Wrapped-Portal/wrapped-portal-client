@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
+  Alert,
   Button,
-  Input,
   Image,
   List,
   Paper,
@@ -15,20 +15,20 @@ import {
   Modal,
   NativeSelect,
 } from '@mantine/core';
-import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
 import { getArtistTop } from '../../store/reducers/selectedSlice';
-import { createCustomPlaylist } from '../../store/reducers/playlistSlice';
+import { createCustomPlaylist, selectTrack, setAlert} from '../../store/reducers/playlistSlice';
 
 export default function UserTopResults() {
   const [data, setData] = useState(null);
   const [opened, setOpened] = useState(false);
   const [type, setType] = useState('tracks');
   const [range, setRange] = useState('short_term');
+  const [alertText, setAlertText] = useState({ title: '', body: '', color: ''});
 
   const { token } = useSelector((state) => state.login);
   const { user } = useSelector((state) => state.userSlice);
-  const { disabled } = useSelector((state) => state.playlistSlice);
+  const { disabled, alert } = useSelector((state) => state.playlistSlice);
   const { selectedData } = useSelector((state) => state.selectedSlice);
 
   const dispatch = useDispatch();
@@ -96,7 +96,21 @@ export default function UserTopResults() {
     dispatch(createCustomPlaylist(payload));
   };
 
-  console.log(type, range)
+  useEffect(() => {
+    if (alert?.data) {
+      setAlertText({ title: 'Success!', body: 'Track Added!', color: 'lime' });
+    } if (alert === 'error') {
+      setAlertText({ title: 'Error', body: 'Track Failed to be Added.', color:'red'  });
+    }
+  
+    const timeoutId = setTimeout(() => {
+      dispatch(setAlert(null));
+    }, 6000);
+  
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [alert]);
 
   return (
     <>
@@ -189,6 +203,14 @@ export default function UserTopResults() {
         </Modal>
       )}
       <div className="topResults">
+      <Alert 
+       title={alertText.title}
+        color={alertText.color} 
+        variant="filled"
+        className={`top__alert ${alert ? 'visible' : ''}`}
+        >
+      {alertText.body}
+    </Alert>
         <h3>Your Top Listens</h3>
         <div className="input-container">
     <div className="input-wrapper">

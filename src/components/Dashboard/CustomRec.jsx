@@ -13,6 +13,7 @@ import {
   Text,
   Group,
   Stack,
+  NativeSelect
 } from '@mantine/core';
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
@@ -28,7 +29,8 @@ export default function CustomRec() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [genre, setGenre] = useState([]);
-  const [artist, setArtist] = useState('');
+  const [input, setInput] = useState('');
+  const [type, setType] = useState('artists');
 
   const {
     dance,
@@ -50,7 +52,8 @@ export default function CustomRec() {
         {
           params: {
             token: token.accessToken,
-            artist,
+            type,
+            input,
             stringifiedGenre,
             dance,
             energy,
@@ -92,7 +95,7 @@ export default function CustomRec() {
       setError(null);
       setLoading(false);
     } catch (error) {
-      if (artist === '') {
+      if (input === '') {
         setError({ message: 'Artist is required!' });
       } else {
         setError(error);
@@ -133,13 +136,18 @@ export default function CustomRec() {
         <div className="options_rec">
           <h3>Create Your Own Custom Recommendations</h3>
           <div className="group_select">
-            <h4>Enter an Artist to Base your Recommendations On</h4>
+            <h4>Select Artist or Track</h4>
+            <NativeSelect
+        data={['Artist', 'Track']}
+        onChange={(event) => setType(event.target.value.toLowerCase())}
+        className="smaller-input"
+      />
+                  <h4>Enter Artist/Track to Base Your Recommendations On</h4>
             <Input
-              placeholder="Prince"
-              onChange={(e) => setArtist(e.target.value)}
+              placeholder="Song or Artist Name"
+              onChange={(e) => setInput(e.target.value)}
               className="smaller-input"
             />
-
             <>
               <h4>Choose up to Four Genres</h4>
 
@@ -165,7 +173,6 @@ export default function CustomRec() {
                 acoustic={acoustic}
               />
             </div>
-
             <Button
               gradient={{ from: 'teal', to: 'lime', deg: 105 }}
               className="rec_button"

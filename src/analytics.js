@@ -46,7 +46,7 @@ export const analytics = async (siteName) => {
       deviceType: getDeviceType(),
       ipAddress,
     };
-    console.log(data);
+  
 
     // Send the data to the server
     const response = await fetch(

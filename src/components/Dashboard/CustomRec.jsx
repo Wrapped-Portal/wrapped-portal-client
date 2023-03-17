@@ -142,7 +142,7 @@ export default function CustomRec() {
 
             <>
               <h4>Choose up to Four Genres</h4>
-             
+
               <MultiSelect
                 data={genres}
                 maxSelectedValues={4}
@@ -153,7 +153,17 @@ export default function CustomRec() {
             </>
             <h4>Select Your Parameters</h4>
             <div className="knob-board">
-              <SoundBoard />
+              <SoundBoard
+                dance={dance}
+                energy={energy}
+                loud={loud}
+                vibe={vibe}
+                tempo={tempo}
+                popular={popular}
+                instrumental={instrumental}
+                live={live}
+                acoustic={acoustic}
+              />
             </div>
 
             <Button

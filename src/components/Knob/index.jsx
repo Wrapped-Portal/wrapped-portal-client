@@ -7,7 +7,13 @@ import { useDispatch } from 'react-redux';
 import { setFieldValue } from '../../store/reducers/soundBoardSlice';
 import { getDeg, convertRange, renderTicks } from './helpers';
 
-export default function Knob({ fieldName, bgColor, label, description }) {
+export default function Knob({
+  fieldName,
+  bgColor,
+  label,
+  description,
+  value,
+}) {
   const [opened, { close, open }] = useDisclosure(false);
   const [deg, setDeg] = useState(0);
   const fullAngle = 260;
@@ -161,7 +167,12 @@ export default function Knob({ fieldName, bgColor, label, description }) {
       </Popover.Target>
       {description && (
         <Popover.Dropdown sx={{ pointerEvents: 'none' }}>
-          <Text c="black" size="sm">{description}</Text>
+          <Text
+            c="black"
+            size="sm"
+          >
+            {description}
+          </Text>
         </Popover.Dropdown>
       )}
     </Popover>

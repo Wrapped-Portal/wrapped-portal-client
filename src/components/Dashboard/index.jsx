@@ -55,6 +55,7 @@ export default function Dashboard() {
         </Group>
       </MediaQuery>
       <div className="dashboard">
+        <div className="column column-1"></div>
         <div className="column">
           <Tabs
             defaultValue="first"

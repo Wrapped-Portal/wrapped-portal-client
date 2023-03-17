@@ -81,6 +81,14 @@
 .logo:hover {
   transform: translateY(-4px);
 }
+.slider-width {
+  padding: .5rem;
+  width: 150px;
+}
+.slider__label{
+  font-size: 2rem;
+  padding-left: 1rem;
+}
 
 @media (width < 851px) {
   .playlist_column {

@@ -3,16 +3,20 @@
 import { Popover, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFieldValue } from '../../store/reducers/soundBoardSlice';
 import { getDeg, convertRange, renderTicks } from './helpers';
 
 export default function Knob({ fieldName, bgColor, label, description }) {
+  const fieldValue = useSelector((state) => state.soundBoardSlice[fieldName]);
   const [opened, { close, open }] = useDisclosure(false);
-  const [deg, setDeg] = useState(0);
   const fullAngle = 260;
   const startAngle = (360 - fullAngle) / 2;
   const endAngle = startAngle + fullAngle;
+  const initialDeg = Math.floor(
+    convertRange(1, 100, startAngle, endAngle, fieldValue),
+  );
+  const [deg, setDeg] = useState(initialDeg);
   const size = 50;
   const margin = size * 0.15;
   const currentDeg = deg;
@@ -161,7 +165,12 @@ export default function Knob({ fieldName, bgColor, label, description }) {
       </Popover.Target>
       {description && (
         <Popover.Dropdown sx={{ pointerEvents: 'none' }}>
-          <Text c="black" size="sm">{description}</Text>
+          <Text
+            c="black"
+            size="sm"
+          >
+            {description}
+          </Text>
         </Popover.Dropdown>
       )}
     </Popover>

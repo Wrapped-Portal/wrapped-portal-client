@@ -96,7 +96,7 @@ export default function UserTopResults() {
     dispatch(createCustomPlaylist(payload));
   };
 
-  console.log(type, range)
+
 
   return (
     <>

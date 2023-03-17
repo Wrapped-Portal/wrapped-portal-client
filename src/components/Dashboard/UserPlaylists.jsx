@@ -26,7 +26,7 @@ export default function UserPlaylists() {
     moreTracks = true
   }
 
-  console.log(playlistItems)
+ 
 
   return (
     <>

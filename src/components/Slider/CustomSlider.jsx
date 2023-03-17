@@ -42,7 +42,7 @@ export default function CustomSlider({
             className="slider-width"
             id={label}
             onChange={(value) => {
-              console.log(value);
+             
               dispatch(
                 setFieldValue({
                   field: fieldName,

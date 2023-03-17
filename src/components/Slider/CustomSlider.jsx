@@ -1,16 +1,20 @@
 import React from 'react';
 import { Slider, Popover, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFieldValue } from '../../store/reducers/soundBoardSlice';
 
 export default function CustomSlider({
   fieldName,
   bgColor,
   label,
   description,
-  value,
   ...props
 }) {
   const [opened, { close, open }] = useDisclosure(false);
+  const dispatch = useDispatch();
+
+  const value = useSelector((state) => state.soundBoardSlice[fieldName]);
 
   return (
     <Popover
@@ -32,10 +36,20 @@ export default function CustomSlider({
           >
             {label}
           </label>
+
           <Slider
             value={value}
             className="slider-width"
             id={label}
+            onChange={(value) => {
+              console.log(value);
+              dispatch(
+                setFieldValue({
+                  field: fieldName,
+                  value: value,
+                }),
+              );
+            }}
             {...props}
           />
         </div>

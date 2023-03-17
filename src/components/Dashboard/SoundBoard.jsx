@@ -2,17 +2,7 @@ import React, { useState } from 'react';
 import Knob from '../Knob';
 import { Button } from '@mantine/core';
 import CustomSlider from '../Slider/CustomSlider';
-export default function SoundBoard({
-  dance,
-  energy,
-  loud,
-  vibe,
-  tempo,
-  popular,
-  instrumental,
-  live,
-  acoustic,
-}) {
+export default function SoundBoard() {
   const [isSlider, setIsSlider] = useState(false);
   const handleToggleChange = () => {
     setIsSlider(!isSlider);
@@ -31,7 +21,6 @@ export default function SoundBoard({
               label="Danceability"
               bgColor={50}
               fieldName="dance"
-              value={dance}
             />
           ) : (
             <Knob
@@ -39,7 +28,6 @@ export default function SoundBoard({
               label="Danceability"
               bgColor={50}
               fieldName="dance"
-              value={dance}
             />
           )}
         </div>
@@ -50,7 +38,6 @@ export default function SoundBoard({
               label="Energy"
               bgColor={50}
               fieldName="energy"
-              value={energy}
             />
           ) : (
             <Knob
@@ -58,7 +45,6 @@ export default function SoundBoard({
               label="Energy"
               bgColor={50}
               fieldName="energy"
-              value={energy}
             />
           )}
         </div>
@@ -69,7 +55,6 @@ export default function SoundBoard({
               label="Loudness"
               bgColor={50}
               fieldName="loud"
-              value={loud}
             />
           ) : (
             <Knob
@@ -77,7 +62,6 @@ export default function SoundBoard({
               label="Loudness"
               bgColor={50}
               fieldName="loud"
-              value={loud}
             />
           )}
         </div>
@@ -88,7 +72,6 @@ export default function SoundBoard({
               label="Vibe"
               bgColor={150}
               fieldName="vibe"
-              value={vibe}
             />
           ) : (
             <Knob
@@ -96,7 +79,6 @@ export default function SoundBoard({
               label="Vibe"
               bgColor={150}
               fieldName="vibe"
-              value={vibe}
             />
           )}
         </div>
@@ -107,7 +89,6 @@ export default function SoundBoard({
               label="Tempo"
               bgColor={150}
               fieldName="tempo"
-              value={tempo}
             />
           ) : (
             <Knob
@@ -115,7 +96,6 @@ export default function SoundBoard({
               label="Tempo"
               bgColor={150}
               fieldName="tempo"
-              value={tempo}
             />
           )}
         </div>
@@ -126,7 +106,6 @@ export default function SoundBoard({
               label="Popularity"
               bgColor={150}
               fieldName="popular"
-              value={popular}
             />
           ) : (
             <Knob
@@ -134,7 +113,6 @@ export default function SoundBoard({
               label="Popularity"
               bgColor={150}
               fieldName="popular"
-              value={popular}
             />
           )}
         </div>
@@ -145,7 +123,6 @@ export default function SoundBoard({
               label="Instrumental"
               bgColor={300}
               fieldName="instrumental"
-              value={instrumental}
             />
           ) : (
             <Knob
@@ -153,7 +130,6 @@ export default function SoundBoard({
               label="Instrumental"
               bgColor={300}
               fieldName="instrumental"
-              value={instrumental}
             />
           )}
         </div>
@@ -164,7 +140,6 @@ export default function SoundBoard({
               label="Liveness"
               bgColor={300}
               fieldName="live"
-              value={live}
             />
           ) : (
             <Knob
@@ -172,7 +147,6 @@ export default function SoundBoard({
               label="Liveness"
               bgColor={300}
               fieldName="live"
-              value={live}
             />
           )}
         </div>
@@ -183,7 +157,6 @@ export default function SoundBoard({
               label="Acousticness"
               bgColor={300}
               fieldName="acoustic"
-              value={acoustic}
             />
           ) : (
             <Knob
@@ -191,7 +164,6 @@ export default function SoundBoard({
               label="Acousticness"
               bgColor={300}
               fieldName="acoustic"
-              value={acoustic}
             />
           )}
         </div>

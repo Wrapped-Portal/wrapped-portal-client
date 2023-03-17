@@ -38,6 +38,7 @@ export default function CustomSlider({
           </label>
 
           <Slider
+          color="lime"
             value={value}
             className="slider-width"
             id={label}

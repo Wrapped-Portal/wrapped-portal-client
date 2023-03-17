@@ -2,8 +2,9 @@
 
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
+  Alert,
   Button,
   Paper,
   List,
@@ -18,19 +19,21 @@ import {
 import { selectTrack } from '../../store/reducers/playlistSlice';
 import SoundBoard from './SoundBoard';
 import { playSong } from '../../store/reducers/webPlayerSlice';
-import { createCustomPlaylist } from '../../store/reducers/playlistSlice';
+import { createCustomPlaylist, setAlert } from '../../store/reducers/playlistSlice';
 
 export default function CustomRec() {
   const { token } = useSelector((state) => state.login);
   const { user } = useSelector((state) => state.userSlice);
   const { genres } = useSelector((state) => state.genreSlice);
-  const { disabled } = useSelector((state) => state.playlistSlice);
+  const { disabled, alert } = useSelector((state) => state.playlistSlice);
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [genre, setGenre] = useState([]);
   const [input, setInput] = useState('');
   const [type, setType] = useState('artist');
+  const [alertText, setAlertText] = useState({ title: '', body: '', color: ''});
+
 
   const {
     dance,
@@ -123,7 +126,6 @@ export default function CustomRec() {
       body: body,
       uris: uris,
     };
-
     dispatch(createCustomPlaylist(payload));
   };
 
@@ -134,6 +136,22 @@ export default function CustomRec() {
   if(type === 'artist') {
     label = 'Artist'
   }
+
+  useEffect(() => {
+    if (alert?.data) {
+      setAlertText({ title: 'Success!', body: 'Track Added!', color: 'lime' });
+    } if (alert === 'error') {
+      setAlertText({ title: 'Error', body: 'Track Failed to be Added.', color:'red'  });
+    }
+  
+    const timeoutId = setTimeout(() => {
+      dispatch(setAlert(null));
+    }, 6000);
+  
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [alert]);
 
   return (
     <div className="rec">
@@ -192,6 +210,14 @@ export default function CustomRec() {
           </div>
         </div>
       </form>
+      <Alert 
+       title={alertText.title}
+        color={alertText.color} 
+        variant="filled"
+        className={`top__alert ${alert ? 'visible' : ''}`}
+        >
+      {alertText.body}
+    </Alert>
       {data && (
         <>
           <Paper

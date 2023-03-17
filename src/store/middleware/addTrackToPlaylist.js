@@ -1,4 +1,5 @@
 /** @format */
+import { setAlert  } from '../reducers/playlistSlice';
 
 import axios from 'axios';
 
@@ -20,9 +21,11 @@ const addTrackToPlaylist = (store) => (next) => (action) => {
         .post(url, data, config)
         .then((response) => {
           console.log('Successfully added track to playlist:', response);
+          store.dispatch(setAlert(response));
         })
         .catch((error) => {
           console.error('Error adding track to playlist:', error);
+          store.dispatch(setAlert('error'));
         });
     }
   }

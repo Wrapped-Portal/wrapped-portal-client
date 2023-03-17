@@ -96,6 +96,7 @@ export default function UserTopResults() {
     dispatch(createCustomPlaylist(payload));
   };
 
+
   useEffect(() => {
     if (alert?.data) {
       setAlertText({ title: 'Success!', body: 'Track Added!', color: 'lime' });
@@ -111,6 +112,7 @@ export default function UserTopResults() {
       clearTimeout(timeoutId);
     };
   }, [alert]);
+
 
   return (
     <>

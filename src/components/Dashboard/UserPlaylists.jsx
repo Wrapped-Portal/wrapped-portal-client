@@ -30,7 +30,7 @@ export default function UserPlaylists() {
 
   useEffect(() => {
     if (removeAlert === 'success') {
-      setAlertText({ title: 'Success!', body: 'Track Removed!', color: 'teal' });
+      setAlertText({ title: 'Success!', body: 'Track Removed from Playlist!', color: 'teal' });
     } if (removeAlert === 'error') {
       setAlertText({ title: 'Error', body: 'Track Failed to be Removed.', color:'red'  });
     }
@@ -50,12 +50,11 @@ export default function UserPlaylists() {
     <>
       <div className="playlist">
       <Alert 
-       title={alertText.title}
         color={alertText.color} 
         variant="filled"
         className={`top__alert ${removeAlert ? 'visible' : ''}`}
         >
-      {alertText.body}
+     {alertText.title} {alertText.body}
     </Alert>
         <h3>Current Playlist</h3>
         {!playlistItems && selectedPlaylist && (

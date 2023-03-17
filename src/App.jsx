@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard';
 import Splash from './components/Splash';
 import { storeToken } from './store/reducers/loginSlice';
 import Footer from './components/Footer/Footer';
+import { analytics } from './analytics';
 
 const cookies = new Cookies();
 
@@ -17,6 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    analytics('Tune Port');
     const code = new URLSearchParams(window.location.search).get('code'); // grab the code from the url path
     if (code) {
       dispatch(storeToken({ code: code })); // send the code to the middleware to retrieve a bearer token

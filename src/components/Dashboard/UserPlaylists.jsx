@@ -1,14 +1,16 @@
 /** @format */
 
 import { useSelector, useDispatch } from 'react-redux';
-import React from 'react';
-import { Button, Paper, Text, List, Image, Group, Stack } from '@mantine/core';
-import { removeTrack, setMorePlaylistItems } from '../../store/reducers/playlistSlice';
+import React, { useState, useEffect } from 'react';
+import {  Alert, Button, Paper, Text, List, Image, Group, Stack } from '@mantine/core';
+import { removeTrack, setMorePlaylistItems, setRemoveAlert } from '../../store/reducers/playlistSlice';
 import { playSong, playAll } from '../../store/reducers/webPlayerSlice';
 import LoadingBars from '../LoadingBars';
 
 export default function UserPlaylists() {
-  const { playlistItems, selectedPlaylist, disabled, playlistObject } = useSelector(
+  const [alertText, setAlertText] = useState({ title: '', body: '', color: ''});
+
+  const { playlistItems, selectedPlaylist, disabled, playlistObject, removeAlert } = useSelector(
     (state) => state.playlistSlice,
   );
 
@@ -26,11 +28,35 @@ export default function UserPlaylists() {
     moreTracks = true
   }
 
+  useEffect(() => {
+    if (removeAlert === 'success') {
+      setAlertText({ title: 'Success!', body: 'Track Removed!', color: 'teal' });
+    } if (removeAlert === 'error') {
+      setAlertText({ title: 'Error', body: 'Track Failed to be Removed.', color:'red'  });
+    }
+  
+    const timeoutId = setTimeout(() => {
+      dispatch(setRemoveAlert(null));
+    }, 6000);
+  
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [removeAlert]);
+
  
 
   return (
     <>
       <div className="playlist">
+      <Alert 
+       title={alertText.title}
+        color={alertText.color} 
+        variant="filled"
+        className={`top__alert ${removeAlert ? 'visible' : ''}`}
+        >
+      {alertText.body}
+    </Alert>
         <h3>Current Playlist</h3>
         {!playlistItems && selectedPlaylist && (
           <div className='loading' >

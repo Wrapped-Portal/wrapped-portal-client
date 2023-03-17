@@ -1,5 +1,3 @@
-/** @format */
-
 import React from 'react';
 import Knob from '../Knob';
 
@@ -8,80 +6,71 @@ export default function SoundBoard() {
     <div className="sound-board">
       <div className="knob_border">
         <Knob
-
-          description="Danceability: This knob adjusts how suitable the music is for dancing, with higher values making the music more danceable."
+          description="Danceability: Crank up this knob to make your tunes more groovy and dance-worthy."
           label="Danceability"
           bgColor={50}
           fieldName="dance"
         />
       </div>
-      <div  >
+      <div>
         <Knob
-
-          description="Energy: This knob adjusts how energetic the music is, with higher values making the music more energetic and lively."
+          description="Energy: Infuse your music with enthusiasm by increasing this knob for a lively and spirited experience."
           label="Energy"
           bgColor={50}
           fieldName="energy"
         />
       </div>
-      <div  className="knob_border">
+      <div className="knob_border">
         <Knob
-
-          description="Loudness: This knob adjusts the overall volume of the music, with higher values making the music louder."
+          description="Loudness: Pump up the volume with this knob to create a powerful auditory experience."
           label="Loudness"
           bgColor={50}
           fieldName="loud"
         />
       </div>
-      <div  className="knob_border">
+      <div className="knob_border">
         <Knob
-
-          description="Vibe: This knob adjusts the overall mood or atmosphere of the music, with higher values creating a more positive or upbeat vibe."
+          description="Vibe: Fine-tune the mood of your music with this knob to create a positive and invigorating atmosphere."
           label="Vibe"
           bgColor={150}
           fieldName="vibe"
         />
       </div>
-      <div  >
+      <div>
         <Knob
-
-          description="Tempo: This knob adjusts the speed or pace of the music, with higher values making the music faster."
+          description="Tempo: Rev up the pace of your tunes by tweaking this knob for a faster, more exhilarating tempo."
           label="Tempo"
           bgColor={150}
           fieldName="tempo"
         />
-      </div >
-      <div  className="knob_border">
+      </div>
+      <div className="knob_border">
         <Knob
-
-          description="Popularity: This knob adjusts how well-known or popular the music is, with higher values favoring more popular music."
+          description="Popularity: Dial in to the most beloved and renowned tracks by adjusting this knob."
           label="Popularity"
           bgColor={150}
           fieldName="popular"
         />
       </div>
-      <div  className="knob_border">
+      <div className="knob_border">
         <Knob
-
-          description="Instrumentalness: This knob adjusts the amount of instrumentation in the music, with higher values favoring instrumental music over vocal music."
+          description="Instrumental: Prefer instrumentals over vocals? Turn this knob up to indulge in melody-rich music."
           label="Instrumental"
           bgColor={300}
           fieldName="instrumental"
         />
       </div>
-      <div >
+      <div>
         <Knob
-
-          description="Liveness: This knob adjusts the degree to which the music was performed live, with higher values favoring music that was recorded live in front of an audience."
+          description="Liveness: Crave the excitement of a live performance? Increase this knob to feel like you're front row at a concert."
           label="Liveness"
           bgColor={300}
           fieldName="live"
         />
       </div>
-      <div  className="knob_border">
+      <div className="knob_border">
         <Knob
-
-          description="Acousticness: This knob adjusts the amount of acoustic instruments in the music, with higher values favoring acoustic instruments over electronic ones."
+          description="Acousticness: Embrace the charm of traditional instruments by raising this knob to favor acoustic tunes over electronic ones."
           label="Acousticness"
           bgColor={300}
           fieldName="acoustic"

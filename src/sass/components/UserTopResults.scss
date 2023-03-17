@@ -53,6 +53,7 @@
   justify-content: space-evenly;
   margin: 10px;
 }
+
 .input-wrapper {
   display: flex;
   flex-direction: column;
@@ -85,4 +86,20 @@
 
 .hover:hover {
   cursor: pointer;
+}
+
+.top__alert {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  margin-bottom: 5px;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+}
+
+.top__alert.visible {
+  opacity: 1;
+  transition: opacity 0.9s ease-in-out;
 }

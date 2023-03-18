@@ -1,11 +1,23 @@
 /** @format */
 
 .knob {
+  &_border {
+    padding-bottom: 30px;
+    padding-left: 20px;
+    position: relative;
+    &--center {
+      position: relative;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 18px;
+    }
+  }
   &__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 155px;
   }
   &__label {
     margin: 1rem;
@@ -31,7 +43,8 @@
   border: 1px solid #434343;
   border-bottom: 5px solid #515050;
   background-image: radial-gradient(100% 70%, #e8e6e6 6%, #878585 90%);
-  box-shadow: 0 5px 15px 2px rgb(190, 190, 190), 0 0 5px 3px rgb(208, 208, 208), 0 0 0 12px #898989;
+  box-shadow: 0 5px 15px 2px rgb(190, 190, 190), 0 0 5px 3px rgb(208, 208, 208),
+    0 0 0 12px #898989;
 }
 .knob.inner {
   border-radius: 50%;

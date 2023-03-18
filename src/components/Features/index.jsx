@@ -6,8 +6,15 @@ import { Group } from '@mantine/core';
 export default function Features() {
   const { audioFeatures } = useSelector((state) => state.audioFeaturesSlice);
 
+  function msToMinSec(duration_ms) {
+    const minutes = Math.floor(duration_ms / 60000);
+    const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
+    return `${minutes}:${seconds.padStart(2, '0')}`;
+  }
+  
   const duration_ms = audioFeatures?.duration_ms;
-  const duration_formatted = new Date(duration_ms).toISOString().slice(14, 19);
+  const duration_formatted = msToMinSec(duration_ms);
+  
 
   const musicalKeys = [
     "No key",
@@ -24,11 +31,14 @@ export default function Features() {
     "A#/Bb",
     "B",
   ];
-
+  
   const keyIndex = audioFeatures.key;
-  const keyName = keyIndex >= 0 ? musicalKeys[keyIndex] : musicalKeys[0];
-
-  const modeName = audioFeatures.mode === 1 ? "Major" : "Minor";
+  let keyName;
+  if (keyIndex === -1) {
+    keyName = musicalKeys[0];
+  } else {
+    keyName = musicalKeys[keyIndex + 1] + (audioFeatures.mode === 1 ? " Major" : " Minor");
+  }
 
   const loudness = audioFeatures.loudness;
   const loudnessScaled = (loudness + 60) / 60 * 100;
@@ -38,7 +48,7 @@ export default function Features() {
       <Group>
         <p className='features__text'>{`Duration: ${duration_formatted}`}</p>
         <p className='features__text'>{`Time Signature: ${audioFeatures.time_signature}/4`}</p>
-        <p className='features__text'>{`Key: ${keyName} ${modeName}`}</p>
+        <p className='features__text'>{`Key: ${keyName}`}</p>
         <p className='features__text'>{`Bpm: ${Math.round(audioFeatures.tempo)}`}</p>
       </Group>
       <CChart

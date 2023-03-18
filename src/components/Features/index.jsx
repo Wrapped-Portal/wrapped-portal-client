@@ -42,9 +42,18 @@ export default function Features() {
   const loudness = audioFeatures?.loudness;
   const loudnessScaled = (loudness + 60) / 60 * 100;
 
+  let formattedDate = 'N/A';
+
   const dateString = audioArtist?.album?.release_date;
-const parts = dateString.split('-');
-const formattedDate = `${parts[1]}/${parts[2]}/${parts[0]}`;
+  
+  if (dateString) {
+    const date = new Date(dateString);
+    if (!isNaN(date?.getTime())) {
+      formattedDate = `${date?.getMonth() + 1}/${date?.getDate()}/${date?.getFullYear()}`;
+    }
+  }
+  
+  
 
   return (
     <>

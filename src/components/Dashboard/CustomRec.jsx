@@ -81,7 +81,7 @@ export default function CustomRec() {
   };
 
   const dispatch = useDispatch();
-  
+
   const formatDuration = (duration_ms) => {
     const minutes = Math.floor(duration_ms / 60000);
     const seconds = ((duration_ms % 60000) / 1000).toFixed(0);
@@ -320,7 +320,7 @@ export default function CustomRec() {
                         setOpenFeatures(true);
                       }}
                     >
-                      ?
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 512 512"><path fill="currentColor" d="M128 496H48V304h80Zm224 0h-80V208h80Zm112 0h-80V96h80Zm-224 0h-80V16h80Z" /></svg>
                     </Button>
                   </List.Item>
                 ))

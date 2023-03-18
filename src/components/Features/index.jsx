@@ -42,10 +42,14 @@ export default function Features() {
   const loudness = audioFeatures?.loudness;
   const loudnessScaled = (loudness + 60) / 60 * 100;
 
+  const dateString = audioArtist?.album?.release_date;
+const parts = dateString.split('-');
+const formattedDate = `${parts[1]}/${parts[2]}/${parts[0]}`;
+
   return (
     <>
       <Group>
-        <p className='features__text'>{`Released: ${audioArtist?.album?.release_date}`} </p>
+        <p className='features__text'>{`Released: ${formattedDate}`} </p>
         <p className='features__text'>{`Duration: ${duration_formatted}`}</p>
         <p className='features__text'>{`Time Signature: ${audioFeatures?.time_signature}/4`}</p>
         <p className='features__text'>{`Key: ${keyName}`}</p>

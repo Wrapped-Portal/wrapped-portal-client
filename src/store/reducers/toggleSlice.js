@@ -3,15 +3,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  danceEnabled: false,
-  energyEnabled: false,
-  loudnessEnabled: false,
-  vibeEnabled: false,
-  tempoEnabled: false,
-  popularityEnabled: false,
-  instrumentalEnabled: false,
-  livenessEnabled: false,
-  acousticnessEnabled: false,
+  danceEnabled: true,
+  energyEnabled: true,
+  loudnessEnabled: true,
+  vibeEnabled: true,
+  tempoEnabled: true,
+  popularityEnabled: true,
+  instrumentalEnabled: true,
+  livenessEnabled: true,
+  acousticnessEnabled: true,
 };
 
 const toggleSlice = createSlice({

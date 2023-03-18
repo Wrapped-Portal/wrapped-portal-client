@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Knob from '../Knob';
-import { Button } from '@mantine/core';
+import { Button, Text } from '@mantine/core';
 import CustomSlider from '../Slider/CustomSlider';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleState } from '../../store/reducers/toggleSlice';
@@ -391,6 +391,14 @@ export default function SoundBoard() {
           </div>
         </div>
       </div>
+      <Text
+        pl="2rem"
+        mb="1rem"
+        size="2rem"
+        color={'#aaa'}
+      >
+        Parameters that are turned off will not be included in the search.
+      </Text>
     </>
   );
 }

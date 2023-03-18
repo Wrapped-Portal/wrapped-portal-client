@@ -4,6 +4,7 @@ import { Button } from '@mantine/core';
 import CustomSlider from '../Slider/CustomSlider';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleState } from '../../store/reducers/toggleSlice';
+import { setFieldValue } from '../../store/reducers/soundBoardSlice';
 export default function SoundBoard() {
   const toggleStates = useSelector((state) => state.toggleSlice);
   const [isSlider, setIsSlider] = useState(false);
@@ -11,8 +12,9 @@ export default function SoundBoard() {
   const handleToggleChange = () => {
     setIsSlider(!isSlider);
   };
-  const handleToggleState = (field) => {
+  const handleToggleState = (field, fieldValue) => {
     dispatch(toggleState({ field }));
+    dispatch(setFieldValue({ field: fieldValue, value: '' }));
   };
 
   return (
@@ -33,6 +35,7 @@ export default function SoundBoard() {
               label="Danceability"
               bgColor={50}
               fieldName="dance"
+              locked={toggleStates.danceEnabled}
             />
           ) : (
             <Knob
@@ -40,6 +43,7 @@ export default function SoundBoard() {
               label="Danceability"
               bgColor={50}
               fieldName="dance"
+              locked={toggleStates.danceEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -49,7 +53,7 @@ export default function SoundBoard() {
                 id="danceToggle"
                 name="danceToggle"
                 checked={toggleStates.danceEnabled}
-                onChange={() => handleToggleState('danceEnabled')}
+                onChange={() => handleToggleState('danceEnabled', 'dance')}
               />
               <div className="back">
                 <label
@@ -70,6 +74,7 @@ export default function SoundBoard() {
               label="Energy"
               bgColor={50}
               fieldName="energy"
+              locked={toggleStates.energyEnabled}
             />
           ) : (
             <Knob
@@ -77,6 +82,7 @@ export default function SoundBoard() {
               label="Energy"
               bgColor={50}
               fieldName="energy"
+              locked={toggleStates.energyEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -86,7 +92,7 @@ export default function SoundBoard() {
                 id="energyToggle"
                 name="energyToggle"
                 checked={toggleStates.energyEnabled}
-                onChange={() => handleToggleState('energyEnabled')}
+                onChange={() => handleToggleState('energyEnabled', 'energy')}
               />
               <div className="back">
                 <label
@@ -107,6 +113,7 @@ export default function SoundBoard() {
               label="Loudness"
               bgColor={50}
               fieldName="loud"
+              locked={toggleStates.loudnessEnabled}
             />
           ) : (
             <Knob
@@ -114,6 +121,7 @@ export default function SoundBoard() {
               label="Loudness"
               bgColor={50}
               fieldName="loud"
+              locked={toggleStates.loudnessEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -123,7 +131,7 @@ export default function SoundBoard() {
                 id="loudnessToggle"
                 name="loudnessToggle"
                 checked={toggleStates.loudnessEnabled}
-                onChange={() => handleToggleState('loudnessEnabled')}
+                onChange={() => handleToggleState('loudnessEnabled', 'loud')}
               />
               <div className="back">
                 <label
@@ -144,6 +152,7 @@ export default function SoundBoard() {
               label="Vibe"
               bgColor={150}
               fieldName="vibe"
+              locked={toggleStates.vibeEnabled}
             />
           ) : (
             <Knob
@@ -151,6 +160,7 @@ export default function SoundBoard() {
               label="Vibe"
               bgColor={150}
               fieldName="vibe"
+              locked={toggleStates.vibeEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -160,7 +170,7 @@ export default function SoundBoard() {
                 id="vibeToggle"
                 name="vibeToggle"
                 checked={toggleStates.vibeEnabled}
-                onChange={() => handleToggleState('vibeEnabled')}
+                onChange={() => handleToggleState('vibeEnabled', 'vibe')}
               />
               <div className="back">
                 <label
@@ -181,6 +191,7 @@ export default function SoundBoard() {
               label="Tempo"
               bgColor={150}
               fieldName="tempo"
+              locked={toggleStates.tempoEnabled}
             />
           ) : (
             <Knob
@@ -188,6 +199,7 @@ export default function SoundBoard() {
               label="Tempo"
               bgColor={150}
               fieldName="tempo"
+              locked={toggleStates.tempoEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -197,7 +209,7 @@ export default function SoundBoard() {
                 id="tempoToggle"
                 name="tempoToggle"
                 checked={toggleStates.tempoEnabled}
-                onChange={() => handleToggleState('tempoEnabled')}
+                onChange={() => handleToggleState('tempoEnabled', 'tempo')}
               />
               <div className="back">
                 <label
@@ -218,6 +230,7 @@ export default function SoundBoard() {
               label="Popularity"
               bgColor={150}
               fieldName="popular"
+              locked={toggleStates.popularityEnabled}
             />
           ) : (
             <Knob
@@ -225,6 +238,7 @@ export default function SoundBoard() {
               label="Popularity"
               bgColor={150}
               fieldName="popular"
+              locked={toggleStates.popularityEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -234,7 +248,9 @@ export default function SoundBoard() {
                 id="popularityToggle"
                 name="popularityToggle"
                 checked={toggleStates.popularityEnabled}
-                onChange={() => handleToggleState('popularityEnabled')}
+                onChange={() =>
+                  handleToggleState('popularityEnabled', 'popular')
+                }
               />
               <div className="back">
                 <label
@@ -255,6 +271,7 @@ export default function SoundBoard() {
               label="Instrumental"
               bgColor={300}
               fieldName="instrumental"
+              locked={toggleStates.instrumentalEnabled}
             />
           ) : (
             <Knob
@@ -262,6 +279,7 @@ export default function SoundBoard() {
               label="Instrumental"
               bgColor={300}
               fieldName="instrumental"
+              locked={toggleStates.instrumentalEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -271,7 +289,9 @@ export default function SoundBoard() {
                 id="instrumentalToggle"
                 name="instrumentalToggle"
                 checked={toggleStates.instrumentalEnabled}
-                onChange={() => handleToggleState('instrumentalEnabled')}
+                onChange={() =>
+                  handleToggleState('instrumentalEnabled', 'instrumental')
+                }
               />
               <div className="back">
                 <label
@@ -292,6 +312,7 @@ export default function SoundBoard() {
               label="Liveness"
               bgColor={300}
               fieldName="live"
+              locked={toggleStates.livenessEnabled}
             />
           ) : (
             <Knob
@@ -299,6 +320,7 @@ export default function SoundBoard() {
               label="Liveness"
               bgColor={300}
               fieldName="live"
+              locked={toggleStates.livenessEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -308,7 +330,7 @@ export default function SoundBoard() {
                 id="livenessToggle"
                 name="livenessToggle"
                 checked={toggleStates.livenessEnabled}
-                onChange={() => handleToggleState('livenessEnabled')}
+                onChange={() => handleToggleState('livenessEnabled', 'live')}
               />
               <div className="back">
                 <label
@@ -329,6 +351,7 @@ export default function SoundBoard() {
               label="Acousticness"
               bgColor={300}
               fieldName="acoustic"
+              locked={toggleStates.acousticnessEnabled}
             />
           ) : (
             <Knob
@@ -336,6 +359,7 @@ export default function SoundBoard() {
               label="Acousticness"
               bgColor={300}
               fieldName="acoustic"
+              locked={toggleStates.acousticnessEnabled}
             />
           )}
           <div className="toggle__wrapper">
@@ -345,7 +369,9 @@ export default function SoundBoard() {
                 id="acousticnessToggle"
                 name="acousticnessToggle"
                 checked={toggleStates.acousticnessEnabled}
-                onChange={() => handleToggleState('acousticnessEnabled')}
+                onChange={() =>
+                  handleToggleState('acousticnessEnabled', 'acoustic')
+                }
               />
               <div className="back">
                 <label

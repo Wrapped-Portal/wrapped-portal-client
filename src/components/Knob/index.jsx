@@ -2,12 +2,18 @@
 
 import { Popover, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFieldValue } from '../../store/reducers/soundBoardSlice';
 import { getDeg, convertRange, renderTicks } from './helpers';
 
-export default function Knob({ fieldName, bgColor, label, description }) {
+export default function Knob({
+  fieldName,
+  bgColor,
+  label,
+  description,
+  locked,
+}) {
   const fieldValue = useSelector((state) => state.soundBoardSlice[fieldName]);
   const [opened, { close, open }] = useDisclosure(false);
   const fullAngle = 260;
@@ -16,7 +22,8 @@ export default function Knob({ fieldName, bgColor, label, description }) {
   const initialDeg = Math.floor(
     convertRange(1, 100, startAngle, endAngle, fieldValue),
   );
-  const [deg, setDeg] = useState(initialDeg);
+  const [deg, setDeg] = useState(locked ? -1 : initialDeg);
+
   const size = 50;
   const margin = size * 0.15;
   const currentDeg = deg;
@@ -28,8 +35,13 @@ export default function Knob({ fieldName, bgColor, label, description }) {
     dispatch(setFieldValue({ field: fieldName, value: value }));
   };
 
+  useEffect(() => {
+    setDeg(locked ? -1 : initialDeg);
+  }, [locked]);
+
   const startDrag = (e) => {
     e.preventDefault();
+    if (locked) return;
     const knob = knobRef.current.getBoundingClientRect();
     const pts = {
       x: knob.left + knob.width / 2,
@@ -52,6 +64,7 @@ export default function Knob({ fieldName, bgColor, label, description }) {
 
   const handleKeyDown = (e) => {
     e.preventDefault();
+    if (locked) return;
     let newDeg;
     let newValue;
     switch (e.key) {

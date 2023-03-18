@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Slider, Popover, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,12 +9,16 @@ export default function CustomSlider({
   bgColor,
   label,
   description,
+  locked,
   ...props
 }) {
   const [opened, { close, open }] = useDisclosure(false);
   const dispatch = useDispatch();
-
   const value = useSelector((state) => state.soundBoardSlice[fieldName]);
+
+  useEffect(() => {
+    dispatch(setFieldValue(locked ? -1 : value));
+  }, [locked, value]);
 
   return (
     <Popover
@@ -38,12 +42,13 @@ export default function CustomSlider({
           </label>
 
           <Slider
-          color="lime"
+            color="lime"
+            disabled={locked}
             value={value}
             className="slider-width"
             id={label}
             onChange={(value) => {
-             
+              if (locked) return;
               dispatch(
                 setFieldValue({
                   field: fieldName,

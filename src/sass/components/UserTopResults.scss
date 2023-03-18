@@ -27,11 +27,25 @@
   margin-right: 13px;
 }
 
+.list_button_features {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  margin-right: -18px;
+}
+
 .list_button_modal {
   position: absolute;
   top: 10px;
   right: 0;
   margin-right: 13px;
+}
+
+.list_button_modal_features {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  margin-right: -16px;
 }
 
 .list li:not(:first-child) {
@@ -53,6 +67,7 @@
   justify-content: space-evenly;
   margin: 10px;
 }
+
 .input-wrapper {
   display: flex;
   flex-direction: column;
@@ -85,4 +100,20 @@
 
 .hover:hover {
   cursor: pointer;
+}
+
+.top__alert {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  margin-bottom: 5px;
+  opacity: 0;
+  transition: opacity 0.9s ease-in-out;
+}
+
+.top__alert.visible {
+  opacity: 1;
+  transition: opacity 0.9s ease-in-out;
 }

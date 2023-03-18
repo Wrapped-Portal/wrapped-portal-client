@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import {
+  Alert,
   Button,
-  Input,
   Image,
   List,
   Paper,
@@ -15,23 +15,28 @@ import {
   Modal,
   NativeSelect,
 } from '@mantine/core';
-import { selectTrack } from '../../store/reducers/playlistSlice';
 import { playSong } from '../../store/reducers/webPlayerSlice';
 import { getArtistTop } from '../../store/reducers/selectedSlice';
-import { createCustomPlaylist } from '../../store/reducers/playlistSlice';
+import { setAudioFeatures } from '../../store/reducers/audioFeaturesSlice';
+import { createCustomPlaylist, selectTrack, setAlert } from '../../store/reducers/playlistSlice';
+import Features from '../Features'
 
 export default function UserTopResults() {
   const [data, setData] = useState(null);
   const [opened, setOpened] = useState(false);
+  const [openFeatures, setOpenFeatures] = useState(false);
   const [type, setType] = useState('tracks');
   const [range, setRange] = useState('short_term');
+  const [alertText, setAlertText] = useState({ title: '', body: '', color: '' });
 
   const { token } = useSelector((state) => state.login);
   const { user } = useSelector((state) => state.userSlice);
-  const { disabled } = useSelector((state) => state.playlistSlice);
+  const { audioArtist } = useSelector((state) => state.audioFeaturesSlice);
+  const { disabled, alert } = useSelector((state) => state.playlistSlice);
   const { selectedData } = useSelector((state) => state.selectedSlice);
 
   const dispatch = useDispatch();
+
 
   const fetchData = async () => {
     try {
@@ -97,6 +102,21 @@ export default function UserTopResults() {
   };
 
 
+  useEffect(() => {
+    if (alert?.data) {
+      setAlertText({ title: 'Success!', body: 'Track Added to Playlist!', color: 'lime' });
+    } if (alert === 'error') {
+      setAlertText({ title: 'Error', body: 'Track Failed to be Added.', color: 'red' });
+    }
+
+    const timeoutId = setTimeout(() => {
+      dispatch(setAlert(null));
+    }, 6000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [alert]);
 
   return (
     <>
@@ -183,31 +203,52 @@ export default function UserTopResults() {
                 >
                   +
                 </Button>
+                <Button
+                  className="list_button_features"
+                  key={`button-${index}-features`}
+                  color="orange"
+                  radius="sm"
+                  size="xs"
+                  compact
+                  onClick={() => {
+                    dispatch(setAudioFeatures(item));
+                    setOpenFeatures(true);
+                  }}
+                >
+                  ?
+                </Button>
               </List.Item>
             ))}
           </List>
         </Modal>
       )}
       <div className="topResults">
+        <Alert
+          color={alertText.color}
+          variant="filled"
+          className={`top__alert ${alert ? 'visible' : ''}`}
+        >
+          {alertText.title} {alertText.body}
+        </Alert>
         <h3>Your Top Listens</h3>
         <div className="input-container">
-    <div className="input-wrapper">
-      <h4 className="input">Select Tracks or Artists</h4>
-      <NativeSelect
-        data={['Tracks', 'Artists']}
-        onChange={(event) => setType(event.target.value.toLowerCase())}
-        className="top-input"
-      />
-    </div>
-    <div className="input-wrapper">
-      <h4 className="input">Select a Time Range</h4>
-      <NativeSelect
-        data={[{ value: 'short_term', label: 'Past Month' },{ value: 'medium_term', label: 'Past 6 Months' },{ value: 'long_term', label: 'All Time' },]}
-        onChange={(event) => setRange(event.target.value)}
-        className="top-input"
-      />
-    </div>
-  </div>
+          <div className="input-wrapper">
+            <h4 className="input">Select Tracks or Artists</h4>
+            <NativeSelect
+              data={['Tracks', 'Artists']}
+              onChange={(event) => setType(event.target.value.toLowerCase())}
+              className="top-input"
+            />
+          </div>
+          <div className="input-wrapper">
+            <h4 className="input">Select a Time Range</h4>
+            <NativeSelect
+              data={[{ value: 'short_term', label: 'Past Month' }, { value: 'medium_term', label: 'Past 6 Months' }, { value: 'long_term', label: 'All Time' },]}
+              onChange={(event) => setRange(event.target.value)}
+              className="top-input"
+            />
+          </div>
+        </div>
         {data && (
           <>
             <Paper
@@ -289,6 +330,20 @@ export default function UserTopResults() {
                         disabled={disabled}
                       >
                         +
+                      </Button>
+                      <Button
+                        className="list_button_features"
+                        key={`button-${index}-features`}
+                        color="orange"
+                        radius="sm"
+                        size="xs"
+                        compact
+                        onClick={() => {
+                          dispatch(setAudioFeatures(item));
+                          setOpenFeatures(true);
+                        }}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 512 512"><path fill="currentColor" d="M128 496H48V304h80Zm224 0h-80V208h80Zm112 0h-80V96h80Zm-224 0h-80V16h80Z" /></svg>
                       </Button>
                     </List.Item>
                   ) : (
@@ -385,6 +440,14 @@ export default function UserTopResults() {
           </>
         )}
       </div>
+      <Modal
+        size={700}
+        opened={openFeatures}
+        onClose={() => setOpenFeatures(false)}
+        title={`"${audioArtist?.name}" by ${audioArtist?.artists[0].name} Stats`}
+      >
+        <Features />
+      </Modal>
     </>
   );
 }

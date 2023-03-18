@@ -1,10 +1,7 @@
 /** @format */
 
-/** @format */
-
 import axios from 'axios';
-
-/** @format */
+import { setRemoveAlert } from '../reducers/playlistSlice';
 
 const removeTrack = (store) => (next) => async (action) => {
 
@@ -21,8 +18,10 @@ const removeTrack = (store) => (next) => async (action) => {
         `${import.meta.env.VITE_SERVER_URI}remove?token=${accessToken}`,
         { data },
       );
+      store.dispatch(setRemoveAlert('success'));
       return next(action);
     } catch (error) {
+      store.dispatch(setRemoveAlert('error'));
       throw error;
     }
   }

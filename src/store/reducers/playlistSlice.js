@@ -10,6 +10,8 @@ const initialState = {
   active: '',
   disabled: true,
   playlistObject: null,
+  alert: null,
+  removeAlert: null,
 };
 
 const playlistSlice = createSlice({
@@ -56,6 +58,12 @@ const playlistSlice = createSlice({
     setDisabled: (state, action) => {
       state.disabled = action.payload;
     },
+    setAlert: (state, action) => {
+      state.alert = action.payload;
+    },
+    setRemoveAlert: (state, action) => {
+      state.removeAlert = action.payload;
+    },
   },
 });
 
@@ -72,6 +80,8 @@ export const {
   getUserPlaylists,
   setActive,
   setDisabled,
+  setAlert,
+  setRemoveAlert,
 } = playlistSlice.actions;
 
 export default playlistSlice.reducer;

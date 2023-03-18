@@ -32,24 +32,24 @@ export default function Features() {
     "B",
   ];
   
-  const keyIndex = audioFeatures.key;
+  const keyIndex = audioFeatures?.key;
   let keyName;
   if (keyIndex === -1) {
     keyName = musicalKeys[0];
   } else {
-    keyName = musicalKeys[keyIndex + 1] + (audioFeatures.mode === 1 ? " Major" : " Minor");
+    keyName = musicalKeys[keyIndex + 1] + (audioFeatures?.mode === 1 ? " Major" : " Minor");
   }
 
-  const loudness = audioFeatures.loudness;
+  const loudness = audioFeatures?.loudness;
   const loudnessScaled = (loudness + 60) / 60 * 100;
 
   return (
     <>
       <Group>
         <p className='features__text'>{`Duration: ${duration_formatted}`}</p>
-        <p className='features__text'>{`Time Signature: ${audioFeatures.time_signature}/4`}</p>
+        <p className='features__text'>{`Time Signature: ${audioFeatures?.time_signature}/4`}</p>
         <p className='features__text'>{`Key: ${keyName}`}</p>
-        <p className='features__text'>{`Bpm: ${Math.round(audioFeatures.tempo)}`}</p>
+        <p className='features__text'>{`Bpm: ${Math.round(audioFeatures?.tempo)}`}</p>
       </Group>
       <CChart
         type="bar"

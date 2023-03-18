@@ -3,15 +3,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  dance: '',
-  energy: '',
-  loud: '',
-  vibe: '',
-  tempo: '',
-  popular: '',
-  instrumental: '',
-  acoustic: '',
-  live: '',
+  dance: 0,
+  energy: 0,
+  loud: 0,
+  vibe: 0,
+  tempo: 0,
+  popular: 0,
+  instrumental: 0,
+  acoustic: 0,
+  live: 0,
 };
 
 const mySlice = createSlice({

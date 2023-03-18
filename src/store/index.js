@@ -26,6 +26,7 @@ import getAlbumTracks from './middleware/getAlbumItems';
 import getArtistTop from './middleware/getArtistTop';
 import createCustomPlaylist from './middleware/createCustomPlaylist';
 import genreSlice from './reducers/genreSlice';
+import toggleSlice from './reducers/toggleSlice';
 import audioFeaturesSlice from './reducers/audioFeaturesSlice';
 import getAudioFeatures from './middleware/getAudioFeatures';
 
@@ -40,6 +41,7 @@ const store = configureStore({
     screenHeightSlice,
     selectedSlice,
     genreSlice,
+    toggleSlice,
     audioFeaturesSlice,
   },
 

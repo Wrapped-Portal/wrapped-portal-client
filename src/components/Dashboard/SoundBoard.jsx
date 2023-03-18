@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import Knob from '../Knob';
 import { Button } from '@mantine/core';
 import CustomSlider from '../Slider/CustomSlider';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleState } from '../../store/reducers/toggleSlice';
 export default function SoundBoard() {
+  const toggleStates = useSelector((state) => state.toggleSlice);
   const [isSlider, setIsSlider] = useState(false);
+  const dispatch = useDispatch();
   const handleToggleChange = () => {
     setIsSlider(!isSlider);
+  };
+  const handleToggleState = (field) => {
+    dispatch(toggleState({ field }));
   };
 
   return (
@@ -14,7 +21,8 @@ export default function SoundBoard() {
         className="board_button"
         variant="gradient"
         gradient={{ from: 'teal', to: 'lime', deg: 105 }}
-        onClick={handleToggleChange}>
+        onClick={handleToggleChange}
+      >
         {isSlider ? 'Switch to Knobs' : 'Switch to Sliders'}
       </Button>
       <div className="sound-board">
@@ -34,8 +42,28 @@ export default function SoundBoard() {
               fieldName="dance"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="danceToggle"
+                name="danceToggle"
+                checked={toggleStates.danceEnabled}
+                onChange={() => handleToggleState('danceEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="danceToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
+        <div className="knob_border--center">
           {isSlider ? (
             <CustomSlider
               description="Energy: Infuse your music with enthusiasm by increasing this slider for a lively and spirited experience."
@@ -51,6 +79,26 @@ export default function SoundBoard() {
               fieldName="energy"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="energyToggle"
+                name="energyToggle"
+                checked={toggleStates.energyEnabled}
+                onChange={() => handleToggleState('energyEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="energyToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="knob_border">
           {isSlider ? (
@@ -68,6 +116,26 @@ export default function SoundBoard() {
               fieldName="loud"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="loudnessToggle"
+                name="loudnessToggle"
+                checked={toggleStates.loudnessEnabled}
+                onChange={() => handleToggleState('loudnessEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="loudnessToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="knob_border">
           {isSlider ? (
@@ -85,8 +153,28 @@ export default function SoundBoard() {
               fieldName="vibe"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="vibeToggle"
+                name="vibeToggle"
+                checked={toggleStates.vibeEnabled}
+                onChange={() => handleToggleState('vibeEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="vibeToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
+        <div className="knob_border--center">
           {isSlider ? (
             <CustomSlider
               description="Tempo: Rev up the pace of your tunes by tweaking this slider for a faster, more exhilarating tempo."
@@ -102,6 +190,26 @@ export default function SoundBoard() {
               fieldName="tempo"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="tempoToggle"
+                name="tempoToggle"
+                checked={toggleStates.tempoEnabled}
+                onChange={() => handleToggleState('tempoEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="tempoToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="knob_border">
           {isSlider ? (
@@ -119,6 +227,26 @@ export default function SoundBoard() {
               fieldName="popular"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="popularityToggle"
+                name="popularityToggle"
+                checked={toggleStates.popularityEnabled}
+                onChange={() => handleToggleState('popularityEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="popularityToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="knob_border">
           {isSlider ? (
@@ -136,8 +264,28 @@ export default function SoundBoard() {
               fieldName="instrumental"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="instrumentalToggle"
+                name="instrumentalToggle"
+                checked={toggleStates.instrumentalEnabled}
+                onChange={() => handleToggleState('instrumentalEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="instrumentalToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
+        <div className="knob_border--center">
           {isSlider ? (
             <CustomSlider
               description="Liveness: Crave the excitement of a live performance? Increase this slider to feel like you're front row at a concert."
@@ -153,6 +301,26 @@ export default function SoundBoard() {
               fieldName="live"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="livenessToggle"
+                name="livenessToggle"
+                checked={toggleStates.livenessEnabled}
+                onChange={() => handleToggleState('livenessEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="livenessToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="knob_border">
           {isSlider ? (
@@ -170,6 +338,26 @@ export default function SoundBoard() {
               fieldName="acoustic"
             />
           )}
+          <div className="toggle__wrapper">
+            <div className="toggle-switch">
+              <input
+                type="checkbox"
+                id="acousticnessToggle"
+                name="acousticnessToggle"
+                checked={toggleStates.acousticnessEnabled}
+                onChange={() => handleToggleState('acousticnessEnabled')}
+              />
+              <div className="back">
+                <label
+                  className="but"
+                  htmlFor="acousticnessToggle"
+                >
+                  <span className="on">I</span>
+                  <span className="off">0</span>
+                </label>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>

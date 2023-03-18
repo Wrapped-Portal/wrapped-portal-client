@@ -43,7 +43,7 @@ export default function Features() {
   const loudnessScaled = (loudness + 60) / 60 * 100;
 
   const dateString = audioArtist?.album?.release_date;
-const parts = dateString.split('-');
+const parts = dateString?.split('-');
 const formattedDate = `${parts[1]}/${parts[2]}/${parts[0]}`;
 
   return (

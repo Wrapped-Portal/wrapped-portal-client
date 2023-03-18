@@ -27,20 +27,22 @@ const Footer = () => {
           className="footer__text"
           color={'gray'}
         >
-          Copyright  &copy; 2023
+          Copyright &copy; 2023
         </Text>
       </section>
       <div className="footer">
-        <SpotifyWebPlayer
-          className="footer__player"
-          token={accessToken}
-          showSaveIcon
-          callback={(state) => {
-            dispatch(setPlayingStatus(state.isPlaying));
-          }}
-          play={playing}
-          uris={trackUri ? trackUri : []}
-        />
+        {trackUri && (
+          <SpotifyWebPlayer
+            className="footer__player"
+            token={accessToken}
+            showSaveIcon
+            callback={(state) => {
+              dispatch(setPlayingStatus(state.isPlaying));
+            }}
+            play={playing}
+            uris={trackUri ? trackUri : []}
+          />
+        )}
       </div>
     </footer>
   );

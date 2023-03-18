@@ -14,7 +14,12 @@ export default function SoundBoard() {
   };
   const handleToggleState = (field, fieldValue) => {
     dispatch(toggleState({ field }));
-    dispatch(setFieldValue({ field: fieldValue, value: '' }));
+    dispatch(
+      setFieldValue({
+        field: fieldValue,
+        value: toggleStates.danceEnabled ? 0 : '',
+      }),
+    );
   };
 
   return (

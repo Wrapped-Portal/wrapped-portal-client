@@ -65,18 +65,19 @@ export default function Features() {
           },
         }}
         data={{
-          labels: ['Acousticness', 'Danceability', 'Energy', 'Instrumentalness', 'Liveness', 'Speechiness', 'Valence', 'Loudness'],
+          labels: ['Acousticness', 'Danceability', 'Energy', 'Instrumentalness', 'Liveness', 'Speechiness', 'Vibe', 'Loudness'],
           datasets: [
             {
               label: 'Feature Rating',
               backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)',
-                'rgba(75, 192, 192, 0.7)',
-                'rgba(153, 102, 255, 0.7)',
-                'rgba(255, 159, 64, 0.7)',
-                'rgba(128, 128, 128, 0.7)',
+                'rgba(0, 128, 255, 0.7)',   // Blue
+                'rgba(255, 51, 51, 0.7)',   // Red
+                'rgba(0, 204, 102, 0.7)',   // Green
+                'rgba(255, 204, 0, 0.7)',   // Yellow
+                'rgba(51, 204, 204, 0.7)',  // Cyan
+                'rgba(254, 0, 204, 0.7)',   // Magenta
+                'rgba(255, 128, 0, 0.7)',   // Orange
+                'rgba(153, 51, 255, 0.7)',  // Purple
               ],
               data: [
                 audioFeatures?.acousticness * 100,

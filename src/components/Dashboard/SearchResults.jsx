@@ -419,7 +419,7 @@ export default function SearchResults() {
         size={700}
         opened={openFeatures}
         onClose={() => setOpenFeatures(false)}
-        title={`"${audioArtist?.name}" by ${audioArtist?.artists[0].name} Stats`}
+        title={`"${audioArtist?.name}" by ${audioArtist?.artists[0].name}`}
       >
         <Features />
       </Modal>

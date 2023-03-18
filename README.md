@@ -1,6 +1,10 @@
 # Tune Port
 This is a React application that uses Vite as a development server to provide a Spotify-wrapped experience. The application allows users to search for songs, get custom recommendations based on eight different parameters, and create and modify playlists.
 
+## Deployed Link
+
+[Tune Port Link](https://tune-port.netlify.app/)
+
 ## Getting Started
 To get started with this application, follow these steps:
 

@@ -27,11 +27,25 @@
   margin-right: 13px;
 }
 
+.list_button_features {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  margin-right: -18px;
+}
+
 .list_button_modal {
   position: absolute;
   top: 10px;
   right: 0;
   margin-right: 13px;
+}
+
+.list_button_modal_features {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  margin-right: -16px;
 }
 
 .list li:not(:first-child) {

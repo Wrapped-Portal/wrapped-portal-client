@@ -26,6 +26,8 @@ import getAlbumTracks from './middleware/getAlbumItems';
 import getArtistTop from './middleware/getArtistTop';
 import createCustomPlaylist from './middleware/createCustomPlaylist';
 import genreSlice from './reducers/genreSlice';
+import audioFeaturesSlice from './reducers/audioFeaturesSlice';
+import getAudioFeatures from './middleware/getAudioFeatures';
 
 const store = configureStore({
   reducer: {
@@ -38,6 +40,7 @@ const store = configureStore({
     screenHeightSlice,
     selectedSlice,
     genreSlice,
+    audioFeaturesSlice,
   },
 
   middleware: [
@@ -53,6 +56,7 @@ const store = configureStore({
     getAlbumTracks,
     getArtistTop,
     getSearchResults,
+    getAudioFeatures,
     setPlaylistItems,
     setMorePlaylistItems,
     createCustomPlaylist,

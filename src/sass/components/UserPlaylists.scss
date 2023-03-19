@@ -39,7 +39,13 @@
 .playlist_button {
   position: absolute;
   top: 30px;
-  right: 0;
+  right: 30px;
+}
+
+.playlist_button_features {
+  position: absolute;
+  top: 30px;
+  right: -4px;
 }
 
 .text-select {

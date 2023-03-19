@@ -122,11 +122,11 @@ export default function CustomRec() {
 
     const body = {
       name: `Custom Recommendations ${date} `,
-      description: `Your Custom Recommendations made on ${date}. The ${type} chosen to base the recommendations on: "${input.toUpperCase()}". Created on Tune Port`,
+      description: `Your Custom Recommendations made on ${date}. The ${type} chosen to base the recommendations on: "${input?.toUpperCase()}". Created on Tune Port`,
       public: true,
-      user_id: user.id,
+      user_id: user?.id,
     };
-    const uris = data?.tracks.map((item) => item.uri).join(',');
+    const uris = data?.tracks.map((item) => item?.uri).join(',');
 
     let payload = {
       body: body,

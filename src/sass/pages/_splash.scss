@@ -126,32 +126,38 @@
 
 /* Change the layout for screens smaller than 750px */
 @media (width < 1050px) {
-  .splash__login{
-    scale: .75;
+  .splash__login {
+    scale: 0.75;
+    margin-right: 10rem;
   }
   .splash__description__contain {
-    margin-left: 11rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-width: 70%;
+    width: 100vw;
+    margin: auto;
   }
   h1 {
     font-size: 10rem;
+  }
+  .mantine-5f6x53 {
+    flex-direction: column;
   }
   .splash__description__item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-width: 70%;
-margin-left: 11rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+    scale: 0.75;
     h3 {
       margin: 0;
       padding: 0;
       margin-bottom: 2rem;
     }
     p {
-      margin-bottom: 4rem;
+      margin-bottom: -4rem;
     }
   }
 }
@@ -163,8 +169,32 @@ margin-left: 11rem;
     width: 5rem;
   }
   .splash__header__text {
-    margin-left: 11rem;
-    width: 70%;
     margin-bottom: 5rem;
+    width: 100vw;
+  }
+  .splash__text {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@media (width < 320px) {
+  .splash__description__contain {
+    scale: 0.6;
+    width: 100%;
+    margin-top: -40rem;
+  }
+  h1 {
+    font-size: 4rem;
+  }
+  .splash__login {
+    scale: 0.65;
+    margin-left: -5rem;
+  }
+  .splash__header__text {
+    scale: 0.65;
+    width: 100%;
+    padding: 1rem;
   }
 }

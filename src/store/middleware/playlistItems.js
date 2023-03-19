@@ -26,7 +26,7 @@ const setPlaylistItems = (store) => (next) => async (action) => {
       const activePlaylistObject = playlists.items?.filter((playlist) => playlist.id === store.getState().playlistSlice.selectedPlaylist);
       store.dispatch(setPlaylistObject(activePlaylistObject));
       let user = store.getState().userSlice.user
-      if (activePlaylistObject.at(0).owner.display_name !== user.display_name) {
+      if (activePlaylistObject?.at(0)?.owner.display_name !== user?.display_name) {
         store.dispatch(setDisabled(true));
       } else {
         store.dispatch(setDisabled(false));

@@ -122,7 +122,7 @@ export default function CustomRec() {
 
     const body = {
       name: `Custom Recommendations ${date} `,
-      description: `Your Custom Recommendations made on ${date}. Artist chosen to base the recommendations on: "${artist}". Created on Tune Port`,
+      description: `Your Custom Recommendations made on ${date}. The ${type} chosen to base the recommendations on: "${input.toUpperCase()}". Created on Tune Port`,
       public: true,
       user_id: user.id,
     };

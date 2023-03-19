@@ -2,17 +2,22 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import {  Alert, Button, Paper, Text, List, Image, Group, Stack } from '@mantine/core';
+import {  Alert, Button, Paper, Text, List, Image, Group, Modal, Stack } from '@mantine/core';
 import { removeTrack, setMorePlaylistItems, setRemoveAlert } from '../../store/reducers/playlistSlice';
 import { playSong, playAll } from '../../store/reducers/webPlayerSlice';
+import { setAudioFeatures } from '../../store/reducers/audioFeaturesSlice';
 import LoadingBars from '../LoadingBars';
+import Features from '../Features'
+
 
 export default function UserPlaylists() {
   const [alertText, setAlertText] = useState({ title: '', body: '', color: ''});
+  const [openFeatures, setOpenFeatures] = useState(false);
 
   const { playlistItems, selectedPlaylist, disabled, playlistObject, removeAlert } = useSelector(
-    (state) => state.playlistSlice,
+    (state) => state.playlistSlice
   );
+  const { audioArtist } = useSelector((state) => state.audioFeaturesSlice);
 
   const dispatch = useDispatch();
 
@@ -43,6 +48,8 @@ export default function UserPlaylists() {
       clearTimeout(timeoutId);
     };
   }, [removeAlert]);
+
+  console.log(playlistItems)
 
  
 
@@ -151,6 +158,20 @@ export default function UserPlaylists() {
                   >
                     -
                   </Button>
+                  <Button
+                        className="playlist_button_features"
+                        key={`button-${index}-features`}
+                        color="orange"
+                        radius="sm"
+                        size="xs"
+                        compact
+                        onClick={() => {
+                          dispatch(setAudioFeatures(item?.track));
+                          setOpenFeatures(true);
+                        }}
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 512 512"><path fill="currentColor" d="M128 496H48V304h80Zm224 0h-80V208h80Zm112 0h-80V96h80Zm-224 0h-80V16h80Z" /></svg>
+                      </Button>
                 </List.Item>
               ))}
             </List>
@@ -167,6 +188,14 @@ export default function UserPlaylists() {
         </Button>
         </>
         )}
+              <Modal
+        size={700}
+        opened={openFeatures}
+        onClose={() => setOpenFeatures(false)}
+        title={`"${audioArtist?.name}" by ${audioArtist?.artists[0].name}`}
+      >
+        <Features />
+      </Modal>
       </div>
     </>
   );

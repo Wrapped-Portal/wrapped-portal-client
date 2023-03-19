@@ -49,10 +49,6 @@ export default function UserPlaylists() {
     };
   }, [removeAlert]);
 
-  console.log(playlistItems)
-
- 
-
   return (
     <>
       <div className="playlist">

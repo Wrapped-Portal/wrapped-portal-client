@@ -21,27 +21,28 @@
   }
 
   &__header__text {
-    margin-left: 100px;
+    margin: auto;
+    width: 80%;
     margin-top: 40px;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.111);
     border-radius: 10px;
-    margin-right: 100px;
+
     color: white;
   }
 
   &__description__contain {
-    margin-left: 100px;
-    margin-right: 100px;
-    margin-bottom: 30px;
-    margin-top: 20px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-bottom: 5rem;
     padding: 30px;
     background-color: rgba(255, 255, 255, 0.111);
     border-radius: 10px;
   }
 
   &__description__item {
-    float: left;
     width: 50%;
   }
 
@@ -65,11 +66,11 @@
   }
 
   &__image {
+    margin: auto;
     margin-top: 20px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-bottom: 20px;
+    width: 80%;
   }
-
 
   &__login {
     align-items: center;
@@ -105,5 +106,59 @@
       left: 9rem;
       bottom: -16.4rem;
     }
+  }
+}
+.splash__description__item {
+  h3 {
+    margin-bottom: 3rem;
+  }
+  p {
+    margin-bottom: 3rem;
+  }
+  padding: 2rem;
+}
+/* Hide the image on screens over 800px */
+@media (width < 801px) {
+  .splash__image {
+    display: none;
+  }
+}
+
+/* Change the layout for screens smaller than 750px */
+@media (width < 1050px) {
+  .splash__description__contain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  h1 {
+    font-size: 10rem;
+  }
+  .splash__description__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    h3 {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 2rem;
+    }
+    p {
+      margin-bottom: 4rem;
+    }
+  }
+}
+@media (width < 1050px) {
+  h1 {
+    font-size: 5rem;
+  }
+  .sidebar-icon {
+    width: 5rem;
+  }
+  .splash__header__text {
+    width: 100%;
+    margin-bottom: 5rem;
   }
 }

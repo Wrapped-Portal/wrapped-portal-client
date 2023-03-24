@@ -1,5 +1,12 @@
-const ONE_HOUR = 60 * 60 * 1000; // 1 hour in milliseconds
+// analytics.js
 
+//Client ID
+const CLIENT_ID = 'd526e49d-cc0f-468f-b04d-f59e21f6365a';
+//Site sending the data
+const SITE_NAME = 'Tune Port';
+
+//How often send data per IP
+const ONE_HOUR = 60 * 60 * 1000; // 1 hour in milliseconds
 const checkLastSent = () => {
   const lastSent = localStorage.getItem('lastSent');
   if (!lastSent) {
@@ -15,19 +22,25 @@ const updateLastSent = () => {
   localStorage.setItem('lastSent', new Date().toISOString());
 };
 
-const getDeviceType = () =>
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent,
-  )
-    ? 'mobile'
-    : 'desktop';
+const getDeviceType = () => {
+  const userAgent = navigator.userAgent;
+  if (
+    /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)
+  ) {
+    return 'mobile';
+  } else if (/iPad/i.test(userAgent)) {
+    return 'tablet';
+  } else {
+    return 'desktop';
+  }
+};
 
 const getIpAddress = async () =>
   await fetch('https://api.ipify.org?format=json')
     .then((res) => res.json())
     .then((data) => data.ip);
 
-export const analytics = async (siteName) => {
+window.analytics = async function analytics(siteName, clientId) {
   try {
     if (!checkLastSent()) {
       return;
@@ -35,7 +48,6 @@ export const analytics = async (siteName) => {
 
     const ipAddress = await getIpAddress();
 
-    // Collect the necessary data
     const data = {
       siteName,
       date: new Date().toISOString(),
@@ -46,21 +58,19 @@ export const analytics = async (siteName) => {
       deviceType: getDeviceType(),
       ipAddress,
     };
-  
 
-    // Send the data to the server
     const response = await fetch(
       'https://astro-server-z1u9.onrender.com/traffic-data',
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Client-ID': clientId, // Use X-Client-ID header to pass the client ID
         },
         body: JSON.stringify(data),
       },
     );
 
-    // Check if the request was successful
     if (!response.ok) {
       throw new Error(
         `Error sending data to the server: ${response.statusText}`,
@@ -72,3 +82,8 @@ export const analytics = async (siteName) => {
     console.error(error);
   }
 };
+
+(async () => {
+  // Pass the CLIENT_ID as the second argument to the analytics function
+  await analytics(SITE_NAME, CLIENT_ID);
+})();

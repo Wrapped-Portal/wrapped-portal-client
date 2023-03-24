@@ -50,9 +50,6 @@ This application was built using React and Vite. It also uses the Spotify API to
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-                           
 ![tune-port screenshot of splash page](https://user-images.githubusercontent.com/105423307/227052253-f1cf105e-7a9e-4cc8-8840-898de2d6c671.png)  
 ![tune-port screenshot of UI](https://user-images.githubusercontent.com/105423307/227052401-5e8bfaa4-5c9b-4755-a88f-fab944bf8be4.png)  
 ![tune-port screenshot of create playlist](https://user-images.githubusercontent.com/105423307/227052592-80664f82-067f-4b29-a3c8-f5d0a0c65548.png)
-
-  

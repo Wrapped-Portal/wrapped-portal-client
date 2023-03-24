@@ -18,7 +18,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    analytics('Tune Port');
     const code = new URLSearchParams(window.location.search).get('code'); // grab the code from the url path
     if (code) {
       dispatch(storeToken({ code: code })); // send the code to the middleware to retrieve a bearer token

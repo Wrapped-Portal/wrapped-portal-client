@@ -9,8 +9,11 @@ import Dashboard from './components/Dashboard';
 import Splash from './components/Splash';
 import { storeToken } from './store/reducers/loginSlice';
 import Footer from './components/Footer/Footer';
-import { analytics } from './analytics';
+import analytics from 'analytics-benson';
 
+const CLIENT_ID = 'd526e49d-cc0f-468f-b04d-f59e21f6365a';
+//Site sending the data
+const SITE_NAME = 'Tune Port';
 const cookies = new Cookies();
 
 function App() {
@@ -18,6 +21,8 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    analytics(SITE_NAME, CLIENT_ID);
+
     const code = new URLSearchParams(window.location.search).get('code'); // grab the code from the url path
     if (code) {
       dispatch(storeToken({ code: code })); // send the code to the middleware to retrieve a bearer token
